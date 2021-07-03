@@ -30,6 +30,11 @@ const menuItems = [
     key: '/logged/customer/manager'
   },
   {
+    icon: <TeamOutlined />,
+    label: 'Veiculos',
+    key: '/logged/vehicle/manager'
+  },
+  {
     icon: <BlockOutlined />,
     label: 'Produtos',
     key: '/logged/product/manager'
