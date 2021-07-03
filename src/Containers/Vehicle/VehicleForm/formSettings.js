@@ -50,7 +50,7 @@ const formSettingsVehicle = [{
   typeInput: 'select',
   options: [],
 },{
-  label: 'Operação segundárias',
+  label: 'Operações segundárias',
   name: 'secondaryOperations',
   placeholder: '',
   show: false,
