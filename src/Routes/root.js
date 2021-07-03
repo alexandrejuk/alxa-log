@@ -1,17 +1,11 @@
 import UpdateMyPassword from '../Pages/UpdateMyPassword'
 import MyTeam from '../Pages/MyTeam'
-import Onboarding from '../Pages/Onboarding'
 import MyInfo from '../Pages/MyInfo'
 import Home from '../Pages/Home'
 import VehicleManager from '../Pages/Vehicle/Manager'
 import MaintenanceManager from '../Pages/MaintenanceOrder/Manager'
 
 const RootRoutes = [
-  {
-    component: Onboarding,
-    path: '/user/onboarding',
-    exact: true,
-  },
   {
     component: MyInfo,
     title: 'MINHA CONTA',
