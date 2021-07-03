@@ -17,70 +17,32 @@
     },
     {
       "id": 2,
-      "plate": "GSC74l26",
-      "fleet": "890005",
-      "mainOperation": "Toyota",
+      "plate": "BBB4429",
+      "fleet": "11106110",
+      "mainOperation": "gmIinterplatas",
       "secondaryOperations": [
+        "gmIinterplatas",
         "Toyota",
         "Ford"
       ],
       "vehicleType": "horse",
-      "preventiveMaintenanceLimite": 2,
+      "preventiveMaintenanceLimite": 6,
       "lastMaintenance": "2021-02-24",
-      "situation": "unegular"
+      "situation": "regular"
+    }
+  ],
+  "drivers": [
+    {
+      "id": 1,
+      "name": "Alexandre Soares",
+      "phone": "11987654321",
+      "cnh": "987654321"
     },
     {
-      "plate": "ABC1234",
-      "fleet": 2,
-      "vehicleType": 1,
-      "mainOperation": 1,
-      "secondaryOperations": [
-        1,
-        3
-      ],
-      "id": 3
-    },
-    {
-      "plate": "hhj3333",
-      "fleet": 1,
-      "vehicleType": 1,
-      "mainOperation": 1,
-      "id": 4
-    },
-    {
-      "plate": "ABC1234",
-      "fleet": 1,
-      "vehicleType": 1,
-      "mainOperation": 1,
-      "secondaryOperations": [
-        1
-      ],
-      "id": 5
-    },
-    {
-      "plate": "ABC1234",
-      "fleet": 1,
-      "vehicleType": 1,
-      "mainOperation": 1,
-      "id": 6
-    },
-    {
-      "plate": "DSA1234",
-      "fleet": 1,
-      "vehicleType": 1,
-      "mainOperation": 1,
-      "id": 7
-    },
-    {
-      "plate": "gsc12kl",
-      "fleet": "890005",
-      "vehicleType": "horse",
-      "mainOperation": "Toyota",
-      "secondaryOperations": [
-        "Toyota",
-        "Ford"
-      ],
-      "id": 8
+      "id": 2,
+      "name": "Thiago Ramalho",
+      "phone": "11888876666",
+      "cnh": "9999999921"
     }
   ],
   "operations": [
@@ -118,6 +80,62 @@
     {
       "id": 2,
       "name": "Carreta"
+    }
+  ],
+  "maintenanceOrders": [
+    {
+      "id": 12,
+      "maintenanceDate": "2021-02-21",
+      "plateHorse": "ABC1234",
+      "plateCart": "ABC1234",
+      "fleet": "899000",
+      "centralCost": "JDF-F20091-200",
+      "driver": "Alexandre Soares",
+      "phoneDriver": "11987654321",
+      "priority": "high",
+      "service": "pre-repair",
+      "ServiceDescription": "Troca argolas para passar o cabo de aço da carroceria",
+      "branch": 1,
+      "serviceDescription": "penues"
+    },
+    {
+      "plateHorse": 2,
+      "driver": 1,
+      "maintenanceDate": "900100",
+      "branch": 1,
+      "priority": "medium",
+      "service": "corrective",
+      "serviceDescription": "garafa de vinho",
+      "id": 13
+    },
+    {
+      "plateHorse": 2,
+      "driver": 1,
+      "maintenanceDate": "900100",
+      "branch": 1,
+      "priority": "low",
+      "service": "preventive",
+      "serviceDescription": "teste alexandre soareskkkkkkklkjl;",
+      "id": 14
+    },
+    {
+      "plateHorse": 2,
+      "plateCart": 1,
+      "driver": 1,
+      "maintenanceDate": "900100",
+      "branch": 1,
+      "priority": "low",
+      "service": "preventive",
+      "serviceDescription": "test asljlkdsjada",
+      "id": 15
+    }
+  ],
+  "branchs": [
+    {
+      "id": 1,
+      "name": "Frei Daminhão",
+      "cnpj": "409283904823904",
+      "type": "filial"
     }
   ]
 }

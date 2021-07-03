@@ -9,7 +9,8 @@ import {
 
 const formItemsComponent = {
   input: Input,
-  select: Select
+  select: Select,
+  textArea: Input.TextArea,
 }
 
 const renderFormItems = ({ 
@@ -41,33 +42,28 @@ const renderFormItems = ({
   )
 }
 
-const VehicleForm = ({
-  fleetsSource,
-  operationsSource,
-  vehicleTypesSource,
+const MaintenanceForm = ({
+  branchsSource,
+  driversSource,
+  vehiclesSource,
   handleCancel,
   visible,
   handleSubmit,
   handleEdit,
-  vehicleSelected,
-  handleSelectedVehicle
+  maintenanceSelected,
+  handleSelectedMaintenance
 }) => {
-  const [formSettings, setFormSettings] = useState(vehicleSelected ? formSettingsVehicleEdit(fleetsSource, operationsSource, vehicleTypesSource) : formSettingsVehicle)
+  const [formSettings, setFormSettings] = useState(maintenanceSelected ? formSettingsVehicleEdit(branchsSource, driversSource, vehiclesSource) : formSettingsVehicle(vehiclesSource))
   const [form] = Form.useForm()
-
   const parseOptionItem = item => ({ value: item.id, label: item.name })
   const setOpetionValue = formItem => {
     switch (formItem.name) {
-      case 'fleet':
-        return fleetsSource.map(parseOptionItem)   
-      case 'mainOperation':
-        return operationsSource.map(parseOptionItem)
-      case 'secondaryOperations':
-        return operationsSource.map(parseOptionItem)   
-      case 'vehicleType':
-        return vehicleTypesSource.map(parseOptionItem)    
+      case 'branch':
+        return branchsSource.map(parseOptionItem)   
+      case 'driver':
+        return driversSource.map(parseOptionItem)
       default:
-        return []
+        return formItem.options
     }
   }
 
@@ -91,7 +87,7 @@ const VehicleForm = ({
           handleCancel(false)
           form.resetFields()
           setFormSettings(formSettingsVehicle)
-          handleSelectedVehicle(null)
+          handleSelectedMaintenance(null)
         }}>
           Cancelar
         </Button>,
@@ -102,7 +98,7 @@ const VehicleForm = ({
           Salvar
         </Button>
       ]}
-      title={`${vehicleSelected ? 'Editar' : 'Cadastrar'} veículo`}
+      title={`${maintenanceSelected ? 'Editar' : 'Cadastrar'} nova manutenção`}
     >
       <Form
         form={form}
@@ -110,16 +106,16 @@ const VehicleForm = ({
         onValuesChange={onValuesChangeVisableFomItem}
         validateTrigger="onChange"
         onFinish={values => {
-          if (vehicleSelected) {
-            handleEdit({...vehicleSelected, ...values})
+          if (maintenanceSelected) {
+            handleEdit({...maintenanceSelected, ...values})
           } else {
             handleSubmit(values)
           }
-          handleSelectedVehicle(null)
+          handleSelectedMaintenance(null)
           setFormSettings(formSettingsVehicle)
           form.resetFields()
         }}
-        initialValues={vehicleSelected}
+        initialValues={maintenanceSelected}
       >
         {map(renderFormItems, formSettings)}
       </Form>
@@ -127,4 +123,4 @@ const VehicleForm = ({
   )
 }
 
-export default VehicleForm
+export default MaintenanceForm

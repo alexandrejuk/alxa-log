@@ -6,7 +6,6 @@ import { compose } from 'ramda'
 import LoginContainer from '../../Containers/Login'
 import Auth from '../../Services/Auth'
 import { getCompanyById } from '../../Services/Company'
-import { getAllStatus } from '../../Services/Status'
 import { getSubscriptionActivated } from '../../Services/Subscription'
 
 const Login = ({
@@ -36,7 +35,6 @@ const Login = ({
         return getCompanyById(data.companyId)
       })
       .then(({ data }) => setCompany(data))
-      .then(() => getAllStatus({ limit: 9999 }))
       .then(({ data }) => setStatus(data))
       .then(() => getSubscriptionActivated())
       .then(({ data }) => setSubscription(data))

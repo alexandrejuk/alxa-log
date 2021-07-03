@@ -4,6 +4,7 @@ import Onboarding from '../Pages/Onboarding'
 import MyInfo from '../Pages/MyInfo'
 import Home from '../Pages/Home'
 import VehicleManager from '../Pages/Vehicle/Manager'
+import MaintenanceManager from '../Pages/MaintenanceOrder/Manager'
 
 const RootRoutes = [
   {
@@ -45,7 +46,13 @@ const RootRoutes = [
     path: '/logged/dashboard',
     exact: true,
   },
-
+  {
+    component: MaintenanceManager,
+    title: 'MANUTENÇÃO',
+    path: '/logged/maintenance/manager',
+    exact: true,
+    goBack: false,
+  },
 ]
 
 export default RootRoutes

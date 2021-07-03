@@ -13,7 +13,6 @@ import Success from './Pages/Accreditation/Register/Success'
 import Logged from './Pages/Logged'
 import reducers from './Redux/reducers'
 import Onboarding from './Pages/Onboarding'
-import PDV  from './Pages/PDV'
 
 const persistConfig = {
   key: 'root',
@@ -36,7 +35,6 @@ const App = () => {
           <Route exact path="/register/sucess" component={Success} />
           <Route path="/register" component={Register} />
           <Route path="/logged" component={Logged} />
-          <Route path="/pdv" component={PDV} />
           <Route exact path="/user/onboarding" component={Onboarding} />
           <Redirect from="*" to="/login" />
         </Switch>

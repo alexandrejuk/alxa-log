@@ -1,7 +1,5 @@
 import React from 'react'
 import { Table, Button, Empty, ConfigProvider, Image } from 'antd'
-import { cpf, cnpj } from 'cpf-cnpj-validator'
-import {map} from 'ramda'
 import NoData from '../../../../Assets/noData.svg'
 
 const columns = ({ handleClickEdit }) => [

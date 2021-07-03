@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
-import { Button, Card, Col, Input, Row, Typography } from 'antd'
+import { Button, Card, Col, Input, Row, Typography, Modal } from 'antd'
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons'
+import Voucher from '../../../Components/Voucher'
 
-import VehicleForm from '../VehicleForm'
-import VehicleList from './VehicleList'
+import MaintenanceForm from '../MaintenanceForm'
+import MaintenanceList from './MaintenanceList'
 
 const { Title } = Typography
 
 const Manager = ({
   loading,
   source,
-  operationsSource,
-  fleetsSource,
-  vehicleTypesSource,
+  branchsSource,
+  driversSource,
+  maintenanceOrdersSource,
   handleSubmit,
-  handleSelectedVehicle,
-  vehicleSelected,
+  handleSelectedMaintenance,
+  maintenanceSelected,
   handleEdit,
   handleFilter,
   searchValue,
@@ -26,11 +27,18 @@ const Manager = ({
   page
 }) => {
   const [showModal, setShowModal] = useState(false)
+  const [showVoucher, setShowVoucher] = useState(false)
+
   const openModal = () => setShowModal(true)
   
-  const showModalEditVehicle = (value) => {
-    handleSelectedVehicle(value)
+  const showModalEditMaintenance = (value) => {
+    handleSelectedMaintenance(value)
     setShowModal(true)
+  }
+
+  const handleShowVoucher = (value) => {
+    handleSelectedMaintenance(value)
+    setShowVoucher(true)
   }
 
   return (
@@ -40,16 +48,16 @@ const Manager = ({
           <Row>
             <Col span={12}>
               <Title style={{ marginBottom: 0 }} level={4}>
-                Adicione novos veículos
+                Adicionar novas manutenções
               </Title>
-              <p style={{ marginBottom: 0 }}>Crie e gerencie os seus veículos</p>
+              <p style={{ marginBottom: 0 }}>Crie e gerencie manutenções dos veículos de sua filial</p>
             </Col>
             <Col span={12} style={{ textAlign: 'right' }}>
               <Button
                 onClick={openModal}
                 style={{ marginRight: '16px' }}
                 icon={<PlusOutlined />}>
-                Adicionar veículos
+                Adicionar manutenção
               </Button>
             </Col>
           </Row>
@@ -62,7 +70,7 @@ const Manager = ({
             <Col span={16}>
               <Input
                 name="search_name_or_document"
-                placeholder="Filtre pela placa ou frota."
+                placeholder="Filtre pela placa do cavalo e carreta, frota ou data de matenunção."
                 prefix={<SearchOutlined />}
                 value={searchValue}
                 onChange={handleFilterOnchange}
@@ -82,28 +90,43 @@ const Manager = ({
       
       <Col span={24}>
         <Card bordered={false}>
-          <VehicleList 
+          <MaintenanceList 
             // onChangeTable={onChangeTable} 
-            datasource={source} 
+            datasource={maintenanceOrdersSource} 
             // total={total}
-            handleClickEdit={showModalEditVehicle}
+            handleClickEdit={showModalEditMaintenance}
+            handleShowVoucher={handleShowVoucher}
             loading={loading}
             // page={page}
           />
         </Card>
       </Col>
-  
+      {
+        maintenanceSelected && (
+          <Modal 
+            width={380} 
+            footer={false} 
+            visible={showVoucher} 
+            onCancel={() => {
+              setShowVoucher(false)
+              handleSelectedMaintenance(null)
+            }}
+          >
+            <Voucher maintenanceSelected={maintenanceSelected} />
+          </Modal>
+        )
+      }
       {
         showModal && (
-          <VehicleForm
+          <MaintenanceForm
             handleCancel={setShowModal}
             visible={showModal}
-            operationsSource={operationsSource}
-            fleetsSource={fleetsSource}
-            vehicleTypesSource={vehicleTypesSource}
+            branchsSource={branchsSource}
+            driversSource={driversSource}
+            vehiclesSource={source}
             handleSubmit={handleSubmit}
-            vehicleSelected={vehicleSelected}
-            handleSelectedVehicle={handleSelectedVehicle}
+            maintenanceSelected={maintenanceSelected}
+            handleSelectedMaintenance={handleSelectedMaintenance}
             handleEdit={handleEdit}
           />
         )

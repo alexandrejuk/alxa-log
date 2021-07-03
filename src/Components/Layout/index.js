@@ -31,6 +31,11 @@ const menuItems = [
   },
   {
     icon: <TeamOutlined />,
+    label: 'Manutenção',
+    key: '/logged/maintenance/manager'
+  },
+  {
+    icon: <TeamOutlined />,
     label: 'Veiculos',
     key: '/logged/vehicle/manager'
   },
