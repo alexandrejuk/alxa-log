@@ -1,39 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
 import { message } from 'antd'
+import { useLocation, withRouter } from 'react-router-dom'
 
 import ManagerContainer from '../../../Containers/Vehicle/Manager'
 import { createVehicle, getAll, getAllVehicleTypes, updateVehicle } from '../../../Services/Vehicle'
 import { getAll as getAllOperations } from '../../../Services/Operations'
 import { getAll as getAllFleets } from '../../../Services/Fleets'
 
-import {
-  compose,
-  isNil,
-} from 'ramda'
-
 const Manager = ({
+  history,
 }) => {
   const [vehiclesData, setVehiclesData] = useState([])
   const [operationsData, setOperationsData] = useState([])
   const [fleetsData, setFleetsData] = useState([])
   const [vehicleTypes, setVehicleTypes] = useState([])
   const [vehicleSelected, setVehicleSelected] = useState(null)
+  const [searchValue, setSearchValue] = useState(null)
 
   const [loading, setLoading] = useState(true)
+  const { search, pathname } = useLocation()
 
   useEffect(() => {
     getVehicles()
     getOperations()
     getFleets()
     getVehicleTypes()
+
+    if(!search && localStorage.getItem('vehicleSearch')) {
+      history.push({
+        pathname,
+        search: localStorage.getItem('vehicleSearch')
+      })
+      const searchParams = new URLSearchParams(localStorage.getItem('vehicleSearch'))
+      setSearchValue(searchParams.get('fleet'))
+    }
   }, [])
 
   const success = (text) => {
     message.success(text);
   }
   
-  const error = (text) => {
+  const errorMessage = (text) => {
     message.error(text)
   }
 
@@ -82,23 +89,43 @@ const Manager = ({
       getVehicles()
       success('Cadastro de veículo realizado com sucesso!')
     } catch (error) {
-      error('Não foi realizar o cadastro do veículo!')
+      errorMessage('Não foi realizar o cadastro do veículo!')
     }
   }
 
   const handleEdit = async (values) => {
-    consol
     try {
       await updateVehicle(values)
       getVehicles()
       success('Editado veículo com sucesso!')
     } catch (error) {
-      error('Não foi realizar a edição do veículo!')
+      errorMessage('Não foi realizar a edição do veículo!')
     }
   }
 
   const handleSelectedVehicle = vehicle => {
     setVehicleSelected(vehicle)
+  }
+
+  const handleFilter = () => {
+    localStorage.setItem('vehicleSearch', `?fleet=${searchValue}&plate=${searchValue}`)
+    history.push({
+      pathname,
+      search: `?fleet=${searchValue}&plate=${searchValue}`
+    })
+  }
+
+  const handleFilterOnchange = value => {
+    setSearchValue(value.target.value)
+  }
+
+  const clearFilter = () => {
+    localStorage.removeItem('vehicleSearch')
+    setSearchValue('')
+    history.push({
+      pathname,
+      search: ''
+    })
   }
 
   return (
@@ -112,39 +139,12 @@ const Manager = ({
       handleSelectedVehicle={handleSelectedVehicle}
       vehicleSelected={vehicleSelected}
       handleEdit={handleEdit}
-
-      // clearFilters={clearFilters}
-      // closeModalAdd={closeModalAdd}
-      // expand={expand}
-      // filters={customerSearch}
-      // formAdd={formAdd}
-      // handleClickEdit={handleClickEdit}
-      // handleClickExpand={handleClickExpand}
-      // handleFilter={handleFilter}
-      // handleSubmitAdd={handleSubmitAdd}
-      // modelTitle={isNil(id) ? 'Cadastro cliente' : 'Atualizar cliente'}
-      // onChangeSearch={onChangeSearch}
-      // openModalAdd={() => setVisibleModalAdd(true)}
-      // source={source}
-      // visibleModalAdd={visibleModalAdd}
-      // loading={loading}
-      // onChangeTable={onChangeTable}
-      // total={total}
-      // page={page}
+      searchValue={searchValue}
+      handleFilter={handleFilter}
+      handleFilterOnchange={handleFilterOnchange}
+      clearFilter={clearFilter}
     />
   )
 }
 
-const mapStateToProps = ({ customerSearch }) => ({
-  customerSearch
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  setCustomerSearch: (payload) =>
-    dispatch({ type: 'SET_CUSTOMER_GLOBAL_SEARCH', payload }),
-  cleanCustomerSearch: () => dispatch({ type: 'CLEAN_CUSTOMER_GLOBAL_SEARCH' })
-})
-
-const enhanced = compose(connect(mapStateToProps, mapDispatchToProps))
-
-export default enhanced(Manager)
+export default withRouter(Manager)

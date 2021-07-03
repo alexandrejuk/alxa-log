@@ -17,6 +17,10 @@ const Manager = ({
   handleSelectedVehicle,
   vehicleSelected,
   handleEdit,
+  handleFilter,
+  searchValue,
+  handleFilterOnchange,
+  clearFilter,
   onChangeTable,
   total,
   page
@@ -52,20 +56,20 @@ const Manager = ({
         </Card>
       </Col>
   
-      {/* <Col span={24}>
+      <Col span={24}>
         <Card bordered={false}>
           <Row gutter={[8, 8]}>
             <Col span={16}>
               <Input
                 name="search_name_or_document"
-                placeholder="Filtre por nome ou documento."
+                placeholder="Filtre pela placa ou frota."
                 prefix={<SearchOutlined />}
-                value={filters.search_name_or_document}
-                onChange={onChangeSearch}
+                value={searchValue}
+                onChange={handleFilterOnchange}
               />
             </Col>
             <Col span={8} style={{ textAlign: 'right' }}>
-              <Button style={{ marginRight: '16px' }} onClick={clearFilters}>
+              <Button style={{ marginRight: '16px' }} onClick={clearFilter}>
                 Limpar filtros
               </Button>
               <Button type="primary" onClick={handleFilter}>
@@ -75,7 +79,7 @@ const Manager = ({
           </Row>
         </Card>
       </Col>
-       */}
+      
       <Col span={24}>
         <Card bordered={false}>
           <VehicleList 
