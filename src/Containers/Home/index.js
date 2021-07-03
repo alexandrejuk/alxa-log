@@ -38,7 +38,7 @@ const Home = ({
       <Col span={6}>
         <div className={styles.cardTotalValues}>
           <div>
-            <h1 className={styles.cardTotalTitle}>Total de Pedidos</h1>
+            <h1 className={styles.cardTotalTitle}>Total de Veículos</h1>
             <h1 className={styles.cardTotalValue}>{orders && orders.value ? orders.value : '-' }</h1>
           </div>
           <Image preview={false} src={orders && orders.value > 0 ? OrdersSvg : EmptyStateOrderSvg} alt="orders" />
@@ -47,7 +47,7 @@ const Home = ({
       <Col span={6}>
         <div className={styles.cardTotalValues}>
           <div>
-            <h1 className={styles.cardTotalTitle}>Total de Clientes</h1>
+            <h1 className={styles.cardTotalTitle}>Total de Motoristas</h1>
             <h1 className={styles.cardTotalValue}>{customers && customers.value > 0 ? customers.value : '-' }</h1>
           </div>
           <Image src={customers && customers.value > 0 ? CustomersSvg : EmptyStateCustomersSvg } preview={false} alt="customers" />
@@ -73,10 +73,10 @@ const Home = ({
             <div className={styles.cardEmptyState}>
               <div className={styles.cardEmptyStateInfo}>
                 <h1 className={styles.cardEmptyStateTitle}>Não encontramos nenhuma
-                  <span className={styles.cardEmptyStateTitleSpan}> venda</span>!
+                  <span className={styles.cardEmptyStateTitleSpan}> manutenção</span>!
                 </h1>
-                <p className={styles.cardEmptyStateSubtitle}>Você ainda não possue nenhuma venda para calcularmos as suas métricas.</p>
-                <p className={styles.cardEmptyStateSubtitle}>Cadastre um <b>produto</b>, acesse o <b>ponto de venda</b> e comece a utilizar o <b>alxa</b>!</p>
+                <p className={styles.cardEmptyStateSubtitle}>Você ainda não possue nenhuma manutenção para calcularmos as suas métricas.</p>
+                <p className={styles.cardEmptyStateSubtitle}>Cadastre uma <b>manutenção</b>, e comece a utilizar o <b>alxa</b>!</p>
               </div>
               <Image src={EmptyStateSvg} preview={false} alt="empty state" />
             </div>

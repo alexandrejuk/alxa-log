@@ -33,7 +33,6 @@ const Header = ({
         Gerenciamento de equipe
       </Menu.Item>
       <Menu.Item key="/logged/account-password">Alterar senha</Menu.Item>
-      <Menu.Item key="/logged/config/status">Configurações</Menu.Item>
       <Menu.Item key="loggout">Sair</Menu.Item>
     </Menu>
   )

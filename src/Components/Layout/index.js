@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { compose, pathOr } from 'ramda'
 import Logo from '../../Assets/logo.svg'
 import LogoPlus from '../../Assets/alxa-plus.svg'
-import AdSide from '../../Components/AdSide'
 import styles from './style.module.css'
 
 import {
@@ -26,39 +25,34 @@ const menuItems = [
   },
   {
     icon: <TeamOutlined />,
-    label: 'Clientes',
-    key: '/logged/customer/manager'
+    label: 'Unidades',
+    key: '/logged/maintenance/manager'
+  },
+  {
+    icon: <TeamOutlined />,
+    label: 'Operação',
+    key: '/logged/maintenance/manager'
+  },
+  {
+    icon: <TeamOutlined />,
+    label: 'Frota',
+    key: '/logged/maintenance/manager'
+  },
+  {
+    icon: <TeamOutlined />,
+    label: 'Motorista',
+    key: '/logged/vehicle/manager'
+  },
+  {
+    icon: <TeamOutlined />,
+    label: 'Veículos',
+    key: '/logged/vehicle/manager'
   },
   {
     icon: <TeamOutlined />,
     label: 'Manutenção',
     key: '/logged/maintenance/manager'
   },
-  {
-    icon: <TeamOutlined />,
-    label: 'Veiculos',
-    key: '/logged/vehicle/manager'
-  },
-  {
-    icon: <BlockOutlined />,
-    label: 'Produtos',
-    key: '/logged/product/manager'
-  },
-  {
-    icon: <CalculatorOutlined />,
-    label: 'Ponto de venda',
-    key: '/logged/pdv'
-  },
-  {
-    icon: <ShrinkOutlined />,
-    label: 'Ordens',
-    key: '/logged/order/manager'
-  },
-  {
-    icon: <DiffOutlined />,
-    label: 'Relatórios',
-    key: '/logged/order/report'
-  }
 ]
 
 const LayoutComponent = ({ children, history, location, company, subscription }) => {
@@ -124,8 +118,6 @@ const LayoutComponent = ({ children, history, location, company, subscription })
             </Menu.Item>
           ))}
         </Menu>
-        {location.pathname.replace('/logged/', '') !== 'plans' &&
-          subscription && subscription.status === 'free' && <AdSide className={styles.noPrint} />}
       </Sider>
       <Layout>
         <Content
