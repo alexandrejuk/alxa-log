@@ -41,7 +41,7 @@ const menuItems = [
   {
     icon: <TeamOutlined />,
     label: 'Motorista',
-    key: '/logged/vehicle/manager'
+    key: '/logged/driver/manager'
   },
   {
     icon: <TeamOutlined />,

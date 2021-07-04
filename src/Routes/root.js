@@ -4,6 +4,7 @@ import MyInfo from '../Pages/MyInfo'
 import Home from '../Pages/Home'
 import VehicleManager from '../Pages/Vehicle/Manager'
 import MaintenanceManager from '../Pages/MaintenanceOrder/Manager'
+import DriverManager from '../Pages/Driver/Manager'
 
 const RootRoutes = [
   {
@@ -44,6 +45,13 @@ const RootRoutes = [
     component: MaintenanceManager,
     title: 'MANUTENÇÃO',
     path: '/logged/maintenance/manager',
+    exact: true,
+    goBack: false,
+  },
+  {
+    component: DriverManager,
+    title: 'Driver',
+    path: '/logged/driver/manager',
     exact: true,
     goBack: false,
   },

@@ -35,14 +35,20 @@
     {
       "id": 1,
       "name": "Alexandre Soares",
-      "phone": "11987654321",
-      "cnh": "987654321"
+      "phoneDriver": "11987654321",
+      "driverLicense": "111111111111"
     },
     {
       "id": 2,
       "name": "Thiago Ramalho",
-      "phone": "11888876666",
-      "cnh": "9999999921"
+      "phoneDriver": "11888876666",
+      "driverLicense": "9999999921"
+    },
+    {
+      "name": "Caio Vinicius ",
+      "driverLicense": "43238",
+      "phoneDriver": "808089890",
+      "id": 3
     }
   ],
   "operations": [
