@@ -6,6 +6,7 @@ import VehicleManager from '../Pages/Vehicle/Manager'
 import MaintenanceManager from '../Pages/MaintenanceOrder/Manager'
 import DriverManager from '../Pages/Driver/Manager'
 import FleetMananger from '../Pages/Fleet/Manager'
+import BranchManager from '../Pages/Branch/Manager'
 
 const RootRoutes = [
   {
@@ -60,6 +61,13 @@ const RootRoutes = [
     component: FleetMananger,
     title: 'FROTA',
     path: '/logged/fleet/manager',
+    exact: true,
+    goBack: false,
+  },
+  {
+    component: BranchManager,
+    title: 'unidade',
+    path: '/logged/branch/manager',
     exact: true,
     goBack: false,
   },

@@ -146,7 +146,25 @@
       "id": 1,
       "name": "Frei Daminhão",
       "cnpj": "409283904823904",
-      "type": "filial"
+      "type": "filial",
+      "branchDocument": "798798",
+      "zipcode": "09784-480",
+      "street": "Rua Primeiro de Agosto",
+      "streetNumber": "51",
+      "neighborhood": "Montanhão",
+      "city": "São Bernardo do Campo",
+      "state": "Estado"
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "branchDocument": "sd",
+      "zipcode": "06714360",
+      "street": "Rua Doutor Cincinato Braga, 12",
+      "streetNumber": "9999",
+      "neighborhood": "Montanhão",
+      "city": "São Bernardo do Campo",
+      "state": "sp",
+      "id": 2
     }
   ]
 }
