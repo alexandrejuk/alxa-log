@@ -48,7 +48,7 @@ const columns = ({ handleClickEdit }) => [
   }
 ]
 
-const CustomerList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page }) => {
+const VehicleList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -66,4 +66,4 @@ const CustomerList = ({ datasource, handleClickEdit, loading, onChangeTable, tot
   )
 }
 
-export default CustomerList
+export default VehicleList

@@ -72,7 +72,7 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
   }
 ]
 
-const CustomerList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page, handleShowVoucher }) => {
+const MaintenanceList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page, handleShowVoucher }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -90,4 +90,4 @@ const CustomerList = ({ datasource, handleClickEdit, loading, onChangeTable, tot
   )
 }
 
-export default CustomerList
+export default MaintenanceList

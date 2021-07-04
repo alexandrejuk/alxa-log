@@ -26,17 +26,17 @@ const menuItems = [
   {
     icon: <TeamOutlined />,
     label: 'Unidades',
-    key: '/logged/maintenance/manager'
+    key: '/logged/branch/manager'
   },
   {
     icon: <TeamOutlined />,
     label: 'Operação',
-    key: '/logged/maintenance/manager'
+    key: '/logged/operation/manager'
   },
   {
     icon: <TeamOutlined />,
     label: 'Frota',
-    key: '/logged/maintenance/manager'
+    key: '/logged/fleet/manager'
   },
   {
     icon: <TeamOutlined />,

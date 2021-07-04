@@ -5,6 +5,7 @@ import Home from '../Pages/Home'
 import VehicleManager from '../Pages/Vehicle/Manager'
 import MaintenanceManager from '../Pages/MaintenanceOrder/Manager'
 import DriverManager from '../Pages/Driver/Manager'
+import FleetMananger from '../Pages/Fleet/Manager'
 
 const RootRoutes = [
   {
@@ -50,8 +51,15 @@ const RootRoutes = [
   },
   {
     component: DriverManager,
-    title: 'Driver',
+    title: 'DRIVER',
     path: '/logged/driver/manager',
+    exact: true,
+    goBack: false,
+  },
+  {
+    component: FleetMananger,
+    title: 'FROTA',
+    path: '/logged/fleet/manager',
     exact: true,
     goBack: false,
   },

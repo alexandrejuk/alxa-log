@@ -4,22 +4,10 @@ import NoData from '../../../../Assets/noData.svg'
 
 const columns = ({ handleClickEdit }) => [
   {
-    title: 'Nome',
+    title: 'Identificação da frota',
     dataIndex: 'name',
     key: 'name',
     fixed: 'left'
-  },
-  {
-    title: 'Cnh',
-    dataIndex: 'driverLicense',
-    key: 'driverLicense',
-    fixed: 'left',
-  },
-  {
-    title: 'Telefone',
-    dataIndex: 'phoneDriver',
-    key: 'phoneDriver',
-    fixed: 'left',
   },
   {
     title: ' ',
@@ -30,7 +18,7 @@ const columns = ({ handleClickEdit }) => [
   }
 ]
 
-const DriverList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page }) => {
+const FleetList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -48,4 +36,4 @@ const DriverList = ({ datasource, handleClickEdit, loading, onChangeTable, total
   )
 }
 
-export default DriverList
+export default FleetList
