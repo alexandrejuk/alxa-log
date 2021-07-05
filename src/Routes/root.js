@@ -7,8 +7,18 @@ import MaintenanceManager from '../Pages/MaintenanceOrder/Manager'
 import DriverManager from '../Pages/Driver/Manager'
 import FleetMananger from '../Pages/Fleet/Manager'
 import BranchManager from '../Pages/Branch/Manager'
+import OperationManager from '../Pages/Operation/Manager'
+import MaintenanceManagerMobile from '../Pages/MaintenanceManagerMobile/Manager'
+import MaintenanceDetailMobile from '../Pages/MaintenanceDetailMobile'
 
 const RootRoutes = [
+  {
+    component: MaintenanceManagerMobile,
+    title: '',
+    path: '/logged/mobile-maintenance',
+    exact: true,
+    goBack: true
+  },
   {
     component: MyInfo,
     title: 'MINHA CONTA',
@@ -66,8 +76,22 @@ const RootRoutes = [
   },
   {
     component: BranchManager,
-    title: 'unidade',
+    title: 'UNIDADE',
     path: '/logged/branch/manager',
+    exact: true,
+    goBack: false,
+  },
+  {
+    component: OperationManager,
+    title: 'OPERAÇÃO',
+    path: '/logged/operation/manager',
+    exact: true,
+    goBack: false,
+  },
+  {
+    component: MaintenanceDetailMobile,
+    title: '',
+    path: '/logged/mobile-maintenance-detail/:id',
     exact: true,
     goBack: false,
   },

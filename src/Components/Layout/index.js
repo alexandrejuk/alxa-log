@@ -9,10 +9,11 @@ import styles from './style.module.css'
 
 import {
   DotChartOutlined,
-  ShrinkOutlined,
-  BlockOutlined,
+  BranchesOutlined,
+  ToolOutlined,
   CalculatorOutlined,
   TeamOutlined,
+  CarryOutOutlined,
   DiffOutlined
 } from '@ant-design/icons'
 
@@ -24,17 +25,17 @@ const menuItems = [
     key: '/logged/dashboard'
   },
   {
-    icon: <TeamOutlined />,
+    icon: <BranchesOutlined />,
     label: 'Unidades',
     key: '/logged/branch/manager'
   },
   {
-    icon: <TeamOutlined />,
+    icon: <CalculatorOutlined />,
     label: 'Operação',
     key: '/logged/operation/manager'
   },
   {
-    icon: <TeamOutlined />,
+    icon: <DiffOutlined />,
     label: 'Frota',
     key: '/logged/fleet/manager'
   },
@@ -44,12 +45,12 @@ const menuItems = [
     key: '/logged/driver/manager'
   },
   {
-    icon: <TeamOutlined />,
+    icon: <CarryOutOutlined />,
     label: 'Veículos',
     key: '/logged/vehicle/manager'
   },
   {
-    icon: <TeamOutlined />,
+    icon: <ToolOutlined />,
     label: 'Manutenção',
     key: '/logged/maintenance/manager'
   },

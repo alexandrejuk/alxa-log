@@ -29,6 +29,17 @@
       "preventiveMaintenanceLimite": 6,
       "lastMaintenance": "2021-02-24",
       "situation": "regular"
+    },
+    {
+      "plate": "ABC1234",
+      "fleet": 1,
+      "vehicleType": 1,
+      "mainOperation": 1,
+      "secondaryOperations": [
+        8,
+        7
+      ],
+      "id": 3
     }
   ],
   "drivers": [
@@ -55,17 +66,50 @@
     {
       "id": 1,
       "name": "gmIinterplatas",
-      "vacancy": 40
+      "vacancy": "40000",
+      "branch": 2
     },
     {
       "id": 2,
       "name": "Toyota",
-      "vacancy": 40
+      "vacancy": 40,
+      "branch": 2
     },
     {
       "id": 3,
       "name": "Ford",
-      "vacancy": 30
+      "vacancy": 30,
+      "branch": 1
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "branch": 2,
+      "vacancy": "90",
+      "id": 4
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "branch": 1,
+      "vacancy": "90",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "branch": 1,
+      "vacancy": "88789"
+    },
+    {
+      "name": "Morpheus Fishburne",
+      "branch": 2,
+      "vacancy": "90",
+      "id": 7
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "branch": 2,
+      "vacancy": "890890",
+      "id": 8
     }
   ],
   "fleets": [
@@ -139,6 +183,17 @@
       "service": "preventive",
       "serviceDescription": "test asljlkdsjada",
       "id": 15
+    },
+    {
+      "plateHorse": 2,
+      "plateCart": 1,
+      "driver": 3,
+      "maintenanceDate": "900100",
+      "branch": 1,
+      "priority": "high",
+      "service": "preventive",
+      "serviceDescription": "colocar argolas para passar cabo de aço",
+      "id": 16
     }
   ],
   "branchs": [
