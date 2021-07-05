@@ -61,6 +61,7 @@ const formSettingsNextStep = {
   'dock': {},
   'wash': {},
   supply,
+  avaiable: {}
 }
 
 const MaintenanceEventForm = ({

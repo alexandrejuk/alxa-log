@@ -13,7 +13,7 @@ const formSettingsEvent = [
       label: 'Entrada'
     },
     {
-      value: 'check-out',
+      value: 'avaiable',
       label: 'Liberado'
     },
     {
@@ -35,6 +35,10 @@ const formSettingsEvent = [
     {
       value: 'supply',
       label: 'Abastecer'
+    },
+    {
+      value: 'check-out',
+      label: 'Saída'
     },
   ]
 },

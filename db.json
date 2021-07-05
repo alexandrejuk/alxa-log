@@ -40,6 +40,17 @@
         7
       ],
       "id": 3
+    },
+    {
+      "plate": "ABC1234",
+      "fleet": 5,
+      "vehicleType": 1,
+      "mainOperation": 2,
+      "secondaryOperations": [
+        7,
+        6
+      ],
+      "id": 4
     }
   ],
   "drivers": [
@@ -60,6 +71,12 @@
       "driverLicense": "43238",
       "phoneDriver": "808089890",
       "id": 3
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "driverLicense": "8978973249",
+      "phoneDriver": "132131239798",
+      "id": 4
     }
   ],
   "operations": [
@@ -110,6 +127,12 @@
       "branch": 2,
       "vacancy": "890890",
       "id": 8
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "branch": 1,
+      "vacancy": "900",
+      "id": 9
     }
   ],
   "fleets": [
@@ -124,6 +147,14 @@
     {
       "name": "ALEXANDRE DOS SANTOS SOARES",
       "id": 3
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "id": 4
+    },
+    {
+      "name": "Morpheus Fishburne",
+      "id": 5
     }
   ],
   "vehiclesType": [
@@ -194,6 +225,17 @@
       "service": "preventive",
       "serviceDescription": "colocar argolas para passar cabo de aço",
       "id": 16
+    },
+    {
+      "plateHorse": 2,
+      "plateCart": 1,
+      "driver": 4,
+      "maintenanceDate": "900100",
+      "branch": 1,
+      "priority": "low",
+      "service": "corrective",
+      "serviceDescription": "Troca a porca da parafuseta, com vontade!",
+      "id": 17
     }
   ],
   "branchs": [
@@ -220,6 +262,17 @@
       "city": "São Bernardo do Campo",
       "state": "sp",
       "id": 2
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "branchDocument": "95.619.458/0001-30",
+      "zipcode": "06714360",
+      "street": "Rua Doutor Cincinato Braga, 12",
+      "streetNumber": "51",
+      "neighborhood": "Montanhão",
+      "city": "Sao Bernardo do Campo",
+      "state": "Espírito Santo",
+      "id": 3
     }
   ]
 }
