@@ -76,7 +76,7 @@ const MaintenanceDetailMobile = ({
                 <Text><strong>Alexandre Soares</strong></Text>
               </Col>
               <Col span={12} style={{ padding: "10px 0 0 0"}}>
-                <Text>CNH</Text>
+                <Text>Cnh</Text>
               </Col>
               <Col span={12} style={{ padding: "10px 0 0 0"}}>
                 <Text>Telefone</Text>

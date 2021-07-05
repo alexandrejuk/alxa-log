@@ -27,6 +27,10 @@ const Login = ({
         if (data.firstAccess) {
           redirectPage = '/user/onboarding'
         }
+
+        if(window.mobileCheck()) {
+          redirectPage = '/logged/mobile-maintenance'
+        }
         localStorage.setItem('token', data.token)
         localStorage.setItem('user.name', data.name)
         return data
