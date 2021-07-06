@@ -7,10 +7,11 @@ const { Title, Text } = Typography
 
 const MaintenanceDetailMobile = ({
   goBack,
-  handleSubmit
+  handleSubmit,
+  maintenanceOrder,
+  driversSource
 }) => {
   const [showModal, setShowModal] = useState(false)
-
   return (
     <div style={{ overflow: "hidden"}}>
       <Row gutter={[8, 8]}>
@@ -35,13 +36,13 @@ const MaintenanceDetailMobile = ({
                 <Text style={{ color: "#FFFFFF" }}>Tipo serviço</Text>
               </Col>
               <Col span={8}>
-                <Text style={{ color: "#FFFFFF" }}><strong>ABC1234</strong></Text>
+                <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.plateHorser}</strong></Text>
               </Col>
               <Col span={8}>
-                <Text style={{ color: "#FFFFFF" }}><strong>ABC1234</strong></Text>
+                <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.plateCart}</strong></Text>
               </Col>
               <Col span={8}>
-                <Text style={{ color: "#FFFFFF" }}><strong>Preventiva</strong></Text>
+                <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.service}</strong></Text>
               </Col>
               <Col span={8} style={{ padding: "10px 0 0 0"}}>
                 <Text style={{ color: "#FFFFFF" }}>Permanência</Text>
@@ -56,10 +57,10 @@ const MaintenanceDetailMobile = ({
                 <Text style={{ color: "#FFFFFF" }}><strong>2h30</strong></Text>
               </Col>
               <Col span={8}>
-                <Text style={{ color: "#FFFFFF" }}><strong>Check-in</strong></Text>
+                <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.status}</strong></Text>
               </Col>
               <Col span={8}>
-                <Text style={{ color: "#FFFFFF" }}><strong>Alta</strong></Text>
+                <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.priority}</strong></Text>
               </Col>
             </Row>
           </Row>
@@ -73,7 +74,7 @@ const MaintenanceDetailMobile = ({
                 <Text>Nome</Text>
               </Col>
               <Col span={24}>
-                <Text><strong>Alexandre Soares</strong></Text>
+                <Text><strong>{maintenanceOrder && maintenanceOrder.driverMain}</strong></Text>
               </Col>
               <Col span={12} style={{ padding: "10px 0 0 0"}}>
                 <Text>Cnh</Text>
@@ -85,7 +86,7 @@ const MaintenanceDetailMobile = ({
                 <Text><strong>8976554432</strong></Text>
               </Col>
               <Col span={12}>
-                <Text><strong>11 9 6503-5205</strong></Text>
+                <Text><strong>{maintenanceOrder && maintenanceOrder.driverMainPhone}</strong></Text>
               </Col>
             </Row>
         </Col>
@@ -96,8 +97,7 @@ const MaintenanceDetailMobile = ({
               </Col>
               <Col span={24}>
                 <Text>
-                  Leia o qrcode, de autorização do veículo posicione a câmera sobre 
-                  o QR code e aguarde ou pesquise o veículo pela placa ou frota!
+                  {maintenanceOrder && maintenanceOrder.serviceDescription}
                 </Text>
               </Col>
             </Row>
@@ -119,6 +119,7 @@ const MaintenanceDetailMobile = ({
           show={showModal} 
           cancel={() => setShowModal(false)}
           handleSubmit={handleSubmit}
+          driversSource={driversSource}
         />
       )}
     </div>

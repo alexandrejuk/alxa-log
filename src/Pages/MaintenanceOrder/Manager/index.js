@@ -110,6 +110,7 @@ const Manager = ({
         ...values,
         driverMain: findDriver.name,
         driverPhoneMain: findDriver.phone,
+        driverMainLicense: findDriver.driverLicense,
         maintenanceDate: new Date()
       })
       getAllMaintenances()

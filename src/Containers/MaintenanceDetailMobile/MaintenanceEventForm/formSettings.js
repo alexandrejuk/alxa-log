@@ -2,7 +2,7 @@ const rules = [{ required: true, message: 'Este campo é obrigatório!' }]
 const formSettingsEvent = [
 {
   label: 'Tipo de evento',
-  name: 'event',
+  name: 'status',
   rules,
   placeholder: '',
   show: true,
@@ -48,12 +48,12 @@ const formSettingsEvent = [
 },
 {
   label: 'Motorista',
-  name: 'driver',
-  placeholder: '',
+  name: 'driverId',
   rules,
+  placeholder: '',
   show: false,
-  typeInput: 'input',
-  options: [],
+  typeInput: 'select',
+  options: []
 },
   {
     label: 'Combustível',

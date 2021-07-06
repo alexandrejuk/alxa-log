@@ -42,13 +42,13 @@ const renderFormItems = ({
 }
 
 const checkout = {
-  'event': 'driver',
+  'status': 'driverId',
 }
 
 const supply = {
-  event: 'driver',
-  driver: 'supplyType',
-  supplyType: 'totalLiters',
+  status: 'driverId',
+  driverId: 'fuel',
+  fuel: 'totalLiters',
   totalLiters:'km',
   km: 'odometer',
 }
@@ -69,23 +69,25 @@ const MaintenanceEventForm = ({
   show,
   cancel,
   handleSubmit,
+  driversSource,
 }) => {
   const [formSettings, setFormSettings] = useState(formSettingsEvent)
   const [nextStepForm, setNextStepForm] = useState({})
 
   const [form] = Form.useForm()
 
+  const parseOptionItem = item => ({ value: item.id, label: item.name })
+
   const onValuesChangeVisableFomItem = value => {
     const propName = Object.keys(value)[0]
     let nextStep = nextStepForm
 
-    if (propName === 'event') {
+    if (propName === 'status') {
       nextStep = formSettingsNextStep[value[propName]]
       setNextStepForm(nextStep)
-
       if (value[propName] === 'check-out') {
         form.setFieldsValue({
-          event: value[propName],
+          status: value[propName],
           driver: '',
           supplyType: '',
           totalLiters:'',
@@ -93,15 +95,15 @@ const MaintenanceEventForm = ({
         })
         
         setFormSettings(formSettings.map(item => (
-          item.name === propName || item.name === 'driver'
-          ? {...item, show: true } 
+          item.name === propName || item.name === 'driverId'
+          ? {...item, show: true, options: item.name === 'driverId' ?  driversSource.map(parseOptionItem) : [] } 
           : {...item, show: false }
           )))
         }
 
       if (value[propName] !== 'check-out' && value[propName] !== 'supply') {
         form.setFieldsValue({
-          event: value[propName],
+          status: value[propName],
           driver: '',
           supplyType: '',
           totalLiters:'',
@@ -121,7 +123,7 @@ const MaintenanceEventForm = ({
     if (formItem) {
       setFormSettings(formSettings.map(item => (
         item.name === formItem.name 
-          ? {...formItem, show: true } 
+          ? {...formItem, show: true, options: item.name === 'driverId' ?  driversSource.map(parseOptionItem) : []} 
           : item
       )))
     }

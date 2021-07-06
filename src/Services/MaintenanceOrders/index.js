@@ -12,13 +12,19 @@ const updateMaintenanceOrder = async (values) => {
   return await axiosIntance.put(`/maintenance-orders/${values.id}`, values)
 }
 
-const getById = async (values) => {
-  return await axiosIntance.get(`/maintenance-orders/${values.id}`)
+const getById = async (id) => {
+  return await axiosIntance.get(`/maintenance-orders/${id}`)
 }
+
+const updateEvents = async (id, values) => {
+  return await axiosIntance.put(`/maintenance-order-events/${id}`, values)
+}
+
 
 export { 
   getAll, 
   getById,
   createMaintenanceOrder, 
-  updateMaintenanceOrder, 
+  updateMaintenanceOrder,
+  updateEvents,
 }
