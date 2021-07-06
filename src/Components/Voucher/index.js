@@ -15,7 +15,6 @@ const Voucher = ({
     plateHorse = null,
     priority = null,
     service = null,
-    branchAddress = null,
     company = {}
   } = maintenanceSelected
   const {
