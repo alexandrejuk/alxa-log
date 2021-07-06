@@ -21,7 +21,7 @@ const Manager = ({
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    getDrivers()
+    getBranchs()
 
     if(!search && localStorage.getItem('branchSearch')) {
       history.push({
@@ -41,7 +41,7 @@ const Manager = ({
     message.error(text)
   }
 
-  const getDrivers = async () => {
+  const getBranchs = async () => {
     setLoading(true)
     try {
       const { data } = await getAll()
@@ -56,7 +56,7 @@ const Manager = ({
   const handleSubmit = async (values) => {
     try {
       await createBranch(values)
-      getDrivers()
+      getBranchs()
       success('Cadastro da unidade realizado com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar o cadastro da unidade!')
@@ -66,7 +66,7 @@ const Manager = ({
   const handleEdit = async (values) => {
     try {
       await updateBranch(values)
-      getDrivers()
+      getBranchs()
       success('Editado unidade com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar a edição da unidade!')

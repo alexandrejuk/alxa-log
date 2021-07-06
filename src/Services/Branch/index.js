@@ -1,19 +1,19 @@
 import axiosIntance from '../../utils/axiosInstance'
 
 const getAll = async (params = {}) => {
-  return await axiosIntance.get('/branchs', { params })
+  return await axiosIntance.get('/companies', { params })
 }
 
 const createBranch = async (values) => {
-  return await axiosIntance.post('/branchs', values)
+  return await axiosIntance.post('/companies', values)
 }
 
 const updateBranch = async (values) => {
-  return await axiosIntance.put(`/branchs/${values.id}`, values)
+  return await axiosIntance.put(`/companies/${values.id}`, values)
 }
 
 const getById = async (values) => {
-  return await axiosIntance.get(`/branchs/${values.id}`)
+  return await axiosIntance.get(`/companies/${values.id}`)
 }
 
 

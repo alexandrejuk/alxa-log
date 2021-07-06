@@ -51,6 +51,16 @@
         6
       ],
       "id": 4
+    },
+    {
+      "plate": "ABC1234",
+      "fleet": 2,
+      "vehicleType": 1,
+      "mainOperation": 10,
+      "secondaryOperations": [
+        4
+      ],
+      "id": 5
     }
   ],
   "drivers": [
@@ -77,6 +87,12 @@
       "driverLicense": "8978973249",
       "phoneDriver": "132131239798",
       "id": 4
+    },
+    {
+      "name": "ALEXANDRE DOS SANTOS SOARES",
+      "driverLicense": "8989",
+      "phoneDriver": "11987654321",
+      "id": 5
     }
   ],
   "operations": [
@@ -133,6 +149,12 @@
       "branch": 1,
       "vacancy": "900",
       "id": 9
+    },
+    {
+      "name": "Volks",
+      "branch": 1,
+      "vacancy": "900",
+      "id": 10
     }
   ],
   "fleets": [
@@ -236,6 +258,16 @@
       "service": "corrective",
       "serviceDescription": "Troca a porca da parafuseta, com vontade!",
       "id": 17
+    },
+    {
+      "plateHorse": 2,
+      "driver": 1,
+      "maintenanceDate": "22/09/2021",
+      "branch": 1,
+      "priority": "high",
+      "service": "preventive",
+      "serviceDescription": "Colocar argolas para passar o cabo de aço!",
+      "id": 18
     }
   ],
   "branchs": [

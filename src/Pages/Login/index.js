@@ -32,16 +32,14 @@ const Login = ({
           redirectPage = '/logged/mobile-maintenance'
         }
         localStorage.setItem('token', data.token)
-        localStorage.setItem('user.name', data.name)
+        localStorage.setItem('user.name', data.user.name)
         return data
       })
       .then((data) => {
-        return getCompanyById(data.companyId)
+        return getCompanyById(data.user.companyId)
       })
       .then(({ data }) => setCompany(data))
       .then(({ data }) => setStatus(data))
-      .then(() => getSubscriptionActivated())
-      .then(({ data }) => setSubscription(data))
       .then(() => history.push(redirectPage))
       .catch((err) => {
         setLoading(false)

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Button, Empty, ConfigProvider, Image } from 'antd'
 import NoData from '../../../../Assets/noData.svg'
+import { cnpj } from 'cpf-cnpj-validator'
 
 const columns = ({ handleClickEdit }) => [
   {
@@ -11,9 +12,10 @@ const columns = ({ handleClickEdit }) => [
   },
   {
     title: 'Cnpj',
-    dataIndex: 'branchDocument',
-    key: 'branchDocument',
+    dataIndex: 'document',
+    key: 'document',
     fixed: 'left',
+    render: (document) => cnpj.format(document)
   },
   {
     title: 'Endereço',
@@ -39,11 +41,11 @@ const BranchList = ({ datasource, handleClickEdit, loading, onChangeTable, total
       />
     }>
       <Table 
-        pagination={{ total: 5000, current: 1 }}
+        pagination={{ total: datasource.count, current: 1 }}
         onChange={onChangeTable}
         columns={columns({ handleClickEdit })} 
         loading={loading}
-        dataSource={datasource} 
+        dataSource={datasource.rows} 
       />
     </ConfigProvider>
   )

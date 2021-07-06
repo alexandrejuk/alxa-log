@@ -53,7 +53,7 @@ const Login = ({
         <Row justify="center">
           <Col span={20}>
             <Form layout="vertical" onFinish={onFinish}>
-              <Form.Item label="E-mail" name="email" rules={rules}>
+              <Form.Item label="CPF" name="document" rules={rules}>
                 <Input />
               </Form.Item>
               <Form.Item label="Senha" name="password" rules={rules}>

@@ -60,6 +60,7 @@ const formSettingsNextStep = {
   'awaiting_repair': {},
   'dock': {},
   'wash': {},
+  parking: {},
   supply,
   avaiable: {}
 }

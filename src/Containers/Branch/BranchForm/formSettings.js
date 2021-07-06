@@ -12,7 +12,7 @@ const formSettingsBranch = [{
 },
 {
   label: 'Cnpj',
-  name: 'branchDocument',
+  name: 'document',
   rules: [
     {
       required: true,
@@ -87,8 +87,8 @@ const formSettingsBranch = [{
 const formSettingsBranchEdit = formSettingsBranch.map(item => ({...item, show: true }))
 
 const settingsNextStep = {
-  name: 'branchDocument',
-  branchDocument: 'zipcode',
+  name: 'document',
+  document: 'zipcode',
   zipcode: 'street',
   street: 'streetNumber',
   streetNumber: 'neighborhood',

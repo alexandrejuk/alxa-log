@@ -17,6 +17,10 @@ const formSettingsEvent = [
       label: 'Liberado'
     },
     {
+      value: 'parking',
+      label: 'Estacionar'
+    },
+    {
       value: 'courtyard',
       label: 'Pátio'
     }, 
@@ -53,7 +57,7 @@ const formSettingsEvent = [
 },
   {
     label: 'Combustível',
-    name: 'supplyType',
+    name: 'fuel',
     placeholder: '',
     rules,
     show: false,
@@ -61,7 +65,7 @@ const formSettingsEvent = [
     options: [
       {
         value: 'diesel',
-        label: 'Disel'
+        label: 'Diesel'
       },
       {
         value: 'arla',

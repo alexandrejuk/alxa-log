@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { Button, Form, Input, Modal, Select } from 'antd'
 import { map } from 'ramda'
-import Cep from 'cep-promise'
 
 import {
   settingsNextStep,
   formSettingsBranch,
   formSettingsBranchEdit
 } from './formSettings'
-import getAddress from '../../../Services/Address'
 import { cnpj } from 'cpf-cnpj-validator'
 
 const formItemsComponent = {
@@ -52,8 +50,8 @@ const BranchForm = ({
   const onValuesChangeVisableFomItem = async (value) => {
     const propName = Object.keys(value)[0]
     const formItem = formSettings.find(item => !item.show && settingsNextStep[propName] === item.name)
-    propName === 'branchDocument' &&  value[propName].length > 11 
-      ? form.setFieldsValue({ branchDocument: cnpj.format(value[propName])}) 
+    propName === 'document' &&  value[propName].length > 11 
+      ? form.setFieldsValue({ document: cnpj.format(value[propName])}) 
       : null
 
     if (formItem) {
