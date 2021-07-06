@@ -1,13 +1,14 @@
 import React from 'react'
 import styles from './style.module.css'
 import Qrcode  from 'qrcode.react'
+import formattedDate from '../../utils/parserDate'
 
 const Voucher = ({
   maintenanceSelected
 }) => {
   const {
-    ServiceDescription = null,
-    driver = null,
+    serviceDescription = null,
+    driverMain = null,
     id = null,
     maintenanceDate = null,
     plateCart = null,
@@ -15,7 +16,16 @@ const Voucher = ({
     priority = null,
     service = null,
     branchAddress = null,
+    company = {}
   } = maintenanceSelected
+  const {
+    street = null,
+    streetNumber = null,
+    neighborhood = null,
+    state = null,
+    city = null,
+    zipcode = null
+  } = company
 
   return (
     <div className={styles.cardticket}>
@@ -29,12 +39,11 @@ const Voucher = ({
       </div>
 
       <div className={styles.cardheader}>
-        <p>Nome <strong>{driver}</strong></p>
-        <p>CNH <strong>222.333.44445</strong></p>
+        <p>Nome <strong>{driverMain}</strong></p>
         <p>Placa Cavalo <strong>{plateHorse}</strong></p>
         <p>Placa Carreta <strong>{plateCart}</strong></p>
         <p>Prioridade <strong>{priority}</strong></p>
-        <p>Data da manutenção <strong>{maintenanceDate}</strong></p>
+        <p>Data da manutenção <strong>{formattedDate(maintenanceDate, 'DD/MM/YYYY')}</strong></p>
         <p>Tipo Serviço <strong>{service}</strong></p>
       </div>
 
@@ -47,14 +56,14 @@ const Voucher = ({
       <div className={styles.cardcontent}>
         <h3>Descrição do serviço</h3>
         <p className={styles.cardcontentmessage}>
-          {ServiceDescription}
+          {serviceDescription}
         </p>
       </div>
 
       <div className={styles.cardfooter}>
         <h3>Compareça à filial</h3>
         <div className={styles.cardfooterimage}></div>
-        <p>{ branchAddress || 'Av Faria Lima, 3722  São Bernardo do Campo/SP'}</p>
+        <p>{street}, {streetNumber} {neighborhood} - {city}/{state} - {zipcode}</p>
       </div>
 
       <div className={styles.rip}>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Button, Empty, ConfigProvider, Image, Space } from 'antd'
 import NoData from '../../../../Assets/noData.svg'
+import formattedDate from '../../../../utils/parserDate'
 
 const columns = ({ handleClickEdit, handleShowVoucher }) => [
   {
@@ -8,6 +9,7 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
     dataIndex: 'maintenanceDate',
     key: 'maintenanceDate',
     fixed: 'left',
+    render: (maintenanceDate) => formattedDate(maintenanceDate, 'DD MMM YYYY')
   },
   {
     title: 'Placa do Cavalo',
@@ -22,27 +24,21 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
     fixed: 'left',
   },
   {
-    title: 'Frota',
-    dataIndex: 'fleet',
-    key: 'fleet',
-    fixed: 'left',
-  },
-  {
     title: 'Centro de custo',
-    dataIndex: 'centralCost',
+    dataIndex: 'costCenter',
     key: 'fleet',
     fixed: 'left',
   },
   {
     title: 'Motorista',
-    dataIndex: 'driver',
-    key: 'driver',
+    dataIndex: 'driverMain',
+    key: 'driverMain',
     fixed: 'left',
   },
   {
-    title: 'Telefone Motorista',
-    dataIndex: 'phoneDriver',
-    key: 'phoneDriver',
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
     fixed: 'left',
   },
   {
@@ -62,9 +58,11 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
     dataIndex: 'id',
     render: (_, source) => 
     <Space>
-      <Button type="link" onClick={() => handleClickEdit(source)}>
-        Editar
-      </Button>
+      {source.status === 'solicitation' && (
+        <Button type="link" onClick={() => handleClickEdit(source)}>
+          Editar
+        </Button>
+      )}
       <Button type="link" onClick={() => handleShowVoucher(source)}>
         Voucher
       </Button>

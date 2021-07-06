@@ -6,6 +6,8 @@ import ManagerContainer from '../../../Containers/Maintenance/Manager'
 import { getAll } from '../../../Services/Vehicle'
 import { getAll as getAllBranchs } from '../../../Services/Branch'
 import { getAll as getAllDrivers } from '../../../Services/Driver'
+import { getAll as getAllOperations } from '../../../Services/Operations'
+
 import { 
   createMaintenanceOrder, 
   getAll as getAllMaintenanceOrders, 
@@ -18,7 +20,8 @@ const Manager = ({
   const [vehiclesData, setVehiclesData] = useState([])
   const [maintenanceOrdersData, setMaintenanceOrdersData] = useState([])
   const [driversData, setDriversData] = useState([])
-  const [branchsData, setBranchsDataData] = useState([])
+  const [branchsData, setBranchsData] = useState({ rows: [] })
+  const [operationsData, setOperationsData] = useState({ rows: [] })
 
   const [maintenanceSelected, setMaintenanceSelected] = useState(null)
   const [searchValue, setSearchValue] = useState(null)
@@ -30,6 +33,7 @@ const Manager = ({
     getVehicles()
     getAllDriver()
     getAllBranch()
+    getAllOperation()
     getAllMaintenances()
 
     if(!search && localStorage.getItem('maintenanceSearch')) {
@@ -74,7 +78,7 @@ const Manager = ({
   const getAllBranch = async () => {
     try {
       const { data } = await getAllBranchs()
-      setBranchsDataData(data)
+      setBranchsData(data)
     } catch (error) {
       console.log(error)
     }
@@ -89,9 +93,25 @@ const Manager = ({
     }
   }
 
-  const handleSubmit = async (values) => {
+  const getAllOperation = async () => {
     try {
-      await createMaintenanceOrder(values)
+      const { data } = await getAllOperations()
+      setOperationsData(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleSubmit = async (values) => {
+
+    const findDriver = driversData.find(driver => driver.id === values.driverId)
+    try {
+      await createMaintenanceOrder({
+        ...values,
+        driverMain: findDriver.name,
+        driverPhoneMain: findDriver.phone,
+        maintenanceDate: new Date()
+      })
       getAllMaintenances()
       success('Manutenção criada com sucesso!')
     } catch (error) {
@@ -136,9 +156,10 @@ const Manager = ({
 
   return (
     <ManagerContainer
-      source={vehiclesData}
-      branchsSource={branchsData}
+      vehiclesSource={vehiclesData}
+      branchsSource={branchsData.rows}
       driversSource={driversData}
+      operationsSource={operationsData}
       maintenanceOrdersSource={maintenanceOrdersData}
       loading={loading}
       handleSubmit={handleSubmit}

@@ -6,14 +6,12 @@ import { compose } from 'ramda'
 import LoginContainer from '../../Containers/Login'
 import Auth from '../../Services/Auth'
 import { getCompanyById } from '../../Services/Company'
-import { getSubscriptionActivated } from '../../Services/Subscription'
 
 const Login = ({
   history,
   loggedUser,
   setCompany,
-  setStatus,
-  setSubscription
+  setStatus
 }) => {
   const [isVisibleMessageError, setIsVisibleMessageError] = useState(false)
   const [loading, setLoading] = useState(false)

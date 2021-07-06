@@ -7,7 +7,7 @@ const formSettingsVehicle = vehiclesSource => [{
   placeholder: '',
   show: true,
   typeInput: 'select',
-  options: vehiclesSource.filter(item => item.vehicleType === 'horse').map(item => ({ value: item.id, label: item.plate }))
+  options: vehiclesSource.map(item => ({ value: item.id, label: item.plate }))
 },
 {
   label: 'Placa da Carreta',
@@ -15,15 +15,33 @@ const formSettingsVehicle = vehiclesSource => [{
   placeholder: '',
   show: true,
   typeInput: 'select',
-  options: vehiclesSource.filter(item => item.vehicleType === 'cart').map(item => ({ value: item.id, label: item.plate }))
+  options: vehiclesSource.map(item => ({ value: item.id, label: item.plate }))
 },
 {
   label: 'Motorista',
-  name: 'driver',
+  name: 'driverId',
   rules,
   placeholder: '',
   show: false,
   typeInput: 'select',
+  options: []
+},
+{
+  label: 'Operação',
+  name: 'operationId',
+  rules,
+  placeholder: '',
+  show: false,
+  typeInput: 'select',
+  options: []
+},
+{
+  label: 'Centro de custo',
+  name: 'costCenter',
+  rules,
+  placeholder: '',
+  show: false,
+  typeInput: 'input',
   options: []
 },
 {
@@ -37,7 +55,7 @@ const formSettingsVehicle = vehiclesSource => [{
 },
 {
   label: 'Filial',
-  name: 'branch',
+  name: 'companyId',
   rules,
   placeholder: '',
   show: false,
@@ -78,17 +96,18 @@ const parseOptionItem = ({ id, name }) => ({ value: id, label: name })
 const formSettingsVehicleEdit = (
   branchsSource, 
   driversSource,
-  vehiclesSource
+  vehiclesSource,
+  operationsSource
 ) => formSettingsVehicle(vehiclesSource).map(item => {
-  if (item.name === `vehicleType`) {
-    return ({ ...item, show: true, options: vehicleTypesSource.map(parseOptionItem) })
+  if (item.name === `operationId`) {
+    return ({ ...item, show: true, options: operationsSource.map(parseOptionItem) })
   }
 
-  if (item.name === `branch`) {
+  if (item.name === `companyId`) {
     return ({ ...item, show: true, options: branchsSource.map(parseOptionItem) })
   }
 
-  if (item.name === `driver`) {
+  if (item.name === `driverId`) {
     return ({ ...item, show: true, options: driversSource.map(parseOptionItem) })
   }
   
@@ -96,11 +115,13 @@ const formSettingsVehicleEdit = (
 })
 
 const settingsNextStep = {
-  plateHorse: 'driver',
-  plateCart: 'driver',
-  driver: 'maintenanceDate',
-  maintenanceDate: 'branch',
-  branch: 'priority',
+  plateHorse: 'driverId',
+  plateCart: 'driverId',
+  driverId: 'operationId',
+  operationId: 'costCenter',
+  costCenter: 'maintenanceDate',
+  maintenanceDate: 'companyId',
+  companyId: 'priority',
   priority: 'service',
   service: 'serviceDescription',
 }

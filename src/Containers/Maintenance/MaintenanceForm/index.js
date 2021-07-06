@@ -46,6 +46,7 @@ const MaintenanceForm = ({
   branchsSource,
   driversSource,
   vehiclesSource,
+  operationsSource,
   handleCancel,
   visible,
   handleSubmit,
@@ -53,15 +54,17 @@ const MaintenanceForm = ({
   maintenanceSelected,
   handleSelectedMaintenance
 }) => {
-  const [formSettings, setFormSettings] = useState(maintenanceSelected ? formSettingsVehicleEdit(branchsSource, driversSource, vehiclesSource) : formSettingsVehicle(vehiclesSource))
+  const [formSettings, setFormSettings] = useState(maintenanceSelected ? formSettingsVehicleEdit(branchsSource, driversSource, vehiclesSource, operationsSource) : formSettingsVehicle(vehiclesSource))
   const [form] = Form.useForm()
   const parseOptionItem = item => ({ value: item.id, label: item.name })
   const setOpetionValue = formItem => {
     switch (formItem.name) {
-      case 'branch':
+      case 'companyId':
         return branchsSource.map(parseOptionItem)   
-      case 'driver':
+      case 'driverId':
         return driversSource.map(parseOptionItem)
+      case 'operationId':
+        return operationsSource.map(parseOptionItem)
       default:
         return formItem.options
     }
@@ -86,7 +89,7 @@ const MaintenanceForm = ({
         <Button key="back" onClick={() => {
           handleCancel(false)
           form.resetFields()
-          setFormSettings(formSettingsVehicle)
+          setFormSettings(formSettingsVehicle(vehiclesSource))
           handleSelectedMaintenance(null)
         }}>
           Cancelar
@@ -112,7 +115,7 @@ const MaintenanceForm = ({
             handleSubmit(values)
           }
           handleSelectedMaintenance(null)
-          setFormSettings(formSettingsVehicle)
+          setFormSettings(formSettingsVehicle(vehiclesSource))
           form.resetFields()
         }}
         initialValues={maintenanceSelected}

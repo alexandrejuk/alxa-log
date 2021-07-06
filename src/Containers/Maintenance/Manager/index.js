@@ -10,9 +10,10 @@ const { Title } = Typography
 
 const Manager = ({
   loading,
-  source,
+  vehiclesSource,
   branchsSource,
   driversSource,
+  operationsSource,
   maintenanceOrdersSource,
   handleSubmit,
   handleSelectedMaintenance,
@@ -123,7 +124,8 @@ const Manager = ({
             visible={showModal}
             branchsSource={branchsSource}
             driversSource={driversSource}
-            vehiclesSource={source}
+            vehiclesSource={vehiclesSource}
+            operationsSource={operationsSource}
             handleSubmit={handleSubmit}
             maintenanceSelected={maintenanceSelected}
             handleSelectedMaintenance={handleSelectedMaintenance}
