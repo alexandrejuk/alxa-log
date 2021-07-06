@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form, Input, Modal, Select } from 'antd'
 import { map } from 'ramda'
-import formSettingsFleet from './formSettings'
+import formSettingsVehicleType from './formSettings'
 
 const formItemsComponent = {
   input: Input,
@@ -30,15 +30,15 @@ const renderFormItems = ({
   )
 }
 
-const DriverForm = ({
+const VehicleTypeForm = ({
   handleCancel,
   visible,
   handleSubmit,
   handleEdit,
-  fleetSelected,
-  handleSelectedFleet
+  vehicleTypeSelected,
+  handleSelectedVehicleType
 }) => {
-  const [formSettings, setFormSettings] = useState(formSettingsFleet)
+  const [formSettings, setFormSettings] = useState(formSettingsVehicleType)
   const [form] = Form.useForm()
 
   return (
@@ -49,8 +49,8 @@ const DriverForm = ({
         <Button key="back" onClick={() => {
           handleCancel(false)
           form.resetFields()
-          setFormSettings(formSettingsFleet)
-          handleSelectedFleet(null)
+          setFormSettings(formSettingsVehicleType)
+          handleSelectedVehicleType(null)
         }}>
           Cancelar
         </Button>,
@@ -61,23 +61,23 @@ const DriverForm = ({
           Salvar
         </Button>
       ]}
-      title={`${fleetSelected ? 'Editar' : 'Cadastrar'} frota`}
+      title={`${vehicleTypeSelected ? 'Editar' : 'Cadastrar'} frota`}
     >
       <Form
         form={form}
         layout="vertical"
         validateTrigger="onChange"
         onFinish={values => {
-          if (fleetSelected) {
-            handleEdit({...fleetSelected, ...values})
+          if (vehicleTypeSelected) {
+            handleEdit({...vehicleTypeSelected, ...values})
           } else {
             handleSubmit(values)
           }
-          handleSelectedFleet(null)
-          setFormSettings(formSettingsFleet)
+          handleSelectedVehicleType(null)
+          setFormSettings(formSettingsVehicleType)
           form.resetFields()
         }}
-        initialValues={fleetSelected}
+        initialValues={vehicleTypeSelected}
       >
         {map(renderFormItems, formSettings)}
       </Form>
@@ -85,4 +85,4 @@ const DriverForm = ({
   )
 }
 
-export default DriverForm
+export default VehicleTypeForm

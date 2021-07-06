@@ -5,7 +5,7 @@ import Home from '../Pages/Home'
 import VehicleManager from '../Pages/Vehicle/Manager'
 import MaintenanceManager from '../Pages/MaintenanceOrder/Manager'
 import DriverManager from '../Pages/Driver/Manager'
-import FleetMananger from '../Pages/Fleet/Manager'
+import VehicleTypeMananger from '../Pages/VehicleType/Manager'
 import BranchManager from '../Pages/Branch/Manager'
 import OperationManager from '../Pages/Operation/Manager'
 import MaintenanceManagerMobile from '../Pages/MaintenanceManagerMobile/Manager'
@@ -62,14 +62,14 @@ const RootRoutes = [
   },
   {
     component: DriverManager,
-    title: 'DRIVER',
+    title: 'MOTORISTA',
     path: '/logged/driver/manager',
     exact: true,
     goBack: false,
   },
   {
-    component: FleetMananger,
-    title: 'FROTA',
+    component: VehicleTypeMananger,
+    title: 'TIPO VEÍCULO',
     path: '/logged/fleet/manager',
     exact: true,
     goBack: false,

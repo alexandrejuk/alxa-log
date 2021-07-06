@@ -17,7 +17,7 @@ const getById = async (values) => {
 }
 
 const getAllVehicleTypes = async () => {
-  return await axiosIntance.get(`/vehiclesType`)
+  return await axiosIntance.get(`/vehicle-types`)
 }
 
 export { 

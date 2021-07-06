@@ -1,13 +1,15 @@
 import React from 'react'
 import { Table, Button, Empty, ConfigProvider, Image } from 'antd'
 import NoData from '../../../../Assets/noData.svg'
+import formattedDate from '../../../../utils/parserDate'
 
 const columns = ({ handleClickEdit }) => [
   {
     title: 'Tipo de Veículo',
     dataIndex: 'vehicleType',
     key: 'vehicleType',
-    fixed: 'left'
+    fixed: 'left',
+    render: (_, source) => source.vehicleType.name
   },
   {
     title: 'Placa',
@@ -22,12 +24,6 @@ const columns = ({ handleClickEdit }) => [
     fixed: 'left',
   },
   {
-    title: 'Operação principal',
-    dataIndex: 'mainOperation',
-    key: 'mainOperation',
-    fixed: 'left'
-  },
-  {
     title: 'Situação',
     dataIndex: 'situation',
     key: 'situation',
@@ -37,7 +33,8 @@ const columns = ({ handleClickEdit }) => [
     title: 'Última manutenção',
     dataIndex: 'lastMaintenance',
     key: 'lastMaintenance',
-    fixed: 'left'
+    fixed: 'left',
+    render: (lastMaintenance) => formattedDate(lastMaintenance, 'DD MMM YYYY')
   },
   {
     title: ' ',

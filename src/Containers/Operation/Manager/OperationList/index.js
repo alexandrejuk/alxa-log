@@ -11,9 +11,10 @@ const columns = ({ handleClickEdit }) => [
   },
   {
     title: 'Filial',
-    dataIndex: 'branch',
-    key: 'branch',
+    dataIndex: 'companyId',
+    key: 'companyId',
     fixed: 'left',
+    render: (_, source) => source.company.name
   },
   {
     title: 'Vagas contratadas',

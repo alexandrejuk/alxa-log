@@ -17,7 +17,7 @@ const formSettingsDriver = [{
   options: []
 },{
   label: 'Telefone',
-  name: 'phoneDriver',
+  name: 'phone',
   rules,
   placeholder: '',
   show: false,
@@ -30,7 +30,7 @@ const formSettingsDriverEdit = formSettingsDriver.map(item => ({...item, show: t
 
 const settingsNextStep = {
   name: 'driverLicense',
-  driverLicense: 'phoneDriver',
+  driverLicense: 'phone',
 }
 
 export {

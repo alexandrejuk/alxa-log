@@ -36,7 +36,7 @@ const menuItems = [
   },
   {
     icon: <DiffOutlined />,
-    label: 'Frota',
+    label: 'Tipo de veículos',
     key: '/logged/fleet/manager'
   },
   {

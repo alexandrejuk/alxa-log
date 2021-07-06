@@ -42,8 +42,6 @@ const renderFormItems = ({
 }
 
 const VehicleForm = ({
-  fleetsSource,
-  operationsSource,
   vehicleTypesSource,
   handleCancel,
   visible,
@@ -52,19 +50,13 @@ const VehicleForm = ({
   vehicleSelected,
   handleSelectedVehicle
 }) => {
-  const [formSettings, setFormSettings] = useState(vehicleSelected ? formSettingsVehicleEdit(fleetsSource, operationsSource, vehicleTypesSource) : formSettingsVehicle)
+  const [formSettings, setFormSettings] = useState(vehicleSelected ? formSettingsVehicleEdit(vehicleTypesSource) : formSettingsVehicle)
   const [form] = Form.useForm()
 
   const parseOptionItem = item => ({ value: item.id, label: item.name })
   const setOpetionValue = formItem => {
     switch (formItem.name) {
-      case 'fleet':
-        return fleetsSource.map(parseOptionItem)   
-      case 'mainOperation':
-        return operationsSource.map(parseOptionItem)
-      case 'secondaryOperations':
-        return operationsSource.map(parseOptionItem)   
-      case 'vehicleType':
+      case 'vehicleTypeId':
         return vehicleTypesSource.map(parseOptionItem)    
       default:
         return []

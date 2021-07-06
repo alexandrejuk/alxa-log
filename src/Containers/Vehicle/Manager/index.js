@@ -10,8 +10,6 @@ const { Title } = Typography
 const Manager = ({
   loading,
   source,
-  operationsSource,
-  fleetsSource,
   vehicleTypesSource,
   handleSubmit,
   handleSelectedVehicle,
@@ -98,8 +96,6 @@ const Manager = ({
           <VehicleForm
             handleCancel={setShowModal}
             visible={showModal}
-            operationsSource={operationsSource}
-            fleetsSource={fleetsSource}
             vehicleTypesSource={vehicleTypesSource}
             handleSubmit={handleSubmit}
             vehicleSelected={vehicleSelected}

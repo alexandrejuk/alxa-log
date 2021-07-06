@@ -4,15 +4,11 @@ import { useLocation, withRouter } from 'react-router-dom'
 
 import ManagerContainer from '../../../Containers/Vehicle/Manager'
 import { createVehicle, getAll, getAllVehicleTypes, updateVehicle } from '../../../Services/Vehicle'
-import { getAll as getAllOperations } from '../../../Services/Operations'
-import { getAll as getAllFleets } from '../../../Services/Fleets'
 
 const Manager = ({
   history,
 }) => {
   const [vehiclesData, setVehiclesData] = useState([])
-  const [operationsData, setOperationsData] = useState([])
-  const [fleetsData, setFleetsData] = useState([])
   const [vehicleTypes, setVehicleTypes] = useState([])
   const [vehicleSelected, setVehicleSelected] = useState(null)
   const [searchValue, setSearchValue] = useState(null)
@@ -22,8 +18,6 @@ const Manager = ({
 
   useEffect(() => {
     getVehicles()
-    getOperations()
-    getFleets()
     getVehicleTypes()
 
     if(!search && localStorage.getItem('vehicleSearch')) {
@@ -56,23 +50,6 @@ const Manager = ({
     }
   }
 
-  const getOperations = async () => {
-    try {
-      const { data } = await getAllOperations()
-      setOperationsData(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const getFleets = async () => {
-    try {
-      const { data } = await getAllFleets()
-      setFleetsData(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const getVehicleTypes = async () => {
     try {
@@ -131,8 +108,6 @@ const Manager = ({
   return (
     <ManagerContainer
       source={vehiclesData}
-      operationsSource={operationsData}
-      fleetsSource={fleetsData}
       vehicleTypesSource={vehicleTypes}
       loading={loading}
       handleSubmit={handleSubmit}

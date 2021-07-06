@@ -29,63 +29,32 @@ const formSettingsVehicle = [{
   rules,
   placeholder: '',
   show: false,
-  typeInput: 'select',
+  typeInput: 'input',
   options: []
 },
 {
   label: 'Tipo de veículo',
-  name: 'vehicleType',
+  name: 'vehicleTypeId',
   placeholder: '',
   rules,
   show: false,
   typeInput: 'select',
-  options: [],
-},
-{
-  label: 'Operação principal',
-  name: 'mainOperation',
-  placeholder: '',
-  rules,
-  show: false,
-  typeInput: 'select',
-  options: [],
-},{
-  label: 'Operações segundárias',
-  name: 'secondaryOperations',
-  placeholder: '',
-  show: false,
-  typeInput: 'select',
-  mode: 'multiple',
   options: [],
 }]
 
 const parseOptionItem = ({ id, name }) => ({ value: id, label: name })
 
-const formSettingsVehicleEdit = (
-  fleetsSource,
-  operationsSource,
-  vehicleTypesSource,
-) => formSettingsVehicle.map(item => {
-  if (item.name === `vehicleType`) {
+const formSettingsVehicleEdit = (vehicleTypesSource) => formSettingsVehicle.map(item => {
+  if (item.name === `vehicleTypeId`) {
     return ({ ...item, show: true, options: vehicleTypesSource.map(parseOptionItem) })
   }
 
-  if (item.name === `mainOperation` || item.name === `secondaryOperations`) {
-    return ({ ...item, show: true, options: operationsSource.map(parseOptionItem) })
-  }
-
-  if (item.name === `fleet`) {
-    return ({ ...item, show: true, options: fleetsSource.map(parseOptionItem) })
-  }
-  
   return ({...item, show: true })
 })
 
 const settingsNextStep = {
   plate: 'fleet',
-  fleet: 'vehicleType',
-  vehicleType: 'mainOperation',
-  mainOperation: 'secondaryOperations',
+  fleet: 'vehicleTypeId',
 }
 
 export {

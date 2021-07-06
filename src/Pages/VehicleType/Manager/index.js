@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { message } from 'antd'
 import { useLocation, withRouter } from 'react-router-dom'
 
-import ManagerContainer from '../../../Containers/Fleet/Manager'
+import ManagerContainer from '../../../Containers/VehicleType/Manager'
 import {   
   getAll, 
-  createFleet,
-  updateFleet  
-} from '../../../Services/Fleets'
+  createVehicleType,
+  updateVehicleType  
+} from '../../../Services/VehicleType'
 
 const Manager = ({
   history,
 }) => {
-  const [fleetData, setFleetData] = useState([])
-  const [fleetSelected, setFleetSelected] = useState(null)
+  const [vehicleTypeData, setVehicleTypeData] = useState([])
+  const [vehicleTypeSelected, setVehicleTypeSelected] = useState(null)
   const [searchValue, setSearchValue] = useState(null)
 
   const [loading, setLoading] = useState(true)
@@ -22,12 +22,12 @@ const Manager = ({
   useEffect(() => {
     getFleets()
 
-    if(!search && localStorage.getItem('fleetSearch')) {
+    if(!search && localStorage.getItem('vehicleTypeSearch')) {
       history.push({
         pathname,
-        search: localStorage.getItem('fleetSearch')
+        search: localStorage.getItem('vehicleTypeSearch')
       })
-      const searchParams = new URLSearchParams(localStorage.getItem('fleetSearch'))
+      const searchParams = new URLSearchParams(localStorage.getItem('vehicleTypeSearch'))
       setSearchValue(searchParams.get('name'))
     }
   }, [])
@@ -44,7 +44,7 @@ const Manager = ({
     setLoading(true)
     try {
       const { data } = await getAll()
-      setFleetData(data)
+      setVehicleTypeData(data)
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -54,7 +54,7 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
     try {
-      await createFleet(values)
+      await createVehicleType(values)
       getFleets()
       success('Cadastro da frota realizado com sucesso!')
     } catch (error) {
@@ -64,7 +64,7 @@ const Manager = ({
 
   const handleEdit = async (values) => {
     try {
-      await updateFleet(values)
+      await updateVehicleType(values)
       getFleets()
       success('Editado frota com sucesso!')
     } catch (error) {
@@ -72,12 +72,12 @@ const Manager = ({
     }
   }
 
-  const handleSelectedFleet = fleet => {
-    setFleetSelected(fleet)
+  const handleSelectedVehicleType = fleet => {
+    setVehicleTypeSelected(fleet)
   }
 
   const handleFilter = () => {
-    localStorage.setItem('fleetSearch', `?name=${searchValue}`)
+    localStorage.setItem('vehicleTypeSearch', `?name=${searchValue}`)
     history.push({
       pathname,
       search: `?name=${searchValue}`
@@ -89,7 +89,7 @@ const Manager = ({
   }
 
   const clearFilter = () => {
-    localStorage.removeItem('fleetSearch')
+    localStorage.removeItem('vehicleTypeSearch')
     setSearchValue('')
     history.push({
       pathname,
@@ -99,11 +99,11 @@ const Manager = ({
 
   return (
     <ManagerContainer
-      source={fleetData}
+      source={vehicleTypeData}
       loading={loading}
       handleSubmit={handleSubmit}
-      handleSelectedFleet={handleSelectedFleet}
-      fleetSelected={fleetSelected}
+      handleSelectedVehicleType={handleSelectedVehicleType}
+      vehicleTypeSelected={vehicleTypeSelected}
       handleEdit={handleEdit}
       searchValue={searchValue}
       handleFilter={handleFilter}

@@ -17,8 +17,8 @@ const columns = ({ handleClickEdit }) => [
   },
   {
     title: 'Telefone',
-    dataIndex: 'phoneDriver',
-    key: 'phoneDriver',
+    dataIndex: 'phone',
+    key: 'phone',
     fixed: 'left',
   },
   {

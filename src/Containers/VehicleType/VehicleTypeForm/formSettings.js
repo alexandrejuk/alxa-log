@@ -1,6 +1,5 @@
 const rules = [{ required: true, message: 'Este campo é obrigatório!' }]
-const formSettingsFleet = [{
-  label: 'Identificação da frota',
+const formSettingsVehicleType = [{
   name: 'name',
   placeholder: '',
   rules,
@@ -9,4 +8,4 @@ const formSettingsFleet = [{
 },
 ]
 
-export default formSettingsFleet
+export default formSettingsVehicleType

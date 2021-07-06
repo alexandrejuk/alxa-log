@@ -56,8 +56,8 @@ const OperationForm = ({
   const parseOptionItem = item => ({ value: item.id, label: item.name })
   const setOpetionValue = formItem => {
     switch (formItem.name) {
-      case 'branch':
-        return branchsSource.map(parseOptionItem)   
+      case 'companyId':
+        return branchsSource.rows.map(parseOptionItem)   
       default:
         return formItem.options
     }

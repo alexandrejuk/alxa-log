@@ -13,7 +13,7 @@ const formSettingsBranch = [
 },
 {
   label: 'Unidade',
-  name: 'branch',
+  name: 'companyId',
   rules,
   placeholder: '',
   show: false,
@@ -33,7 +33,7 @@ const formSettingsBranch = [
 const formSettingsBranchEdit = (
   branchsSource, 
 ) => formSettingsBranch.map(item => {
-  if (item.name === `branch`) {
+  if (item.name === 'companyId') {
     return ({ ...item, show: true, options: branchsSource.map(parseOptionItem) })
   }
   
@@ -41,8 +41,8 @@ const formSettingsBranchEdit = (
 })
 
 const settingsNextStep = {
-  name: 'branch',
-  branch: 'vacancy',
+  name: 'companyId',
+  companyId: 'vacancy',
 }
 
 export {

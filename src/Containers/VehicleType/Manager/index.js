@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { Button, Card, Col, Input, Row, Typography } from 'antd'
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons'
 
-import FleetForm from '../FleetForm'
-import FleetList from './FleetList'
+import VehicleTypeForm from '../VehicleTypeForm'
+import VehicleTypeList from './VehicleTypeList'
 
 const { Title } = Typography
 
 const Manager = ({
-  handleSelectedFleet,
-  fleetSelected,
+  handleSelectedVehicleType,
+  vehicleTypeSelected,
   loading,
   source,
   handleSubmit,
@@ -25,8 +25,8 @@ const Manager = ({
   const [showModal, setShowModal] = useState(false)
   const openModal = () => setShowModal(true)
   
-  const showModalEditFleet = (value) => {
-    handleSelectedFleet(value)
+  const showModalEditVehicleType = (value) => {
+    handleSelectedVehicleType(value)
     setShowModal(true)
   }
 
@@ -79,11 +79,11 @@ const Manager = ({
       
       <Col span={24}>
         <Card bordered={false}>
-          <FleetList 
+          <VehicleTypeList 
             // onChangeTable={onChangeTable} 
             datasource={source} 
             // total={total}
-            handleClickEdit={showModalEditFleet}
+            handleClickEdit={showModalEditVehicleType}
             loading={loading}
             // page={page}
           />
@@ -92,12 +92,12 @@ const Manager = ({
   
       {
         showModal && (
-          <FleetForm
+          <VehicleTypeForm
             handleCancel={setShowModal}
             visible={showModal}
             handleSubmit={handleSubmit}
-            fleetSelected={fleetSelected}
-            handleSelectedFleet={handleSelectedFleet}
+            vehicleTypeSelected={vehicleTypeSelected}
+            handleSelectedVehicleType={handleSelectedVehicleType}
             handleEdit={handleEdit}
           />
         )
