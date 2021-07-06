@@ -155,7 +155,7 @@ const MaintenanceEventForm = ({
             >
               {map(renderFormItems, formSettings)}
               <Form.Item>
-                <Button type="primary" htmlType="submit" block>Salvar</Button>
+                <Button type="primary" size="large" htmlType="submit" block>Salvar</Button>
               </Form.Item>
             </Form>
           </Col>

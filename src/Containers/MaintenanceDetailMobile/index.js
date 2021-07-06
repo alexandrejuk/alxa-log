@@ -111,7 +111,7 @@ const MaintenanceDetailMobile = ({
           </Row>
         </Col>
         <Col span={24} style={{ padding: "16px"}}>
-          <Button block type="primary" onClick={() => setShowModal(true)}>Adicionar eventos</Button>
+          <Button block type="primary"  size="large" onClick={() => setShowModal(true)}>Adicionar eventos</Button>
         </Col>
       </Row>
       {showModal && ( 

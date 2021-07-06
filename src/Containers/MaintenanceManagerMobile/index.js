@@ -1,75 +1,126 @@
-import React, { useState } from 'react'
-import { Button, Image, Row, Col, Input } from 'antd'
+import React from 'react'
+import { Button, Image, Row, Col, Input, Typography, List } from 'antd'
 import QrReader from 'react-qr-reader'
 import QrCode from './qrcode.png'
+import TypingPng from './typography.png'
+import Modal from '../../Components/ModalMobile'
+import { CloseOutlined } from '@ant-design/icons'
 
-const MaintenanceManagerMobile = () => {
+const { Title, Text } = Typography
 
-  const [qrcodeResult, setQrcodeResult] = useState(null)
-  const [searchVehicle, setSearchVehicle] = useState('')
-  const [searchButton, setSearchButton] = useState(true)
-
-  const handleScan = data => {
-    if (data) {
-      setQrcodeResult(data)
-    }
-  }
-
-  const handleChange = data => {
-    setSearchVehicle(data.target.value)
-    if(data.target.value.length === 0) {
-      return setSearchButton(true)
-    }
-    return setSearchButton(false)
-  }
-
-  const handleClick = () => {
-    console.log(searchVehicle, qrcodeResult)
-  }
-
-
-  const handleError = err => {
-    console.log(err)
-  }
+const MaintenanceManagerMobile = ({
+  searchVehicle,
+  searchButton,
+  handleScan,
+  handleError,
+  handleChange,
+  handleClick,
+  enableQrCode,
+  setEnableQrCode,
+  showModalMobile,
+  setShowModalMobile,
+  setSearchVehicle,
+  setSearchButton,
+}) => {
 
   return (
-    <div style={{ overflow: "hidden"}}>
+    <div style={{ overflow: "hidden", padding: "24px"}}>
       <Row>
         <Col span={24}>
-          <QrReader
-            delay={300}
-            onError={handleError}
-            onScan={handleScan}
-            style={{ width: '100%' }}
-          />
-        </Col>
-      </Row>
-      <Row align="center" gutter={[16, 16]} style={{ padding: "24px" }}>
-        <Col span={24} style={{ textAlign: "center" }}>
-          <Image src={QrCode} width={50} height={50} />
-        </Col>
-        <Col span={24} style={{ textAlign: "center" }} >
-          <p>
-            Leia o qrcode, de autorização do veículo posicione a câmera sobre o
-            QR code e aguarde ou pesquise o veículo pela placa ou frota!
-          </p>
-        </Col>
-        <Col span={24}>
-          <Input 
-            value={searchVehicle} 
-            placeholder="Pesquise pela placa ou frota." 
-            onChange={handleChange}
-          />
-        </Col>
-        <Col span={24}>
-          <Button 
-            type="primary" 
-            block 
-            disabled={searchButton}
-            onClick={handleClick}
-          >
-            Pesquisar
-          </Button>
+          { enableQrCode ? (
+            <Row gutter={[16, 16]}>
+              <Col span={24}>
+                <QrReader
+                  delay={300}
+                  onError={handleError}
+                  onScan={handleScan}
+                  style={{ height: '100%' }}
+                />
+              </Col>
+              <Col span={24}>
+                  <Title level={4}>
+                    Buscar com QR Code
+                  </Title>
+                  <Text>
+                    Pocisione a câmera para um códido (QR Code). A leitura é automática ou clique em "Digitar placa do veículo abaixo"
+                  </Text>
+              </Col>
+              <Col span={24}>
+                <Button block size="large" onClick={() => { 
+                  setEnableQrCode(false);
+                  setShowModalMobile(true);
+                }}>Digitar placa do veículo</Button>
+              </Col>
+            </Row>
+          ) : (
+            <Row gutter={[8, 8]} style={{ padding: "30px 0"}}>
+              <Col span={24}>
+                <Title level={3}>Buscar um Qr Code</Title>
+              </Col>
+              <Col span={24}>
+                <List
+                  itemLayout="horizontal"
+                  dataSource={[
+                    { 
+                      title: "Ler QR code", 
+                      image: QrCode, 
+                      subtitle: "Use a câmera do celular", 
+                      action: () => setEnableQrCode(true)
+                    }, 
+                    { 
+                      title: "Insira a placa do Veículo", 
+                      image: TypingPng, 
+                      subtitle: "Para pesquisar a ordem de manutenção", 
+                      action: () => { 
+                        setShowModalMobile(true); 
+                        setEnableQrCode(true);
+                      }
+                    }
+                  ]}
+                  renderItem={item => (
+                    <List.Item>
+                      <List.Item.Meta
+                        avatar={<Image src={item.image} width={50} height={50} />}
+                        title={<a onClick={item.action}>{item.title}</a>}
+                        description={<a onClick={item.action}>{item.subtitle}</a>}
+                      />
+                    </List.Item>
+                  )}
+                />
+                
+              </Col>
+            </Row>
+          )
+          }
+          {showModalMobile && (
+            <Modal show={showModalMobile}>
+              <Row gutter={[8, 16]}>
+                <Col span={24} style={{ textAlign: "right"}}>
+                  <Button type="link" style={{ color: "#333" }} onClick={() => {
+                    setShowModalMobile(false)
+                    setSearchVehicle('')
+                    setSearchButton(true)
+                  }}><CloseOutlined /></Button>
+                </Col>
+                <Col span={24}>
+                  <Title level={4}>
+                    Buscar veículo pela placa
+                  </Title>
+                  <Text>
+                    Digite a placa do veículo no input abaixo
+                  </Text>
+                </Col>
+                <Col span={24}>
+                  <Input value={searchVehicle} onChange={handleChange} />
+                </Col>
+                <Col span={24}>
+                  <Button block size="large" onClick={handleClick} disabled={searchButton}>
+                    Pesquisar placa do veículo
+                  </Button>
+                </Col>
+              </Row>
+            </Modal>
+          )}
         </Col>
       </Row>
     </div>
