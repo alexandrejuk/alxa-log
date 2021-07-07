@@ -122,7 +122,7 @@ const Manager = ({
 
   const handleChangeTableEvent = ({ current }) => {
     setoffset(offset + 1)
-    let query = { offset: (current - 1), limit: 1 }
+    let query = { offset: (current - 1) }
     if (searchValue) {
       const params = validateBr.placa(searchValue) ? { plate: searchValue } : { fleet: searchValue }
       query = { ...query, ...params }

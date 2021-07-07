@@ -18,7 +18,7 @@ const columns = ({ handleClickEdit }) => [
   }
 ]
 
-const FleetList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, offset, page }) => {
+const FleetList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, offset }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 

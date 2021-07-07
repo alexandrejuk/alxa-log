@@ -24,7 +24,7 @@ const Manager = ({
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    let query = { limit: 1 }
+    let query = { }
     const searchLocaStorage = localStorage.getItem('branchSearch')
     if(!search && searchLocaStorage) {
       history.push({
@@ -125,7 +125,7 @@ const Manager = ({
 
   const handleChangeTableEvent = ({ current }) => {
     setoffset(offset + 1)
-    let query = { offset: (current - 1), limit: 1 }
+    let query = { offset: (current - 1) }
     if (searchValue) {
       const params = cnpj.isValid(searchValue) ? { document: searchValue } : { name: searchValue }
       query = { ...query, ...params }
