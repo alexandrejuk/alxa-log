@@ -1,36 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { message } from 'antd'
 import { useLocation, withRouter } from 'react-router-dom'
+import { cnpj } from 'cpf-cnpj-validator'
+import { validateBr } from 'js-brasil'
 
 import ManagerContainer from '../../../Containers/Branch/Manager'
 import {   
   getAll, 
-  getById,
   createBranch, 
   updateBranch,  
 } from '../../../Services/Branch'
+import { isEmpty } from 'ramda'
 
 const Manager = ({
   history,
 }) => {
   const [branchData, setBranchData] = useState([])
   const [branchSelected, setbranchSelected] = useState(null)
-  const [searchValue, setSearchValue] = useState(null)
+  const [searchValue, setSearchValue] = useState('')
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    getBranchs()
-
-    if(!search && localStorage.getItem('branchSearch')) {
+    let query = {}
+    const searchLocaStorage = localStorage.getItem('branchSearch')
+    if(!search && searchLocaStorage) {
       history.push({
         pathname,
-        search: localStorage.getItem('branchSearch')
+        search: cnpj.isValid(searchLocaStorage) ? `?document=${searchLocaStorage}` : `?name=${searchLocaStorage}`
       })
-      const searchParams = new URLSearchParams(localStorage.getItem('branchSearch'))
-      setSearchValue(searchParams.get('name'))
+      setSearchValue(localStorage.getItem('branchSearch'))
+      query = validateBr.cnh(searchValue) ? { document: searchLocaStorage } : { name: searchLocaStorage }
+
     }
+    getBranchs(query)
   }, [])
 
   const success = (text) => {
@@ -41,10 +45,10 @@ const Manager = ({
     message.error(text)
   }
 
-  const getBranchs = async () => {
+  const getBranchs = async (params = {}) => {
     setLoading(true)
     try {
-      const { data } = await getAll()
+      const { data } = await getAll(params)
       setBranchData(data)
       setLoading(false)
     } catch (error) {
@@ -78,11 +82,28 @@ const Manager = ({
   }
 
   const handleFilter = () => {
-    localStorage.setItem('branchSearch', `?name=${searchValue}&cnh=${searchValue}`)
+    if (isEmpty(searchValue)) {
+      return null
+    }
+
+    const isValidCnpj = cnpj.isValid(searchValue)
+    let searchLocal = `?name=${searchValue}`
+    let query = { name: searchValue }
+    
+    if (isValidCnpj) {
+      searchLocal = `?document=${searchValue}`
+      query = { document: searchValue }
+    }
+
+    localStorage.setItem('branchSearch', searchValue)
+
     history.push({
       pathname,
-      search: `?name=${searchValue}&cnh=${searchValue}`
+      search: searchLocal
     })
+
+    getBranchs(query)
+    
   }
 
   const handleFilterOnchange = value => {
@@ -90,12 +111,16 @@ const Manager = ({
   }
 
   const clearFilter = () => {
+    setSearchValue('')
     localStorage.removeItem('branchSearch')
     setSearchValue('')
     history.push({
       pathname,
       search: ''
     })
+
+    getBranchs({})
+
   }
 
   return (

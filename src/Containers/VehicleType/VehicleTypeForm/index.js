@@ -61,7 +61,7 @@ const VehicleTypeForm = ({
           Salvar
         </Button>
       ]}
-      title={`${vehicleTypeSelected ? 'Editar' : 'Cadastrar'} frota`}
+      title={`${vehicleTypeSelected ? 'Editar' : 'Cadastrar'} tipo de veículo`}
     >
       <Form
         form={form}

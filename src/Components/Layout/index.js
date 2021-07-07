@@ -37,7 +37,7 @@ const menuItems = [
   {
     icon: <DiffOutlined />,
     label: 'Tipo de veículos',
-    key: '/logged/fleet/manager'
+    key: '/logged/vehicle-type/manager'
   },
   {
     icon: <TeamOutlined />,

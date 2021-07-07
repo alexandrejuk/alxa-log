@@ -13,6 +13,7 @@
     "cep-promise": "4.1.0",
     "classnames": "2.2.6",
     "cpf-cnpj-validator": "1.0.3",
+    "js-brasil": "^2.4.6",
     "moment": "2.29.1",
     "pagarme": "4.15.3",
     "print-js": "1.6.0",

@@ -70,7 +70,7 @@ const RootRoutes = [
   {
     component: VehicleTypeMananger,
     title: 'TIPO VEÍCULO',
-    path: '/logged/fleet/manager',
+    path: '/logged/vehicle-type/manager',
     exact: true,
     goBack: false,
   },

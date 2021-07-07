@@ -37,16 +37,16 @@ const Manager = ({
           <Row>
             <Col span={12}>
               <Title style={{ marginBottom: 0 }} level={4}>
-                Adicione novas frotas
+                Adicione novos tipos de veículos
               </Title>
-              <p style={{ marginBottom: 0 }}>Crie e gerencie as frotas</p>
+              <p style={{ marginBottom: 0 }}>Crie e gerencie seus tipos de veículo</p>
             </Col>
             <Col span={12} style={{ textAlign: 'right' }}>
               <Button
                 onClick={openModal}
                 style={{ marginRight: '16px' }}
                 icon={<PlusOutlined />}>
-                Adicionar frota
+                Adicionar tipo de veículo
               </Button>
             </Col>
           </Row>
@@ -59,7 +59,7 @@ const Manager = ({
             <Col span={16}>
               <Input
                 name="search_name_or_document"
-                placeholder="Filtre pela código de indentificação da frota."
+                placeholder="Filtre pelo tipo de veículo."
                 prefix={<SearchOutlined />}
                 value={searchValue}
                 onChange={handleFilterOnchange}

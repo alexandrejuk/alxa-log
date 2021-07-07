@@ -4,7 +4,7 @@ import NoData from '../../../../Assets/noData.svg'
 
 const columns = ({ handleClickEdit }) => [
   {
-    title: 'Identificação da frota',
+    title: 'Tipo de veículo',
     dataIndex: 'name',
     key: 'name',
     fixed: 'left'

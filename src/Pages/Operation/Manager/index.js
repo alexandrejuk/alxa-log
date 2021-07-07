@@ -9,6 +9,7 @@ import {
   getAll, 
   updateOperations
 } from '../../../Services/Operations'
+import { isEmpty } from 'ramda'
 
 const Manager = ({
   history,
@@ -17,23 +18,27 @@ const Manager = ({
   const [branchsData, setBranchsDataData] = useState([])
 
   const [operationSelected, setOperationSelected] = useState(null)
-  const [searchValue, setSearchValue] = useState(null)
+  const [searchValue, setSearchValue] = useState('')
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    getOperations()
+    let query = {}
+    const searchLocalStorage = localStorage.getItem('operationSearch')
     getAllBranch()
 
-    if(!search && localStorage.getItem('operationSearch')) {
+    if(!search && searchLocalStorage) {
       history.push({
         pathname,
-        search: localStorage.getItem('operationSearch')
+        search: `?name=${searchLocalStorage}`
       })
-      const searchParams = new URLSearchParams(localStorage.getItem('operationSearch'))
-      setSearchValue(searchParams.get('fleet'))
+      setSearchValue(searchLocalStorage)
+      query = {
+        name: searchLocalStorage
+      }
     }
+    getOperations(query)
   }, [])
 
   const success = (text) => {
@@ -44,10 +49,10 @@ const Manager = ({
     message.error(text)
   }
 
-  const getOperations = async () => {
+  const getOperations = async (params = {}) => {
     setLoading(true)
     try {
-      const { data } = await getAll()
+      const { data } = await getAll(params)
       setOperationData(data)
       setLoading(false)
     } catch (error) {
@@ -89,25 +94,36 @@ const Manager = ({
     setOperationSelected(values)
   }
 
-  const handleFilter = () => {
-    localStorage.setItem('operationSearch', `?name=${searchValue}&branch=${searchValue}`)
+  const handleFilter = async () => {
+    if (isEmpty(searchValue)) {
+      return null
+    }
+
+    localStorage.setItem('operationSearch', searchValue)
     history.push({
       pathname,
-      search: `?name=${searchValue}&branch=${searchValue}`
+      search: `?name=${searchValue}`
     })
+
+    getOperations({ name: searchValue})
+
   }
 
   const handleFilterOnchange = value => {
     setSearchValue(value.target.value)
   }
 
-  const clearFilter = () => {
+  const clearFilter = async () => {
+    setSearchValue('')
     localStorage.removeItem('operationSearch')
     setSearchValue('')
     history.push({
       pathname,
       search: ''
     })
+
+    getOperations({})
+
   }
 
   return (

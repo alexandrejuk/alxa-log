@@ -8,28 +8,31 @@ import {
   createVehicleType,
   updateVehicleType  
 } from '../../../Services/VehicleType'
+import { isEmpty } from 'ramda'
 
 const Manager = ({
   history,
 }) => {
   const [vehicleTypeData, setVehicleTypeData] = useState([])
   const [vehicleTypeSelected, setVehicleTypeSelected] = useState(null)
-  const [searchValue, setSearchValue] = useState(null)
+  const [searchValue, setSearchValue] = useState('')
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    getFleets()
-
-    if(!search && localStorage.getItem('vehicleTypeSearch')) {
+    let query = {} 
+    const searchLocaStorage = localStorage.getItem('vehicleTypeSearch')
+  
+    if(!search && searchLocaStorage) {
       history.push({
         pathname,
-        search: localStorage.getItem('vehicleTypeSearch')
+        search: `?name=${searchLocaStorage}`
       })
-      const searchParams = new URLSearchParams(localStorage.getItem('vehicleTypeSearch'))
-      setSearchValue(searchParams.get('name'))
+      setSearchValue(searchLocaStorage)
+      query = { name: searchLocaStorage }
     }
+    getVehicleTye(query)
   }, [])
 
   const success = (text) => {
@@ -40,10 +43,10 @@ const Manager = ({
     message.error(text)
   }
 
-  const getFleets = async () => {
+  const getVehicleTye = async (params = {}) => {
     setLoading(true)
     try {
-      const { data } = await getAll()
+      const { data } = await getAll(params)
       setVehicleTypeData(data)
       setLoading(false)
     } catch (error) {
@@ -76,25 +79,35 @@ const Manager = ({
     setVehicleTypeSelected(fleet)
   }
 
-  const handleFilter = () => {
+  const handleFilter = async () => {
+    if(isEmpty(searchValue)) {
+      return null
+    }
+
     localStorage.setItem('vehicleTypeSearch', `?name=${searchValue}`)
     history.push({
       pathname,
       search: `?name=${searchValue}`
     })
+
+    getVehicleTye({ name: searchValue })
   }
 
   const handleFilterOnchange = value => {
     setSearchValue(value.target.value)
   }
 
-  const clearFilter = () => {
+  const clearFilter = async () => {
+    setSearchValue('')
     localStorage.removeItem('vehicleTypeSearch')
     setSearchValue('')
     history.push({
       pathname,
       search: ''
     })
+
+    getVehicleTye({})
+
   }
 
   return (
