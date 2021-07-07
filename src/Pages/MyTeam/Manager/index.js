@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { message } from 'antd'
 import { useLocation, withRouter } from 'react-router-dom'
+import { cpf } from 'cpf-cnpj-validator'
 
-import ManagerContainer from '../../../Containers/Vehicle/Manager'
-import { createVehicle, getAll, getAllVehicleTypes, updateVehicle } from '../../../Services/Vehicle'
-import { validateBr } from 'js-brasil'
+import ManagerContainer from '../../../Containers/MyTeam/Manager'
+import { createUser, getAll, updateUser } from '../../../Services/User'
 import { isEmpty } from 'ramda'
 
 const Manager = ({
   history,
 }) => {
-  const [vehiclesData, setVehiclesData] = useState({ rows: [] })
-  const [vehicleTypes, setVehicleTypes] = useState({ rows: [] })
-  const [vehicleSelected, setVehicleSelected] = useState(null)
+  const [usersData, setUsersData] = useState({ rows: [] })
+  const [myTeamSelected, setMyTeamSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
   const [offset, setoffset] = useState(0)
 
@@ -22,16 +21,16 @@ const Manager = ({
   useEffect(() => {
     let query = {}
     getVehicleTypes()
-    const searchLocalStorage = localStorage.getItem('vehicleSearch')
+    const searchLocalStorage = localStorage.getItem('myteamSearch')
     if(!search && searchLocalStorage) {
       history.push({
         pathname,
-        search: validateBr.placa(searchLocalStorage) ? `?plate=${searchLocalStorage}` : `?fleet=${searchLocalStorage}`
+        search: cpf.isValid(searchLocalStorage) ? `?document=${searchLocalStorage}` : `?name=${searchLocalStorage}`
       })
       setSearchValue(searchLocalStorage)
-      query = validateBr.placa(searchLocalStorage) ? { plate: searchLocalStorage } : { fleet: searchLocalStorage }
+      query = cpf.isValid(searchLocalStorage) ? { document: searchLocalStorage.replace(/\D/g, '') } : { name: searchLocalStorage }
     }
-    getVehicles(query)
+    getUsers(query)
   }, [])
 
   const success = (text) => {
@@ -42,11 +41,11 @@ const Manager = ({
     message.error(text)
   }
 
-  const getVehicles = async (params = {}) => {
+  const getUsers = async (params = {}) => {
     setLoading(true)
     try {
       const { data } = await getAll(params)
-      setVehiclesData(data)
+      setUsersData(data)
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -66,26 +65,26 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
     try {
-      await createVehicle(values)
-      getVehicles()
-      success('Cadastro de veículo realizado com sucesso!')
+      await createUser({...values, document: values.document.replace(/\D/g, '') })
+      getUsers()
+      success('Cadastro do usuário realizado com sucesso!')
     } catch (error) {
-      errorMessage('Não foi realizar o cadastro do veículo!')
+      errorMessage('Não foi realizar o cadastro do usuário!')
     }
   }
 
   const handleEdit = async (values) => {
     try {
-      await updateVehicle(values)
-      getVehicles()
-      success('Editado veículo com sucesso!')
+      await updateUser({...values, document: values.document.replace(/\D/g, '') })
+      getUsers()
+      success('Editado usuário com sucesso!')
     } catch (error) {
-      errorMessage('Não foi realizar a edição do veículo!')
+      errorMessage('Não foi realizar a edição do usuário!')
     }
   }
 
-  const handleSelectedVehicle = vehicle => {
-    setVehicleSelected(vehicle)
+  const handleSelectedMyTeam = user => {
+    setMyTeamSelected(user)
   }
 
   const handleFilter = () => {
@@ -93,15 +92,15 @@ const Manager = ({
       return null
     }
 
-    const queryLocal = validateBr.placa(searchValue) ? `?plate=${searchValue}` : `?fleet=${searchValue}`
-    const query = validateBr.placa(searchValue) ? { plate: searchValue } : { fleet: searchValue }
-    localStorage.setItem('vehicleSearch', searchValue)
+    const queryLocal = cpf.cpf(searchValue) ? `?document=${searchValue}` : `?name=${searchValue}`
+    const query = cpf.cpf(searchValue) ? { document: searchValue.replace(/\D/g, '') } : { name: searchValue }
+    localStorage.setItem('myteamSearch', searchValue)
     history.push({
       pathname,
       search: queryLocal
     })
 
-    getVehicles(query)
+    getUsers(query)
   }
 
   const handleFilterOnchange = value => {
@@ -110,35 +109,34 @@ const Manager = ({
 
   const clearFilter = () => {
     setSearchValue('')
-    localStorage.removeItem('vehicleSearch')
+    localStorage.removeItem('myteamSearch')
     setSearchValue('')
     history.push({
       pathname,
       search: ''
     })
     setoffset(0)
-    getVehicles()
+    getUsers()
   }
 
   const handleChangeTableEvent = ({ current }) => {
     setoffset(offset + 1)
     let query = { offset: (current - 1) }
     if (searchValue) {
-      const params = validateBr.placa(searchValue) ? { plate: searchValue } : { fleet: searchValue }
+      const params = cpf.isValid(searchValue) ? { document: searchValue.replace(/\D/g, '') } : { name: searchValue }
       query = { ...query, ...params }
     }
 
-    getVehicles(query)
+    getUsers(query)
   }
 
   return (
     <ManagerContainer
-      source={vehiclesData}
-      vehicleTypesSource={vehicleTypes.rows}
+      source={usersData}
       loading={loading}
       handleSubmit={handleSubmit}
-      handleSelectedVehicle={handleSelectedVehicle}
-      vehicleSelected={vehicleSelected}
+      handleSelectedMyTeam={handleSelectedMyTeam}
+      myTeamSelected={myTeamSelected}
       handleEdit={handleEdit}
       searchValue={searchValue}
       handleFilter={handleFilter}

@@ -1,5 +1,5 @@
 import UpdateMyPassword from '../Pages/UpdateMyPassword'
-import MyTeam from '../Pages/MyTeam'
+import MyTeam from '../Pages/MyTeam/Manager'
 import MyInfo from '../Pages/MyInfo'
 import Home from '../Pages/Home'
 import VehicleManager from '../Pages/Vehicle/Manager'

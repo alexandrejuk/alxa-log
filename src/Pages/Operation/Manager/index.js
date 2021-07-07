@@ -14,8 +14,8 @@ import { isEmpty } from 'ramda'
 const Manager = ({
   history,
 }) => {
-  const [operationData, setOperationData] = useState([])
-  const [branchsData, setBranchsDataData] = useState([])
+  const [operationData, setOperationData] = useState({ rows: [] })
+  const [branchsData, setBranchsDataData] = useState({ rows: [] })
 
   const [operationSelected, setOperationSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')

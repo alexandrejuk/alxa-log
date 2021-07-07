@@ -15,7 +15,7 @@ import { isEmpty } from 'ramda'
 const Manager = ({
   history,
 }) => {
-  const [branchData, setBranchData] = useState([])
+  const [branchData, setBranchData] = useState({ rows: [] })
   const [branchSelected, setbranchSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
   const [offset, setoffset] = useState(0)
@@ -32,7 +32,7 @@ const Manager = ({
         search: cnpj.isValid(searchLocaStorage) ? `?document=${searchLocaStorage}` : `?name=${searchLocaStorage}`
       })
       setSearchValue(localStorage.getItem('branchSearch'))
-      query = validateBr.cnh(searchValue) ? { document: searchLocaStorage } : { name: searchLocaStorage }
+      query = validateBr.cnh(searchValue) ? { document: searchLocaStorage.replace(/\D/g, '') } : { name: searchLocaStorage }
 
     }
     getBranchs(query)
@@ -60,7 +60,7 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
     try {
-      await createBranch(values)
+      await createBranch({...values, document: values.document.replace(/\D/g, '') })
       getBranchs()
       success('Cadastro da unidade realizado com sucesso!')
     } catch (error) {
@@ -70,7 +70,7 @@ const Manager = ({
 
   const handleEdit = async (values) => {
     try {
-      await updateBranch(values)
+      await updateBranch({...values, document: values.document.replace(/\D/g, '') })
       getBranchs()
       success('Editado unidade com sucesso!')
     } catch (error) {
@@ -93,7 +93,7 @@ const Manager = ({
     
     if (isValidCnpj) {
       searchLocal = `?document=${searchValue}`
-      query = { document: searchValue }
+      query = { document: searchValue.replace(/\D/g, '')}
     }
 
     localStorage.setItem('branchSearch', searchValue)
@@ -127,7 +127,7 @@ const Manager = ({
     setoffset(offset + 1)
     let query = { offset: (current - 1) }
     if (searchValue) {
-      const params = cnpj.isValid(searchValue) ? { document: searchValue } : { name: searchValue }
+      const params = cnpj.isValid(searchValue) ? { document: searchValue.replace(/\D/g, '') } : { name: searchValue }
       query = { ...query, ...params }
     }
 

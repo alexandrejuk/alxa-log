@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = `http://localhost:3003/api`
+const baseURL = `http://jls-prd.herokuapp.com/api`
 
 const axiosInstance = axios.create({ baseURL })
 

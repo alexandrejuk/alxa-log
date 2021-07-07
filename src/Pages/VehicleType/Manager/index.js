@@ -13,7 +13,7 @@ import { isEmpty } from 'ramda'
 const Manager = ({
   history,
 }) => {
-  const [vehicleTypeData, setVehicleTypeData] = useState([])
+  const [vehicleTypeData, setVehicleTypeData] = useState({ rows: [] })
   const [vehicleTypeSelected, setVehicleTypeSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
   const [offset, setoffset] = useState(0)

@@ -14,7 +14,7 @@ import { isEmpty } from 'ramda'
 const Manager = ({
   history,
 }) => {
-  const [driverData, setDriverData] = useState([])
+  const [driverData, setDriverData] = useState({ rows: [] })
   const [driverSelected, setDriverSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
   const [offset, setoffset] = useState(0)
@@ -31,7 +31,7 @@ const Manager = ({
         search: validateBr.cnh(searchValue) ? `?driverLicense=${searchLocalStorage}` : `?name=${searchLocalStorage}`
       })
       setSearchValue(searchLocalStorage)
-      query = validateBr.cnh(searchValue) ? { driverLicense: searchLocalStorage } : { name: searchLocalStorage }
+      query = validateBr.cnh(searchValue) ? { driverLicense: searchLocalStorage.replace(/\D/g, '') } : { name: searchLocalStorage }
     }
     getDrivers(query)
   }, [])
@@ -58,7 +58,7 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
     try {
-      await createDriver(values)
+      await createDriver({...values, driverLicense: values.driverLicense.replace(/\D/g, ''), phone: values.phone.replace(/\D/g, '') })
       getDrivers()
       success('Cadastro de motorista realizado com sucesso!')
     } catch (error) {
@@ -68,7 +68,7 @@ const Manager = ({
 
   const handleEdit = async (values) => {
     try {
-      await updateDriver(values)
+      await updateDriver({...values, driverLicense: values.driverLicense.replace(/\D/g, ''), phone: values.phone.replace(/\D/g, '') })
       getDrivers()
       success('Editado motorista com sucesso!')
     } catch (error) {
@@ -94,7 +94,7 @@ const Manager = ({
 
     if (isValidCnh) {
       query = {
-        driverLicense: searchValue
+        driverLicense: searchValue.replace(/\D/g, '')
       }
     
     }
@@ -128,7 +128,7 @@ const Manager = ({
     setoffset(offset + 1)
     let query = { offset: (current - 1) }
     if (searchValue) {
-      const params = validateBr.cnh(searchValue) ? { driverLicense: searchValue } : { name: searchValue }
+      const params = validateBr.cnh(searchValue) ? { driverLicense: searchValue.replace(/\D/g, '') } : { name: searchValue }
       query = { ...query, ...params }
     }
 

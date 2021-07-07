@@ -1,51 +1,32 @@
 import React, { useState } from 'react'
-import { Row, Col, Card, Button, Typography, Input, Checkbox } from 'antd'
-import Add from '../Add'
-import Edit from '../Edit'
-import UserList from './UserList'
+import { Button, Card, Col, Input, Row, Typography } from 'antd'
+import { SearchOutlined, PlusOutlined } from '@ant-design/icons'
 
-import { PlusOutlined, SearchOutlined } from '@ant-design/icons'
-const CheckboxGroup = Checkbox.Group
+import MyTeamForm from '../MyTeamForm'
+import MyTeamList from './MyTeamList'
 
 const { Title } = Typography
-const plainOptions = ['Ativo', 'Inativo']
 
 const Manager = ({
-  handleSubmitUpdate,
-  handleSubmit,
-  users,
-  clearFilters,
-  handleOnChange,
-  filters,
-  handleGetUsersByFilters,
   loading,
-  onChangeTable,
-  total,
-  page
+  source,
+  handleSubmit,
+  handleSelectedMyTeam,
+  myTeamSelected,
+  handleEdit,
+  handleFilter,
+  searchValue,
+  handleFilterOnchange,
+  clearFilter,
+  handleChangeTableEvent,
+  offset,
 }) => {
-  const [visible, setVisible] = useState(false)
-  const [visibleEdit, setVisibleEdit] = useState(false)
-  const [userSelected, setUserSelected] = useState({})
-
-  const onSubmitUpdate = (values) => {
-    handleSubmitUpdate({ ...values, id: userSelected.id })
-    setVisibleEdit(false)
-    setUserSelected({})
-  }
-
-  const onSubmit = (values) => {
-    handleSubmit(values)
-    setVisible(false)
-  }
-
-  const handleChooseUser = (product) => {
-    setUserSelected(product)
-    setVisibleEdit(true)
-  }
-
-  const handleCloseModalEdit = () => {
-    setVisibleEdit(false)
-    setUserSelected({})
+  const [showModal, setShowModal] = useState(false)
+  const openModal = () => setShowModal(true)
+  
+  const showModalEditMyTeam = (value) => {
+    handleSelectedMyTeam(value)
+    setShowModal(true)
   }
 
   return (
@@ -55,76 +36,70 @@ const Manager = ({
           <Row>
             <Col span={12}>
               <Title style={{ marginBottom: 0 }} level={4}>
-                Crie novos usuários
+                Adicione novos usuários
               </Title>
-              <p style={{ marginBottom: 0 }}>Crie e gerencie os usuários</p>
+              <p style={{ marginBottom: 0 }}>Crie e gerencie os seus usuários</p>
             </Col>
             <Col span={12} style={{ textAlign: 'right' }}>
-              <Button icon={<PlusOutlined />} onClick={() => setVisible(true)}>
+              <Button
+                onClick={openModal}
+                style={{ marginRight: '16px' }}
+                icon={<PlusOutlined />}>
                 Adicionar usuário
               </Button>
             </Col>
           </Row>
         </Card>
-        <Add
-          visible={visible}
-          onCreate={onSubmit}
-          onCancel={() => setVisible(false)}
-        />
-        {visibleEdit && (
-          <Edit
-            visible
-            onEdit={onSubmitUpdate}
-            onCancel={handleCloseModalEdit}
-            userSelected={userSelected}
-          />
-        )}
       </Col>
+  
       <Col span={24}>
         <Card bordered={false}>
           <Row gutter={[8, 8]}>
-            <Col span={13}>
+            <Col span={16}>
               <Input
-                placeholder="Filtre por nome ou email."
+                name="search_name_or_document"
+                placeholder="Filtre pela nome ou cpf."
                 prefix={<SearchOutlined />}
-                name="name"
-                value={filters.name}
-                onChange={handleOnChange}
+                value={searchValue}
+                onChange={handleFilterOnchange}
               />
             </Col>
-            <Col span={4} style={{ paddingTop: '5px' }}>
-              <CheckboxGroup
-                options={plainOptions}
-                value={filters.activated}
-                onChange={(value) =>
-                  handleOnChange({ target: { name: 'activated', value } })
-                }
-              />
-            </Col>
-
-            <Col span={7} style={{ textAlign: 'right' }}>
-              <Button style={{ marginRight: '16px' }} onClick={clearFilters}>
+            <Col span={8} style={{ textAlign: 'right' }}>
+              <Button style={{ marginRight: '16px' }} onClick={clearFilter}>
                 Limpar filtros
               </Button>
-              <Button type="primary" onClick={handleGetUsersByFilters}>
+              <Button type="primary" onClick={handleFilter}>
                 Filtrar
               </Button>
             </Col>
           </Row>
         </Card>
       </Col>
+      
       <Col span={24}>
         <Card bordered={false}>
-          <UserList 
-            handleSubmitUpdate={handleSubmitUpdate}
-            onChangeTable={onChangeTable}
-            datasource={users} 
-            chooseUser={handleChooseUser} 
-            loading={loading} 
-            total={total}
-            page={page}/>
+          <MyTeamList 
+            datasource={source} 
+            handleClickEdit={showModalEditMyTeam}
+            loading={loading}
+            handleChangeTableEvent={handleChangeTableEvent}
+            offset={offset}
+          />
         </Card>
       </Col>
+  
+      {
+        showModal && (
+          <MyTeamForm
+            handleCancel={setShowModal}
+            visible={showModal}
+            handleSubmit={handleSubmit}
+            myTeamSelected={myTeamSelected}
+            handleSelectedMyTeam={handleSelectedMyTeam}
+            handleEdit={handleEdit}
+          />
+        )
+      }
     </Row>
   )
 }

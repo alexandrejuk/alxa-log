@@ -7,7 +7,7 @@ const formSettingsVehicle = vehiclesSource => [{
   placeholder: '',
   show: true,
   typeInput: 'select',
-  options: vehiclesSource.map(item => ({ value: item.id, label: item.plate }))
+  options: vehiclesSource.map(item => ({ value: item.plate, label: item.plate }))
 },
 {
   label: 'Placa da Carreta',
@@ -15,7 +15,7 @@ const formSettingsVehicle = vehiclesSource => [{
   placeholder: '',
   show: true,
   typeInput: 'select',
-  options: vehiclesSource.map(item => ({ value: item.id, label: item.plate }))
+  options: vehiclesSource.map(item => ({ value: item.plate, label: item.plate }))
 },
 {
   label: 'Motorista',

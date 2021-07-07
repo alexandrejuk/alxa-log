@@ -82,7 +82,7 @@ const MaintenanceList = ({ datasource, handleClickEdit, loading, handleChangeTab
         onChange={handleChangeTableEvent}
         columns={columns({ handleClickEdit, handleShowVoucher })} 
         loading={loading}
-        dataSource={datasource} 
+        dataSource={datasource.rows} 
       />
     </ConfigProvider>
   )

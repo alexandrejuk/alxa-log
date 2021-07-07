@@ -17,9 +17,9 @@ import {
 const Manager = ({
   history,
 }) => {
-  const [vehiclesData, setVehiclesData] = useState([])
-  const [maintenanceOrdersData, setMaintenanceOrdersData] = useState([])
-  const [driversData, setDriversData] = useState([])
+  const [vehiclesData, setVehiclesData] = useState({ rows: [] })
+  const [maintenanceOrdersData, setMaintenanceOrdersData] = useState({ rows: [] })
+  const [driversData, setDriversData] = useState({ rows: [] })
   const [branchsData, setBranchsData] = useState({ rows: [] })
   const [operationsData, setOperationsData] = useState({ rows: [] })
   const [offset, setoffset] = useState(0)
@@ -105,7 +105,7 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
 
-    const findDriver = driversData.find(driver => driver.id === values.driverId)
+    const findDriver = driversData.rows.find(driver => driver.id === values.driverId)
     try {
       await createMaintenanceOrder({
         ...values,
@@ -171,10 +171,10 @@ const Manager = ({
 
   return (
     <ManagerContainer
-      vehiclesSource={vehiclesData}
+      vehiclesSource={vehiclesData.rows}
       branchsSource={branchsData.rows}
-      driversSource={driversData}
-      operationsSource={operationsData}
+      driversSource={driversData.rows}
+      operationsSource={operationsData.rows}
       maintenanceOrdersSource={maintenanceOrdersData}
       loading={loading}
       handleSubmit={handleSubmit}

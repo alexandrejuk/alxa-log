@@ -46,7 +46,7 @@ const Manager = ({
                 onClick={openModal}
                 style={{ marginRight: '16px' }}
                 icon={<PlusOutlined />}>
-                Adicionar veículos
+                Adicionar veículo
               </Button>
             </Col>
           </Row>
