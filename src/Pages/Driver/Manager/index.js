@@ -6,7 +6,6 @@ import { validateBr } from 'js-brasil'
 import ManagerContainer from '../../../Containers/Driver/Manager'
 import {   
   getAll, 
-  getById,
   createDriver, 
   updateDriver,  
 } from '../../../Services/Driver'

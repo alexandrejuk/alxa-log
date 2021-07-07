@@ -4,6 +4,8 @@ import { useLocation, withRouter } from 'react-router-dom'
 
 import ManagerContainer from '../../../Containers/Vehicle/Manager'
 import { createVehicle, getAll, getAllVehicleTypes, updateVehicle } from '../../../Services/Vehicle'
+import { validateBr } from 'js-brasil'
+import { isEmpty } from 'ramda'
 
 const Manager = ({
   history,
@@ -11,23 +13,24 @@ const Manager = ({
   const [vehiclesData, setVehiclesData] = useState([])
   const [vehicleTypes, setVehicleTypes] = useState([])
   const [vehicleSelected, setVehicleSelected] = useState(null)
-  const [searchValue, setSearchValue] = useState(null)
+  const [searchValue, setSearchValue] = useState('')
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    getVehicles()
+    let query = {}
     getVehicleTypes()
-
-    if(!search && localStorage.getItem('vehicleSearch')) {
+    const searchLocalStorage = localStorage.getItem('vehicleSearch')
+    if(!search && searchLocalStorage) {
       history.push({
         pathname,
-        search: localStorage.getItem('vehicleSearch')
+        search: validateBr.placa(searchLocalStorage) ? `?plate=${searchLocalStorage}` : `?fleet=${searchLocalStorage}`
       })
-      const searchParams = new URLSearchParams(localStorage.getItem('vehicleSearch'))
-      setSearchValue(searchParams.get('fleet'))
+      setSearchValue(searchLocalStorage)
+      query = validateBr.placa(searchLocalStorage) ? { plate: searchLocalStorage } : { fleet: searchLocalStorage }
     }
+    getVehicles(query)
   }, [])
 
   const success = (text) => {
@@ -38,10 +41,10 @@ const Manager = ({
     message.error(text)
   }
 
-  const getVehicles = async () => {
+  const getVehicles = async (params = {}) => {
     setLoading(true)
     try {
-      const { data } = await getAll()
+      const { data } = await getAll(params)
       setVehiclesData(data)
       setLoading(false)
     } catch (error) {
@@ -85,11 +88,19 @@ const Manager = ({
   }
 
   const handleFilter = () => {
-    localStorage.setItem('vehicleSearch', `?fleet=${searchValue}&plate=${searchValue}`)
+    if (isEmpty(searchValue)) {
+      return null
+    }
+
+    const queryLocal = validateBr.placa(searchValue) ? `?plate=${searchValue}` : `?fleet=${searchValue}`
+    const query = validateBr.placa(searchValue) ? { plate: searchValue } : { fleet: searchValue }
+    localStorage.setItem('vehicleSearch', searchValue)
     history.push({
       pathname,
-      search: `?fleet=${searchValue}&plate=${searchValue}`
+      search: queryLocal
     })
+
+    getVehicles(query)
   }
 
   const handleFilterOnchange = value => {
@@ -97,12 +108,14 @@ const Manager = ({
   }
 
   const clearFilter = () => {
+    setSearchValue('')
     localStorage.removeItem('vehicleSearch')
     setSearchValue('')
     history.push({
       pathname,
       search: ''
     })
+    getVehicles()
   }
 
   return (
