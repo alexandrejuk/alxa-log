@@ -70,7 +70,7 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
   }
 ]
 
-const MaintenanceList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page, handleShowVoucher }) => {
+const MaintenanceList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, handleShowVoucher, offset }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -78,8 +78,8 @@ const MaintenanceList = ({ datasource, handleClickEdit, loading, onChangeTable, 
       />
     }>
       <Table 
-        pagination={{ total: 5000, current: 1 }}
-        onChange={onChangeTable}
+        pagination={{ pageSize: 20, total: datasource.count, current: (offset + 1) }}
+        onChange={handleChangeTableEvent}
         columns={columns({ handleClickEdit, handleShowVoucher })} 
         loading={loading}
         dataSource={datasource} 

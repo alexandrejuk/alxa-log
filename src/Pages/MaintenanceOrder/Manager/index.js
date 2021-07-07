@@ -22,6 +22,7 @@ const Manager = ({
   const [driversData, setDriversData] = useState([])
   const [branchsData, setBranchsData] = useState({ rows: [] })
   const [operationsData, setOperationsData] = useState({ rows: [] })
+  const [offset, setoffset] = useState(0)
 
   const [maintenanceSelected, setMaintenanceSelected] = useState(null)
   const [searchValue, setSearchValue] = useState(null)
@@ -66,9 +67,9 @@ const Manager = ({
     }
   }
 
-  const getAllMaintenances = async () => {
+  const getAllMaintenances = async (params = {}) => {
     try {
-      const { data } = await getAllMaintenanceOrders()
+      const { data } = await getAllMaintenanceOrders(params)
       setMaintenanceOrdersData(data)
     } catch (error) {
       console.log(error)
@@ -140,6 +141,7 @@ const Manager = ({
       pathname,
       search: `?fleet=${searchValue}&plateHorse=${searchValue}&plateCart=${searchValue}&maintenanceDate=${searchValue}`
     })
+    getAllMaintenances({})
   }
 
   const handleFilterOnchange = value => {
@@ -153,6 +155,18 @@ const Manager = ({
       pathname,
       search: ''
     })
+    setoffset(0)
+    getAllMaintenances()
+  }
+
+  const handleChangeTableEvent = ({ current }) => {
+    setoffset(offset + 1)
+    let query = { offset: (current - 1) }
+    if (searchValue) {
+      query = { ...query }
+    }
+
+    getAllMaintenances(query)
   }
 
   return (
@@ -171,6 +185,8 @@ const Manager = ({
       handleFilter={handleFilter}
       handleFilterOnchange={handleFilterOnchange}
       clearFilter={clearFilter}
+      handleChangeTableEvent={handleChangeTableEvent}
+      offset={offset}
     />
   )
 }
