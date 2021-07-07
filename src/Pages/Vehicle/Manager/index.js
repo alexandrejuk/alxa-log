@@ -14,6 +14,7 @@ const Manager = ({
   const [vehicleTypes, setVehicleTypes] = useState([])
   const [vehicleSelected, setVehicleSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
+  const [offset, setoffset] = useState(0)
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
@@ -115,7 +116,19 @@ const Manager = ({
       pathname,
       search: ''
     })
+    setoffset(0)
     getVehicles()
+  }
+
+  const handleChangeTableEvent = ({ current }) => {
+    setoffset(offset + 1)
+    let query = { offset: (current - 1), limit: 1 }
+    if (searchValue) {
+      const params = validateBr.placa(searchValue) ? { plate: searchValue } : { fleet: searchValue }
+      query = { ...query, ...params }
+    }
+
+    getVehicles(query)
   }
 
   return (
@@ -131,6 +144,8 @@ const Manager = ({
       handleFilter={handleFilter}
       handleFilterOnchange={handleFilterOnchange}
       clearFilter={clearFilter}
+      handleChangeTableEvent={handleChangeTableEvent}
+      offset={offset}
     />
   )
 }

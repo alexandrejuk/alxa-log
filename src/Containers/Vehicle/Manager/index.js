@@ -19,9 +19,8 @@ const Manager = ({
   searchValue,
   handleFilterOnchange,
   clearFilter,
-  onChangeTable,
-  total,
-  page
+  handleChangeTableEvent,
+  offset,
 }) => {
   const [showModal, setShowModal] = useState(false)
   const openModal = () => setShowModal(true)
@@ -81,12 +80,11 @@ const Manager = ({
       <Col span={24}>
         <Card bordered={false}>
           <VehicleList 
-            // onChangeTable={onChangeTable} 
             datasource={source} 
-            // total={total}
             handleClickEdit={showModalEditVehicle}
             loading={loading}
-            // page={page}
+            handleChangeTableEvent={handleChangeTableEvent}
+            offset={offset}
           />
         </Card>
       </Col>

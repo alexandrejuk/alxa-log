@@ -18,9 +18,8 @@ const Manager = ({
   searchValue,
   handleFilterOnchange,
   clearFilter,
-  onChangeTable,
-  total,
-  page
+  handleChangeTableEvent,
+  offset
 }) => {
   const [showModal, setShowModal] = useState(false)
   const openModal = () => setShowModal(true)
@@ -80,12 +79,11 @@ const Manager = ({
       <Col span={24}>
         <Card bordered={false}>
           <BranchList 
-            // onChangeTable={onChangeTable} 
+            handleChangeTableEvent={handleChangeTableEvent}
             datasource={source} 
-            // total={total}
             handleClickEdit={showModalEditBranch}
             loading={loading}
-            // page={page}
+            offset={offset}
           />
         </Card>
       </Col>

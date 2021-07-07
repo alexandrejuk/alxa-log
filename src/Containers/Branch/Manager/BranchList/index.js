@@ -33,7 +33,7 @@ const columns = ({ handleClickEdit }) => [
   }
 ]
 
-const BranchList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page }) => {
+const BranchList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, offset }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -41,8 +41,8 @@ const BranchList = ({ datasource, handleClickEdit, loading, onChangeTable, total
       />
     }>
       <Table 
-        pagination={{ total: datasource.count, current: 1 }}
-        onChange={onChangeTable}
+        pagination={{ pageSize: 20, total: datasource.count, current: (offset + 1) }}
+        onChange={handleChangeTableEvent}
         columns={columns({ handleClickEdit })} 
         loading={loading}
         dataSource={datasource.rows} 

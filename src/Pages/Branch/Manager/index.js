@@ -18,12 +18,13 @@ const Manager = ({
   const [branchData, setBranchData] = useState([])
   const [branchSelected, setbranchSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
+  const [offset, setoffset] = useState(0)
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    let query = {}
+    let query = { limit: 1 }
     const searchLocaStorage = localStorage.getItem('branchSearch')
     if(!search && searchLocaStorage) {
       history.push({
@@ -118,9 +119,19 @@ const Manager = ({
       pathname,
       search: ''
     })
-
+    setoffset(0)
     getBranchs({})
+  }
 
+  const handleChangeTableEvent = ({ current }) => {
+    setoffset(offset + 1)
+    let query = { offset: (current - 1), limit: 1 }
+    if (searchValue) {
+      const params = cnpj.isValid(searchValue) ? { document: searchValue } : { name: searchValue }
+      query = { ...query, ...params }
+    }
+
+    getBranchs(query)
   }
 
   return (
@@ -135,6 +146,8 @@ const Manager = ({
       handleFilter={handleFilter}
       handleFilterOnchange={handleFilterOnchange}
       clearFilter={clearFilter}
+      offset={offset}
+      handleChangeTableEvent={handleChangeTableEvent}
     />
   )
 }

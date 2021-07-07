@@ -16,6 +16,7 @@ const Manager = ({
   const [vehicleTypeData, setVehicleTypeData] = useState([])
   const [vehicleTypeSelected, setVehicleTypeSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
+  const [offset, setoffset] = useState(0)
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
@@ -105,9 +106,19 @@ const Manager = ({
       pathname,
       search: ''
     })
-
+    setoffset(0)
     getVehicleTye({})
 
+  }
+
+  const handleChangeTableEvent = ({ current }) => {
+    setoffset(offset + 1)
+    let query = { offset: (current - 1), limit: 1 }
+    if (searchValue) {
+      query = { ...query, name: searchValue }
+    }
+
+    getVehicleTye(query)
   }
 
   return (
@@ -122,6 +133,8 @@ const Manager = ({
       handleFilter={handleFilter}
       handleFilterOnchange={handleFilterOnchange}
       clearFilter={clearFilter}
+      offset={offset}
+      handleChangeTableEvent={handleChangeTableEvent}
     />
   )
 }

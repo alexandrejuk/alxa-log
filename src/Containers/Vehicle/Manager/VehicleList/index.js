@@ -45,7 +45,7 @@ const columns = ({ handleClickEdit }) => [
   }
 ]
 
-const VehicleList = ({ datasource, handleClickEdit, loading, onChangeTable, total, page }) => {
+const VehicleList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, offset }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -53,11 +53,11 @@ const VehicleList = ({ datasource, handleClickEdit, loading, onChangeTable, tota
       />
     }>
       <Table 
-        pagination={{ total: 5000, current: 1 }}
-        onChange={onChangeTable}
+        pagination={{ pageSize: 20, total: datasource.count, current: (offset + 1) }}
+        onChange={handleChangeTableEvent}
         columns={columns({ handleClickEdit })} 
         loading={loading}
-        dataSource={datasource} 
+        dataSource={datasource.rows} 
       />
     </ConfigProvider>
   )

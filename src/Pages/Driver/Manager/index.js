@@ -17,6 +17,7 @@ const Manager = ({
   const [driverData, setDriverData] = useState([])
   const [driverSelected, setDriverSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
+  const [offset, setoffset] = useState(0)
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
@@ -119,8 +120,21 @@ const Manager = ({
       pathname,
       search: ''
     })
+    setoffset(0)
     getDrivers({})
   }
+
+  const handleChangeTableEvent = ({ current }) => {
+    setoffset(offset + 1)
+    let query = { offset: (current - 1), limit: 1 }
+    if (searchValue) {
+      const params = validateBr.cnh(searchValue) ? { driverLicense: searchValue } : { name: searchValue }
+      query = { ...query, ...params }
+    }
+
+    getDrivers(query)
+  }
+
 
   return (
     <ManagerContainer
@@ -134,6 +148,8 @@ const Manager = ({
       handleFilter={handleFilter}
       handleFilterOnchange={handleFilterOnchange}
       clearFilter={clearFilter}
+      handleChangeTableEvent={handleChangeTableEvent}
+      offset={offset}
     />
   )
 }

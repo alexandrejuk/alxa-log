@@ -19,6 +19,7 @@ const Manager = ({
 
   const [operationSelected, setOperationSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
+  const [offset, setoffset] = useState(0)
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
@@ -121,10 +122,20 @@ const Manager = ({
       pathname,
       search: ''
     })
-
+    setoffset(0)
     getOperations({})
-
   }
+
+  const handleChangeTableEvent = ({ current }) => {
+    setoffset(offset + 1)
+    let query = { offset: (current - 1), limit: 1 }
+    if (searchValue) {
+      query = { ...query, name: searchValue }
+    }
+
+    getOperations(query)
+  }
+
 
   return (
     <ManagerContainer
@@ -139,6 +150,8 @@ const Manager = ({
       handleFilter={handleFilter}
       handleFilterOnchange={handleFilterOnchange}
       clearFilter={clearFilter}
+      handleChangeTableEvent={handleChangeTableEvent}
+      offset={offset}
     />
   )
 }
