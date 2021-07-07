@@ -59,20 +59,20 @@ const Manager = ({
   const handleSubmit = async (values) => {
     try {
       await createVehicleType(values)
-      getFleets()
-      success('Cadastro da frota realizado com sucesso!')
+      getVehicleTye()
+      success('Cadastro do tipo de veículo realizado com sucesso!')
     } catch (error) {
-      errorMessage('Não foi realizar o cadastro da frota!')
+      errorMessage('Não foi realizar o cadastro do tipo de veículo!')
     }
   }
 
   const handleEdit = async (values) => {
     try {
       await updateVehicleType(values)
-      getFleets()
-      success('Editado frota com sucesso!')
+      getVehicleTye()
+      success('Editado tipo de veículo com sucesso!')
     } catch (error) {
-      errorMessage('Não foi realizar a edição da frota!')
+      errorMessage('Não foi realizar a edição do tipo de veículo!')
     }
   }
 
