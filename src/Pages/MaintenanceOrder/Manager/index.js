@@ -112,7 +112,7 @@ const Manager = ({
         driverMain: findDriver.name,
         driverPhoneMain: findDriver.phone,
         driverMainLicense: findDriver.driverLicense,
-        maintenanceDate: new Date()
+        maintenanceDate: new Date(values.maintenanceDate)
       })
       getAllMaintenances()
       success('Manutenção criada com sucesso!')

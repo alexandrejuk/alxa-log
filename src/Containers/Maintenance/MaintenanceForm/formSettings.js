@@ -50,8 +50,9 @@ const formSettingsVehicle = vehiclesSource => [{
   rules,
   placeholder: '',
   show: false,
-  typeInput: 'input',
-  options: []
+  typeInput: 'date',
+  options: [],
+  format: "DD/MM/YYYY"
 },
 {
   label: 'Filial',

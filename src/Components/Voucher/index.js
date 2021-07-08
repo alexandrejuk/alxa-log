@@ -3,6 +3,17 @@ import styles from './style.module.css'
 import Qrcode  from 'qrcode.react'
 import formattedDate from '../../utils/parserDate'
 
+const status = {
+  low: 'Baixa',
+  medium: 'Média',
+  high: 'Alta'
+}
+
+const services = {
+  corrective: 'Corretiva',
+  preventive: 'Preventiva'
+}
+
 const Voucher = ({
   maintenanceSelected
 }) => {
@@ -41,9 +52,9 @@ const Voucher = ({
         <p>Nome <strong>{driverMain}</strong></p>
         <p>Placa Cavalo <strong>{plateHorse}</strong></p>
         <p>Placa Carreta <strong>{plateCart}</strong></p>
-        <p>Prioridade <strong>{priority}</strong></p>
+        <p>Prioridade <strong>{status[priority]}</strong></p>
         <p>Data da manutenção <strong>{formattedDate(maintenanceDate, 'DD/MM/YYYY')}</strong></p>
-        <p>Tipo Serviço <strong>{service}</strong></p>
+        <p>Tipo Serviço <strong>{services[service]}</strong></p>
       </div>
 
       <div className={styles.cardfooterbarcode}>

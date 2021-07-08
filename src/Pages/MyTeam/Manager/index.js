@@ -20,7 +20,6 @@ const Manager = ({
 
   useEffect(() => {
     let query = {}
-    getVehicleTypes()
     const searchLocalStorage = localStorage.getItem('myteamSearch')
     if(!search && searchLocalStorage) {
       history.push({
@@ -49,16 +48,6 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log(error)
-    }
-  }
-
-
-  const getVehicleTypes = async () => {
-    try {
-      const { data } = await getAllVehicleTypes()
-      setVehicleTypes(data)
-    } catch (error) {
       console.log(error)
     }
   }
@@ -92,8 +81,8 @@ const Manager = ({
       return null
     }
 
-    const queryLocal = cpf.cpf(searchValue) ? `?document=${searchValue}` : `?name=${searchValue}`
-    const query = cpf.cpf(searchValue) ? { document: searchValue.replace(/\D/g, '') } : { name: searchValue }
+    const queryLocal = cpf.isValid(searchValue) ? `?document=${searchValue}` : `?name=${searchValue}`
+    const query = cpf.isValid(searchValue) ? { document: searchValue.replace(/\D/g, '') } : { name: searchValue }
     localStorage.setItem('myteamSearch', searchValue)
     history.push({
       pathname,

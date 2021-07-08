@@ -1,7 +1,43 @@
 import React from 'react'
-import { Table, Button, Empty, ConfigProvider, Image, Space } from 'antd'
+import { Table, Button, Empty, ConfigProvider, Image, Space, Tag } from 'antd'
 import NoData from '../../../../Assets/noData.svg'
 import formattedDate from '../../../../utils/parserDate'
+const status = {
+  low: 'Baixa',
+  medium: 'Média',
+  high: 'Alta'
+}
+
+const services = {
+  corrective: 'Corretiva',
+  preventive: 'Preventiva'
+}
+
+const parseStatusColor = {
+  'solicitation': 'magenta',
+  'check-in': 'red',
+  'avaiable': 'volcano',
+  'parking': 'orange',
+  'courtyard': 'gold',
+  'awaiting_repair': 'lime',
+  'dock': 'green',
+  'wash': 'cyan',
+  'supply': 'blue',
+  'check-out': 'geekblue',
+}
+
+const parseStatus = {
+  'solicitation': 'Solicitação',
+  'check-in': 'Entrada',
+  'avaiable': 'Liberado',
+  'parking': 'Estacionar',
+  'courtyard': 'Pátio',
+  'awaiting_repair': 'Aguardando peça',
+  'dock': 'Doca',
+  'wash': 'Lavar',
+  'supply': 'Abastecer',
+  'check-out': 'Saída',
+}
 
 const columns = ({ handleClickEdit, handleShowVoucher }) => [
   {
@@ -40,18 +76,22 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
     dataIndex: 'status',
     key: 'status',
     fixed: 'left',
+    render: value => <Tag color={parseStatusColor[value]}>{parseStatus[value]}</Tag>
   },
   {
     title: 'Prioridade',
     dataIndex: 'priority',
     key: 'priority',
-    fixed: 'left'
+    fixed: 'left',
+    render: (value) => status[value]
   },
   {
     title: 'Tipo de Serviço',
     dataIndex: 'service',
     key: 'service',
-    fixed: 'left'
+    fixed: 'left',
+    render: value => services[value]
+
   },
   {
     title: ' ',

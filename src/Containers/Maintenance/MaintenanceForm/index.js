@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Input, Modal, Select } from 'antd'
+import { Button, Form, Input, Modal, Select, DatePicker } from 'antd'
 import { map } from 'ramda'
 import {
   settingsNextStep,
@@ -21,22 +21,27 @@ const renderFormItems = ({
   show, 
   typeInput, 
   options = [], 
-  mode = null 
+  mode = null,
+  format = ''
 }) => {
   const Component = formItemsComponent[typeInput]
   return (
     show && (
       <Form.Item key={name} label={label} name={name} rules={rules}>
-        <Component 
-          showSearch
-          name={name} 
-          placeholder={placeholder} 
-          options={options} 
-          mode={mode} 
-          filterOption={(value, option) => (
-            option.label.toLowerCase().indexOf(value.toLowerCase()) >= 0
-          )}
-        />
+        {typeInput === 'date' ? (
+          <DatePicker  format={format} />
+        ): (
+          <Component 
+            showSearch
+            name={name} 
+            placeholder={placeholder} 
+            options={options} 
+            mode={mode} 
+            filterOption={(value, option) => (
+              option.label.toLowerCase().indexOf(value.toLowerCase()) >= 0
+            )}
+          />
+        )}
       </Form.Item>
     )
   )

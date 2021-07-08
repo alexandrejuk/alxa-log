@@ -24,12 +24,6 @@ const columns = ({ handleClickEdit }) => [
     fixed: 'left',
   },
   {
-    title: 'Situação',
-    dataIndex: 'situation',
-    key: 'situation',
-    fixed: 'left'
-  },
-  {
     title: 'Última manutenção',
     dataIndex: 'lastMaintenance',
     key: 'lastMaintenance',
