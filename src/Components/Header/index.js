@@ -28,7 +28,7 @@ const Header = ({
 
   const menu = (
     <Menu onClick={handleNavegator} style={{ width: 300 }}>
-      <Menu.Item key="/logged/account-myinfo">Dados cadastrais</Menu.Item>
+      {/* <Menu.Item key="/logged/account-myinfo">Dados cadastrais</Menu.Item> */}
       <Menu.Item key="/logged/account-myteam">
         Gerenciamento de equipe
       </Menu.Item>
