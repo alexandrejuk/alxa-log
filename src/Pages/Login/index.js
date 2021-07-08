@@ -19,7 +19,7 @@ const Login = ({
   const authentication = (values) => {
     let redirectPage = '/logged/dashboard'
     setLoading(true)
-    Auth(values)
+    Auth({...values, document: values.document.replace(/\D/g, '') })
       .then(({ data }) => {
         loggedUser(data)
         if (data.firstAccess) {
