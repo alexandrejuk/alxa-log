@@ -79,7 +79,7 @@ const MaintenanceManagerMobile = ({
                   renderItem={item => (
                     <List.Item>
                       <List.Item.Meta
-                        avatar={<Image src={item.image} width={50} height={50} />}
+                        avatar={<Image src={item.image} width={50} height={50} preview={false} />}
                         title={<a onClick={item.action}>{item.title}</a>}
                         description={<a onClick={item.action}>{item.subtitle}</a>}
                       />

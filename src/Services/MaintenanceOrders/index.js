@@ -1,4 +1,5 @@
 import axiosIntance from '../../utils/axiosInstance'
+import axios from 'axios'
 
 const getAll = async (params = {}) => {
   return await axiosIntance.get('/maintenance-orders', { params })
@@ -20,6 +21,10 @@ const updateEvents = async (id, values) => {
   return await axiosIntance.put(`/maintenance-order-events/${id}`, values)
 }
 
+const getMobileQrCode = async (id) => {
+  return await axios.get(`https://jls-prd.herokuapp.com/qrcode-detail/${id}`)
+}
+
 
 export { 
   getAll, 
@@ -27,4 +32,5 @@ export {
   createMaintenanceOrder, 
   updateMaintenanceOrder,
   updateEvents,
+  getMobileQrCode
 }

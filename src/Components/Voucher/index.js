@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './style.module.css'
 import Qrcode  from 'qrcode.react'
 import formattedDate from '../../utils/parserDate'
+import { Button } from 'antd'
+import { HighlightOutlined } from '@ant-design/icons';
 
 const status = {
   low: 'Baixa',
@@ -15,12 +17,13 @@ const services = {
 }
 
 const Voucher = ({
-  maintenanceSelected
+  maintenanceSelected,
+  showButton = true
 }) => {
   const {
     serviceDescription = null,
     driverMain = null,
-    id = null,
+    id = 'no_id',
     maintenanceDate = null,
     plateCart = null,
     plateHorse = null,
@@ -89,6 +92,7 @@ const Voucher = ({
 
       <div className={styles.contentfootermain}>
         <h6>Você pode apresentar o voucher pelo celular ou impresso</h6>
+        {showButton && <Button onClick={() => navigator.clipboard.writeText("Teste antd")}><HighlightOutlined />Copiar link</Button> }
       </div>
     </div>
   )
