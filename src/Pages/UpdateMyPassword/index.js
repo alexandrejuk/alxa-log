@@ -22,7 +22,7 @@ const UpdateMyPassword = ({ history }) => {
     }
   }
 
-  const goToOrder = () => history.push('/order/manager')
+  const goToOrder = () => history.push('/logged/dashboard')
 
   return (
     <UpdateMyPasswordContainer
