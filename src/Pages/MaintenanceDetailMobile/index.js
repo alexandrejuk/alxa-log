@@ -23,7 +23,7 @@ const Manager = ({
     maintenanceOrderEvents: [],
     operationId: null,
     plateCart: null,
-    plateHorser: null,
+    plateHorse: null,
     priority: null,
     service: null,
     serviceDescription: null,
@@ -51,6 +51,10 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
     try {
+      if (values.status === 'supply' && !maintenanceOrder.plateHorse) {
+        throw new Error('Not allow add supply to plateCart!')
+      }
+
       const { data } = await updateEvents(match.params.id, values)
       setMaintenanceOrder(data)
       message.success('Eventos atualizado com sucesso!');
