@@ -13,7 +13,6 @@ const Login = ({
   history,
   loggedUser,
   setCompany,
-  setStatus
 }) => {
   const [isVisibleMessageError, setIsVisibleMessageError] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -40,7 +39,6 @@ const Login = ({
         return getCompanyById(data.user.companyId)
       })
       .then(({ data }) => setCompany(data))
-      .then(({ data }) => setStatus(data))
       .then(() => history.push(redirectPage))
       .catch((err) => {
         setLoading(false)
@@ -62,8 +60,6 @@ const Login = ({
 const mapDispatchToProps = (dispatch) => ({
   loggedUser: (payload) => dispatch({ type: 'USER_LOGGED', payload }),
   setCompany: (payload) => dispatch({ type: 'SET_COMPANY', payload }),
-  setStatus: (payload) => dispatch({ type: 'SET_STATUS', payload }),
-  setSubscription: (payload) => dispatch({ type: 'SET_SUBSCRIPTION', payload })
 })
 
 const enhanced = compose(connect(null, mapDispatchToProps), withRouter)

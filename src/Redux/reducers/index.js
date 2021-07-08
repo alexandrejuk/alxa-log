@@ -2,14 +2,10 @@ import { combineReducers } from 'redux'
 
 import userReducer from './user'
 import companyReducer from './company'
-import SubscriptionReducer from './subscription'
-import MyTeamReducer from './myTeam'
 
 const appReducer =  combineReducers({
   user: userReducer,
   company: companyReducer,
-  subscription: SubscriptionReducer,
-  myTeamSearch: MyTeamReducer
 })
 
 
