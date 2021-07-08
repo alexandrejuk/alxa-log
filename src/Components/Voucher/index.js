@@ -3,7 +3,7 @@ import styles from './style.module.css'
 import Qrcode  from 'qrcode.react'
 import formattedDate from '../../utils/parserDate'
 import { Button } from 'antd'
-import { HighlightOutlined } from '@ant-design/icons';
+import { CopyOutlined } from '@ant-design/icons'
 
 const status = {
   low: 'Baixa',
@@ -92,7 +92,7 @@ const Voucher = ({
 
       <div className={styles.contentfootermain}>
         <h6>Você pode apresentar o voucher pelo celular ou impresso</h6>
-        {showButton && <Button onClick={() => navigator.clipboard.writeText(`${process.env.REACT_APP_DASH_URL}/#/mobile-qrcode-detail/${id}`)}><HighlightOutlined />Copiar link</Button> }
+        {showButton && <Button onClick={() => navigator.clipboard.writeText(`${process.env.REACT_APP_DASH_URL}/#/mobile-qrcode-detail/${id}`)}><CopyOutlined />Copiar link</Button> }
       </div>
     </div>
   )
