@@ -56,7 +56,7 @@ const menuItems = [
   },
 ]
 
-const LayoutComponent = ({ children, history, location, company, subscription }) => {
+const LayoutComponent = ({ children, history, company }) => {
   const goTo = ({ key }) => history.push(key)
   const companyName = pathOr('', ['name'], company)
   const parseCompanyName = companyName.length > 22 ? `${companyName.substr(0, 22)}...` : companyName
@@ -93,7 +93,7 @@ const LayoutComponent = ({ children, history, location, company, subscription })
             }}
             preview={false}
             width={220}
-            src={subscription.status === 'free' ? Logo : LogoPlus }
+            src={Logo}
           />
           <p
             className={styles.noPrint}
@@ -134,9 +134,8 @@ const LayoutComponent = ({ children, history, location, company, subscription })
   )
 }
 
-const mapStateToProps = ({ company, subscription }) => ({
+const mapStateToProps = ({ company }) => ({
   company,
-  subscription,
 })
 
 const enhanced = compose(connect(mapStateToProps), withRouter)
