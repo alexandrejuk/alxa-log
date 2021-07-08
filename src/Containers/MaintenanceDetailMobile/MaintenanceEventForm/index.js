@@ -123,7 +123,7 @@ const MaintenanceEventForm = ({
     if (formItem) {
       setFormSettings(formSettings.map(item => (
         item.name === formItem.name 
-          ? {...formItem, show: true, options: item.name === 'driverId' ?  driversSource.map(parseOptionItem) : []} 
+          ? {...formItem, show: true, options: item.name === 'driverId' ?  driversSource.map(parseOptionItem) : item.options } 
           : item
       )))
     }
