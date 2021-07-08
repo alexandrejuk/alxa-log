@@ -89,6 +89,8 @@ const MaintenanceForm = ({
     }
   }
 
+  const maintenanceDate = maintenanceSelected && maintenanceSelected.maintenanceDate ? new Date(maintenanceSelected.maintenanceDate) : new Date()
+
   return (
     <Modal
       visible={visible}
@@ -126,7 +128,7 @@ const MaintenanceForm = ({
           setFormSettings(formSettingsVehicle(vehiclesSource))
           form.resetFields()
         }}
-        initialValues={{...maintenanceSelected, maintenanceDate: moment(new Date(maintenanceSelected.maintenanceDate), "DD/MM/YYYY")}}
+        initialValues={{...maintenanceSelected, maintenanceDate: moment(maintenanceDate, "DD/MM/YYYY")}}
       >
         {map(renderFormItems, formSettings)}
       </Form>
