@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Col, Form, Image, Input, Row, Typography } from 'antd'
-import { Link } from 'react-router-dom'
 
 import onlineResume from '../../Assets/onlineResume.svg'
 import logo from '../../Assets/logo.svg'
