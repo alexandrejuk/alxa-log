@@ -62,7 +62,7 @@ const MaintenanceDetailMobile = ({
                 <Text style={{ color: "#FFFFFF" }}>Tipo serviço</Text>
               </Col>
               <Col span={8}>
-                <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.plateHorser}</strong></Text>
+                <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.plateHorse}</strong></Text>
               </Col>
               <Col span={8}>
                 <Text style={{ color: "#FFFFFF" }}><strong>{maintenanceOrder && maintenanceOrder.plateCart}</strong></Text>
