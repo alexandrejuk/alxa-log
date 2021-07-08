@@ -30,7 +30,7 @@ const App = () => {
       <PersistGate loading={null} persistor={persistStore(store)}>
         <Switch>
           <Route path="/login" component={Login} />
-          <Route path="/mobile-qrcode-detail/:id" component={MaintenanceQrcode} />
+          <Route path="/mobile-qrcode-detail/:id" component={MaintenanceQrcode} exact />
           <Route path="/logged" component={Logged} />
           <Redirect from="*" to="/login" />
         </Switch>
