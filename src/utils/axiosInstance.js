@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = `http://jls-prd.herokuapp.com/api`
+const baseURL = `https://jls-prd.herokuapp.com//api`
 
 const axiosInstance = axios.create({ baseURL })
 
