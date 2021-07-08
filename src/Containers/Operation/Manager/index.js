@@ -38,16 +38,16 @@ const Manager = ({
           <Row>
             <Col span={12}>
               <Title style={{ marginBottom: 0 }} level={4}>
-                Adicionar novas manutenções
+                Adicionar novas operações
               </Title>
-              <p style={{ marginBottom: 0 }}>Crie e gerencie manutenções dos veículos de sua filial</p>
+              <p style={{ marginBottom: 0 }}>Crie e gerencie suas operações</p>
             </Col>
             <Col span={12} style={{ textAlign: 'right' }}>
               <Button
                 onClick={openModal}
                 style={{ marginRight: '16px' }}
                 icon={<PlusOutlined />}>
-                Adicionar manutenção
+                Adicionar operação
               </Button>
             </Col>
           </Row>
