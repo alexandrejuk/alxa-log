@@ -161,7 +161,30 @@ const MaintenanceDetailMobile = ({
               <Divider orientation="left"><strong>Abastecimentos</strong></Divider>
             </Col>
             <Col span={24}>
-              <h5>Estamos salvando precisamos adicionar na tela!</h5>
+              {maintenanceOrder && maintenanceOrder.supplies.length === 0 && <h5>Não tem nenhum abastecimento vinculado a essa ordem de manutenção!</h5>}
+              {maintenanceOrder && maintenanceOrder.supplies.map(({ id, fuel, km, totalLiters, odometer}) => (
+                <Row span={24} key={id} gutter={[8, 8]}>
+                  <Col span={12} key={id}>
+                    <Text>Combustível</Text>< br />
+                    <Text><strong>{fuel === 'diesel' ? 'Diesel' : 'Arla'}</strong></Text>
+                  </Col>
+
+                  <Col span={12} key={id}>
+                    <Text>Total de Litros</Text>< br />
+                    <Text><strong>{totalLiters} / lt</strong></Text>
+                  </Col>
+
+                  <Col span={8} key={id}>
+                    <Text>Quilometragem</Text>< br />
+                    <Text><strong>{km} km</strong></Text>
+                  </Col>
+
+                  <Col span={8} key={id}>
+                    <Text>Hodômetro</Text>< br />
+                    <Text><strong>{odometer}</strong></Text>
+                  </Col>
+                </Row>
+              ))}
             </Col>
           </Row>
         </Col>

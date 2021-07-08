@@ -30,6 +30,7 @@ const Manager = ({
     status: null,
     updatedAt: null,
     userId: null,
+    supplies: [],
   })
 
   const [driversSource, setDriversSource] = useState([])
