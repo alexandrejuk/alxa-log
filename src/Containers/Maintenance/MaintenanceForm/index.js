@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Form, Input, Modal, Select, DatePicker } from 'antd'
 import { map } from 'ramda'
+import moment from 'moment'
+import 'moment/locale/pt-br'
+
 import {
   settingsNextStep,
   formSettingsVehicle,
@@ -123,7 +126,7 @@ const MaintenanceForm = ({
           setFormSettings(formSettingsVehicle(vehiclesSource))
           form.resetFields()
         }}
-        initialValues={maintenanceSelected}
+        initialValues={{...maintenanceSelected, maintenanceDate: moment(new Date(maintenanceSelected.maintenanceDate), "DD/MM/YYYY")}}
       >
         {map(renderFormItems, formSettings)}
       </Form>
