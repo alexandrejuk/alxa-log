@@ -68,7 +68,7 @@ const formSettingsEvent = [
         label: 'Diesel'
       },
       {
-        value: 'arla',
+        value: 'arlar',
         label: 'Arla'
       }]
   }, 
