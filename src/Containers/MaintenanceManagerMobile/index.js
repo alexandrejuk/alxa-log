@@ -73,7 +73,6 @@ const MaintenanceManagerMobile = ({
                       subtitle: "Para pesquisar a ordem de manutenção", 
                       action: () => { 
                         setShowModalMobile(true); 
-                        setEnableQrCode(true);
                       }
                     }
                   ]}

@@ -7,6 +7,8 @@ import LoginContainer from '../../Containers/Login'
 import Auth from '../../Services/Auth'
 import { getCompanyById } from '../../Services/Company'
 
+const isMobile = window.mobileCheck()
+
 const Login = ({
   history,
   loggedUser,
@@ -15,7 +17,7 @@ const Login = ({
 }) => {
   const [isVisibleMessageError, setIsVisibleMessageError] = useState(false)
   const [loading, setLoading] = useState(false)
-
+  
   const authentication = (values) => {
     let redirectPage = '/logged/dashboard'
     setLoading(true)
@@ -26,9 +28,10 @@ const Login = ({
           redirectPage = '/user/onboarding'
         }
 
-        if(window.mobileCheck()) {
+        if(isMobile) {
           redirectPage = '/logged/mobile-maintenance'
         }
+
         localStorage.setItem('token', data.token)
         localStorage.setItem('user.name', data.user.name)
         return data
@@ -51,7 +54,7 @@ const Login = ({
       authentication={authentication}
       isVisibleMessageError={isVisibleMessageError}
       loading={loading}
-      registerPath="register"
+      isMobile={isMobile}
     />
   )
 }
