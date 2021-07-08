@@ -33,6 +33,7 @@ const Manager = ({
   })
 
   const [driversSource, setDriversSource] = useState([])
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     getOrder()
@@ -52,8 +53,11 @@ const Manager = ({
     try {
       const { data } = updateEvents(match.params.id, values)
       setMaintenanceOrder(data)
+      message.success('Eventos atualizado com sucesso!');
+      setShowModal(false)
     } catch (error) {
-      
+      message.error('Não foi possível adicionar esse evento!');
+      setShowModal(false)
     }
   }
 
@@ -74,6 +78,8 @@ const Manager = ({
       handleSubmit={handleSubmit}
       maintenanceOrder={maintenanceOrder}
       driversSource={driversSource}
+      showModal={showModal}
+      setShowModal={setShowModal}
     />
   )
 }

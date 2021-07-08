@@ -2,6 +2,8 @@ import React from 'react'
 import { Table, Button, Empty, ConfigProvider, Image, Space, Tag } from 'antd'
 import NoData from '../../../../Assets/noData.svg'
 import formattedDate from '../../../../utils/parserDate'
+import diffTime from '../../../../utils/permananceTime'
+
 const status = {
   low: 'Baixa',
   medium: 'Média',
@@ -91,7 +93,13 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
     key: 'service',
     fixed: 'left',
     render: value => services[value]
-
+  },
+  {
+    title: 'Permanência',
+    dataIndex: 'service',
+    key: 'service',
+    fixed: 'left',
+    render: (_, source) => diffTime(source.createdAt, source.updatedAt, source.status)
   },
   {
     title: ' ',
