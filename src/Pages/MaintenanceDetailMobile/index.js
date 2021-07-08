@@ -51,7 +51,7 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
     try {
-      const { data } = updateEvents(match.params.id, values)
+      const { data } = await updateEvents(match.params.id, values)
       setMaintenanceOrder(data)
       message.success('Eventos atualizado com sucesso!');
       setShowModal(false)

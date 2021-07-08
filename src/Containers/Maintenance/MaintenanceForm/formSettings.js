@@ -1,11 +1,10 @@
-import { isEmpty } from 'ramda'
-
 const rules = [{ required: true, message: 'Este campo é obrigatório!' }]
 const formSettingsVehicle = vehiclesSource => [{
   label: 'Placa do Cavalo',
   name: 'plateHorse',
   placeholder: '',
   show: true,
+  rules,
   typeInput: 'select',
   options: vehiclesSource.map(item => ({ value: item.plate, label: item.plate }))
 },
