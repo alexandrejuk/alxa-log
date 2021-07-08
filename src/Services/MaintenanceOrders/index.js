@@ -22,7 +22,7 @@ const updateEvents = async (id, values) => {
 }
 
 const getMobileQrCode = async (id) => {
-  return await axios.get(`https://jls-prd.herokuapp.com/qrcode-detail/${id}`)
+  return await axios.get(`${process.env.REACT_APP_API_URL}/qrcode-detail/${id}`)
 }
 
 

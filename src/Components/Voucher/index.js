@@ -92,7 +92,7 @@ const Voucher = ({
 
       <div className={styles.contentfootermain}>
         <h6>Você pode apresentar o voucher pelo celular ou impresso</h6>
-        {showButton && <Button onClick={() => navigator.clipboard.writeText("Teste antd")}><HighlightOutlined />Copiar link</Button> }
+        {showButton && <Button onClick={() => navigator.clipboard.writeText(`${process.env.REACT_APP_DASH_URL}/#/mobile-qrcode-detail/${id}`)}><HighlightOutlined />Copiar link</Button> }
       </div>
     </div>
   )
