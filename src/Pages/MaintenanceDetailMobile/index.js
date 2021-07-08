@@ -81,7 +81,7 @@ const Manager = ({
       goBack={goBack}
       handleSubmit={handleSubmit}
       maintenanceOrder={maintenanceOrder}
-      driversSource={driversSource}
+      driversSource={driversSource.rows}
       showModal={showModal}
       setShowModal={setShowModal}
     />
