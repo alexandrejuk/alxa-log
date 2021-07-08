@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Form, Input, Select, Typography, Row, Col } from 'antd'
+import { Button, Form, Input, Select, Typography, Row, Col, InputNumber } from 'antd'
 import { map } from 'ramda'
 import ModalMobile from '../../../Components/ModalMobile'
 import formSettingsEvent from './formSettings' 
@@ -9,7 +9,8 @@ const { Title, Text } = Typography
 
 const formItemsComponent = {
   input: Input,
-  select: Select
+  select: Select,
+  inputNumber: InputNumber
 }
 
 const renderFormItems = ({ 

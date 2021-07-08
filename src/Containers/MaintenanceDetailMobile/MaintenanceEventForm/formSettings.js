@@ -78,7 +78,7 @@ const formSettingsEvent = [
     placeholder: '',
     rules,
     show: false,
-    typeInput: 'input',
+    typeInput: 'inputNumber',
     options: []
   },
   {
@@ -87,7 +87,7 @@ const formSettingsEvent = [
     placeholder: '',
     rules,
     show: false,
-    typeInput: 'input',
+    typeInput: 'inputNumber',
     options: []
   },
   {
@@ -96,7 +96,7 @@ const formSettingsEvent = [
     placeholder: '',
     rules,
     show: false,
-    typeInput: 'input',
+    typeInput: 'inputNumber',
     options: []
   }
 ]
