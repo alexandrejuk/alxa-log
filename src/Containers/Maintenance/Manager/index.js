@@ -24,7 +24,8 @@ const Manager = ({
   handleFilterOnchange,
   clearFilter,
   handleChangeTableEvent,
-  offset
+  offset,
+  gotoDetail
 }) => {
   const [showModal, setShowModal] = useState(false)
   const [showVoucher, setShowVoucher] = useState(false)
@@ -97,6 +98,7 @@ const Manager = ({
             loading={loading}
             handleChangeTableEvent={handleChangeTableEvent}
             offset={offset}
+            gotoDetail={gotoDetail}
           />
         </Card>
       </Col>

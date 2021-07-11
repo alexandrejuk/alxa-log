@@ -10,6 +10,7 @@ import BranchManager from '../Pages/Branch/Manager'
 import OperationManager from '../Pages/Operation/Manager'
 import MaintenanceManagerMobile from '../Pages/MaintenanceManagerMobile/Manager'
 import MaintenanceDetailMobile from '../Pages/MaintenanceDetailMobile'
+import MaintenanceDetail from '../Pages/MaintenanceOrder/Detail'
 
 const RootRoutes = [
   {
@@ -94,6 +95,13 @@ const RootRoutes = [
     path: '/logged/mobile-maintenance-detail/:id',
     exact: true,
     goBack: false,
+  },
+  {
+    component: MaintenanceDetail,
+    title: 'DETALHES DA MANUTENÇÃO',
+    path: '/logged/maintenance-detail/:id',
+    exact: true,
+    goBack: true,
   },
 ]
 

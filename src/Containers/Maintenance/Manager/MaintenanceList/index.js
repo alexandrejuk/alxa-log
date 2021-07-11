@@ -41,7 +41,7 @@ const parseStatus = {
   'check-out': 'Saída',
 }
 
-const columns = ({ handleClickEdit, handleShowVoucher }) => [
+const columns = ({ handleClickEdit, handleShowVoucher, gotoDetail }) => [
   {
     title: 'Data da manutenção',
     dataIndex: 'maintenanceDate',
@@ -104,13 +104,20 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
   {
     title: ' ',
     dataIndex: 'id',
-    render: (_, source) => 
+    render: (id, source) => 
     <Space>
       {source.status === 'solicitation' && (
         <Button type="link" onClick={() => handleClickEdit(source)}>
           Editar
         </Button>
       )}
+
+      {source.status !== 'solicitation' && (
+        <Button type="link" onClick={() => gotoDetail(id)}>
+          Detalhes
+        </Button>
+      )}
+
       <Button type="link" onClick={() => handleShowVoucher(source)}>
         Voucher
       </Button>
@@ -118,7 +125,7 @@ const columns = ({ handleClickEdit, handleShowVoucher }) => [
   }
 ]
 
-const MaintenanceList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, handleShowVoucher, offset }) => {
+const MaintenanceList = ({ gotoDetail, datasource, handleClickEdit, loading, handleChangeTableEvent, handleShowVoucher, offset }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -128,7 +135,7 @@ const MaintenanceList = ({ datasource, handleClickEdit, loading, handleChangeTab
       <Table 
         pagination={{ pageSize: 20, total: datasource.count, current: (offset + 1) }}
         onChange={handleChangeTableEvent}
-        columns={columns({ handleClickEdit, handleShowVoucher })} 
+        columns={columns({ handleClickEdit, handleShowVoucher, gotoDetail })} 
         loading={loading}
         dataSource={datasource.rows} 
       />
