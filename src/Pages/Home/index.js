@@ -1,34 +1,60 @@
 import React, { useEffect, useState } from 'react'
 import HomeContainer from '../../Containers/Home'
-import getDashboardValues from '../../Services/Home'
+import {
+  getByStatus, 
+  // getByStatusCompany,
+  // getByStatusOperation,
+} from '../../Services/Summary'
 
 const Home = () => {
-  const [homeState, setHomeState] = useState({
+  const [homeState] = useState({
     customers: null,
     orders: null,
     ordersTotal: [],
     ordersToday: []
   })
+  const [orderStatus, setOrderStatus] = useState([])
+  // const [orderCompanyStatus, setOrderCompanyStatus] = useState([])
+  // const [orderOperationStatus, setOrderOperationStatus] = useState([])
 
   useEffect(() => {
-    getValues()
+    getByStatusAll()
+    // getByCompanyAll()
+    // getByOperationAll()
   }, [])
 
-  const getValues = async () => {
+  const getByStatusAll = async () => {
     try {
-      const { data } = await getDashboardValues()
-      setHomeState(data)
+      const { data } = await getByStatus()
+      setOrderStatus(data)
     } catch (error) {
       console.log('cannot find values of dashboard!')
     }
   }
 
+  // const getByCompanyAll = async () => {
+  //   try {
+  //     const { data } = await getByStatusCompany()
+  //     setOrderCompanyStatus(data)
+  //   } catch (error) {
+  //     console.log('cannot find values of dashboard!')
+  //   }
+  // }
+
+  // const getByOperationAll = async () => {
+  //   try {
+  //     const { data } = await getByStatusOperation()
+  //     setOrderOperationStatus(data)
+  //   } catch (error) {
+  //     console.log('cannot find values of dashboard!')
+  //   }
+  // }
+
   return (
     <HomeContainer
-      dataBarChart={homeState.ordersTotal}
-      dataPieChart={homeState.ordersToday}
-      customers={homeState.customers}
-      orders={homeState.orders}
+      orderStatus={orderStatus}
+      // orderCompanyStatus={orderCompanyStatus}
+      // orderOperationStatus={orderOperationStatus}
     />
   )
 }

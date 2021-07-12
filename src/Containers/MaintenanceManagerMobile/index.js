@@ -22,7 +22,6 @@ const MaintenanceManagerMobile = ({
   setSearchVehicle,
   setSearchButton,
 }) => {
-
   return (
     <div style={{ overflow: "hidden", padding: "24px"}}>
       <Row>

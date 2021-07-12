@@ -16,16 +16,16 @@ const services = {
 }
 
 const parseStatusColor = {
-  'solicitation': 'magenta',
-  'check-in': 'red',
-  'avaiable': 'volcano',
-  'parking': 'orange',
-  'courtyard': 'gold',
-  'awaiting_repair': 'lime',
-  'dock': 'green',
-  'wash': 'cyan',
-  'supply': 'blue',
-  'check-out': 'geekblue',
+  'solicitation': '#5DA0FC',
+  'check-in': '#268E86',
+  'avaiable': '#F29F03',
+  'parking': '#1772C9',
+  'courtyard': '#EA5656',
+  'awaiting_repair': '#7550D8',
+  'dock': '#2D2D2D',
+  'wash': '#D588F2',
+  'supply': '#17C9B2',
+  'check-out': '#264ABE',
 }
 
 const parseStatus = {
