@@ -15,16 +15,16 @@ import formattedDate from '../../../utils/parserDate'
 const { Title } = Typography
 
 const chartSettings = [
-  { label: 'solicitation', value: 'Solicitação', color: '#5DA0FC',},
-  { label: 'check-in', value: 'Entrada', color: '#268E86',},
-  { label: 'avaiable', value: 'Liberado', color: '#F29F03',},
-  { label: 'parking', value: 'Estacionar', color: '#1772C9',},
-  { label: 'courtyard', value: 'Pátio', color: '#EA5656',},
-  { label: 'awaiting_repair', value: 'Aguardando peça', color: '#7550D8',},
-  { label: 'dock', value: 'Doca', color: '#2D2D2D',},
-  { label: 'wash', value: 'Lavar', color: '#D588F2',},
-  { label: 'supply', value: 'Abastecer', color: '#17C9B2',},
-  { label: 'check-out', value: 'Saída', color: '#264ABE',},
+  { label: 'solicitation', value: 'Solicitação', color: '#5DA0FC' },
+  { label: 'check-in', value: 'Entrada', color: '#268E86' },
+  { label: 'dock', value: 'Doca', color: '#2D2D2D' },
+  { label: 'courtyard', value: 'Pátio', color: '#EA5656' },
+  { label: 'wash', value: 'Lavar', color: '#D588F2' },
+  { label: 'parking', value: 'Estacionar', color: '#1772C9' },
+  { label: 'awaiting_repair', value: 'Aguardando peça', color: '#7550D8' }, 
+  { label: 'supply', value: 'Abastecer', color: '#17C9B2' },
+  { label: 'avaiable', value: 'Liberado', color: '#F29F03' },
+  { label: 'check-out', value: 'Saída', color: '#264ABE' },
 ]
 
 const Chart = ({ data }) => (
@@ -83,7 +83,7 @@ const Chart = ({ data }) => (
       <Col span={24}>
         <Title level={5}>LEGENDAS</Title>
       </Col>
-      {chartSettings.sort((a, b) => b - a).map(({ color, value, label }) => (
+      {chartSettings.sort((a, b) => a.value - b.value).map(({ color, value, label }) => (
         <Col key={`${color}-${value}`} xs={6} sm={6} md={6} lg={6} xl={6}>
           <Tag color={color}>{value}</Tag>
         </Col>

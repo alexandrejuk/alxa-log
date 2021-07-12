@@ -59,7 +59,7 @@ const Home = ({
       <Col span={8}>
         <div className={styles.cardTotalValues}>
           <div>
-            <h1 className={styles.cardTotalTitle}>Total de Veículos</h1>
+            <h1 className={styles.cardTotalTitle}>Total de veículos</h1>
             <h1 className={styles.cardTotalValue}>{vehicleTotal > 0 ? vehicleTotal :  '-' }</h1>
           </div>
           <Image preview={false} src={vehicleTotal > 0 ? OrdersSvg : EmptyStateOrderSvg} alt="orders" />
