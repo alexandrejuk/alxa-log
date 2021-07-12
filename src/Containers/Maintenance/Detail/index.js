@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Card, Typography, Image, Divider, Timeline } from 'antd'
+import { Row, Col, Card, Typography, Image, Tag, Timeline } from 'antd'
 import fuelSVG from './fuel.svg'
 import clockSVG from './clock.svg'
 import leafSVG from './leaf.svg'
@@ -10,6 +10,19 @@ const status = {
   low: 'Baixa',
   medium: 'Média',
   high: 'Alta'
+}
+
+const parseStatusColor = {
+  'solicitation': '#5DA0FC',
+  'check-in': '#268E86',
+  'avaiable': '#F29F03',
+  'parking': '#1772C9',
+  'courtyard': '#EA5656',
+  'awaiting_repair': '#7550D8',
+  'dock': '#2D2D2D',
+  'wash': '#D588F2',
+  'supply': '#17C9B2',
+  'check-out': '#264ABE',
 }
 
 const services = {
@@ -50,7 +63,9 @@ const Detail = ({
 
             <Col span={4}>
               <Text>Status</Text><br />
-              <Text><strong>{parseStatus[maintenanceOrder.status]}</strong></Text>
+              <Text>
+                <Tag color={parseStatusColor[maintenanceOrder.status]}>{parseStatus[maintenanceOrder.status]}</Tag>
+              </Text>
             </Col>
             <Col span={4}>
               <Text>Prioridade </Text><br />
