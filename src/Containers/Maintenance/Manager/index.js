@@ -71,7 +71,7 @@ const Manager = ({
             <Col span={16}>
               <Input
                 name="search_name_or_document"
-                placeholder="Filtre pela placa do cavalo e carreta."
+                placeholder="Filtre pela placa da manutenção."
                 prefix={<SearchOutlined />}
                 value={searchValue}
                 onChange={handleFilterOnchange}
