@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Form, Input, Modal, Select } from 'antd'
-import { map } from 'ramda'
+import { map, omit } from 'ramda'
 import {
   settingsNextStep,
   formSettingsMyTeam,
@@ -101,7 +101,7 @@ const MyTeamForm = ({
           setFormSettings(formSettingsMyTeam)
           form.resetFields()
         }}
-        initialValues={myTeamSelected}
+        initialValues={omit(['document'], myTeamSelected)}
       >
         {map(renderFormItems, formSettings)}
       </Form>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Table, Button, Empty, ConfigProvider, Image } from 'antd'
 import NoData from '../../../../Assets/noData.svg'
-import { cpf } from 'cpf-cnpj-validator'
 
 const columns = ({ handleClickEdit }) => [
   {
@@ -15,7 +14,7 @@ const columns = ({ handleClickEdit }) => [
     dataIndex: 'document',
     key: 'document',
     fixed: 'left',
-    render: (document) => cpf.format(document)
+    render: (document) => `${document.substr(0, 3)}.***.${document.substr(6, 3)}-**`
   },
   {
     title: ' ',
