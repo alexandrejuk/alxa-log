@@ -18,7 +18,7 @@ const Home = ({
   orderStatus,
 }) => {
   const vehicleTotal = orderStatus
-    .filter(({ status }) => status !== 'check-out')
+    .filter(({ status }) => status !== 'check-out' && status !== 'solicitation' && status !== 'cancel')
     .reduce((acc, prev) => acc + Number(prev.count), 0)
 
   const vehicleTotalAvailable = orderStatus
