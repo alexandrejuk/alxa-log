@@ -29,7 +29,8 @@ const Voucher = ({
     plateHorse = null,
     priority = null,
     service = null,
-    company = {}
+    company = {},
+    maintenanceOrderDrivers = [{ driver: { name: '' }}]
   } = maintenanceSelected
   const {
     street = null,
@@ -52,7 +53,7 @@ const Voucher = ({
       </div>
 
       <div className={styles.cardheader}>
-        <p>Nome <strong>{driverMain}</strong></p>
+        <p>Nome <strong>{maintenanceOrderDrivers[0].driver.name}</strong></p>
         <p>Placa Cavalo <strong>{plateHorse}</strong></p>
         <p>Placa do Veiculo da manutenção <strong>{plateCart}</strong></p>
         <p>Prioridade <strong>{status[priority]}</strong></p>

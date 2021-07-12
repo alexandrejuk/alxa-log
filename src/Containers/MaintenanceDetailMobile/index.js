@@ -100,7 +100,7 @@ const MaintenanceDetailMobile = ({
                 <Text>Nome</Text>
               </Col>
               <Col span={24}>
-                <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[0].name}</strong></Text>
+                <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[0].driver.name}</strong></Text>
               </Col>
               <Col span={12} style={{ padding: "10px 0 0 0"}}>
                 <Text>Cnh</Text>
@@ -109,10 +109,10 @@ const MaintenanceDetailMobile = ({
                 <Text>Telefone</Text>
               </Col>
               <Col span={12}>
-                <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[0].driverLicense}</strong></Text>
+                <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[0].driver.driverLicense}</strong></Text>
               </Col>
               <Col span={12}>
-                <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[0].phone}</strong></Text>
+                <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[0].driver.phone}</strong></Text>
               </Col>
             </Row>
         </Col>
@@ -126,7 +126,7 @@ const MaintenanceDetailMobile = ({
                   <Text>Nome</Text>
                 </Col>
                 <Col span={24}>
-                  <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[1].name}</strong></Text>
+                  <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[1].driver.name}</strong></Text>
                 </Col>
                 <Col span={12} style={{ padding: "10px 0 0 0"}}>
                   <Text>Cnh</Text>
@@ -135,10 +135,10 @@ const MaintenanceDetailMobile = ({
                   <Text>Telefone</Text>
                 </Col>
                 <Col span={12}>
-                  <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[1].driverLicense}</strong></Text>
+                  <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[1].driver.driverLicense}</strong></Text>
                 </Col>
                 <Col span={12}>
-                  <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[1].phone}</strong></Text>
+                  <Text><strong>{maintenanceOrder && maintenanceOrder.maintenanceOrderDrivers[1].driver.phone}</strong></Text>
                 </Col>
               </Row>
           </Col>

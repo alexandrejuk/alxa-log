@@ -60,7 +60,7 @@ const columns = ({ handleClickEdit, handleShowVoucher, gotoDetail }) => [
     dataIndex: 'maintenanceOrderDrivers',
     key: 'maintenanceOrderDrivers',
     fixed: 'left',
-    render: (_, source) => source.maintenanceOrderDrivers[0].name
+    render: (_, source) => source.maintenanceOrderDrivers[0].driver.name
 
   },
   {
