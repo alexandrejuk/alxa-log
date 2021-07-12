@@ -12,7 +12,7 @@ const formSettingsVehicle = vehiclesSource => [{
   label: 'Placa do veículo da manutenção',
   name: 'plateCart',
   placeholder: '',
-  show: true,
+  show: false,
   rules,
   typeInput: 'select',
   options: vehiclesSource.map(item => ({ value: item.plate, label: item.plate }))
@@ -116,7 +116,7 @@ const formSettingsVehicleEdit = (
 })
 
 const settingsNextStep = {
-  plateHorse: 'driverId',
+  plateHorse: 'plateCart',
   plateCart: 'driverId',
   driverId: 'operationId',
   operationId: 'costCenter',
