@@ -61,7 +61,7 @@ const Detail = ({
               <Text><strong>{maintenanceOrder.plateHorse || '-' }</strong></Text>
             </Col>
             <Col span={6}>
-              <Text>Placa carreta</Text><br />
+              <Text>Placa do veículo da manutenção</Text><br />
               <Text><strong>{maintenanceOrder.plateCart}</strong></Text>
             </Col>
 

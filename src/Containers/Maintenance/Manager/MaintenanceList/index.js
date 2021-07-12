@@ -56,7 +56,7 @@ const columns = ({ handleClickEdit, handleShowVoucher, gotoDetail }) => [
     fixed: 'left',
   },
   {
-    title: 'Placa da Carreta',
+    title: 'Placa Manutenção',
     dataIndex: 'plateCart',
     key: 'plateCart',
     fixed: 'left',

@@ -54,7 +54,7 @@ const Voucher = ({
       <div className={styles.cardheader}>
         <p>Nome <strong>{driverMain}</strong></p>
         <p>Placa Cavalo <strong>{plateHorse}</strong></p>
-        <p>Placa Carreta <strong>{plateCart}</strong></p>
+        <p>Placa do Veiculo da manutenção <strong>{plateCart}</strong></p>
         <p>Prioridade <strong>{status[priority]}</strong></p>
         <p>Data da manutenção <strong>{formattedDate(maintenanceDate, 'DD/MM/YYYY')}</strong></p>
         <p>Tipo Serviço <strong>{services[service]}</strong></p>

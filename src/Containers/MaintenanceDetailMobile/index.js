@@ -56,7 +56,7 @@ const MaintenanceDetailMobile = ({
                 <Text style={{ color: "#FFFFFF" }}>Placa cavalo</Text>
               </Col>
               <Col span={8}>
-                <Text style={{ color: "#FFFFFF" }}>Placa carreta</Text>
+                <Text style={{ color: "#FFFFFF" }}>Placa do veículo da manutenção</Text>
               </Col>
               <Col span={8}>
                 <Text style={{ color: "#FFFFFF" }}>Tipo serviço</Text>

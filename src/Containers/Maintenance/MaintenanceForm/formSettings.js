@@ -9,10 +9,11 @@ const formSettingsVehicle = vehiclesSource => [{
   options: vehiclesSource.map(item => ({ value: item.plate, label: item.plate }))
 },
 {
-  label: 'Placa da Carreta',
+  label: 'Placa do veículo da manutenção',
   name: 'plateCart',
   placeholder: '',
   show: true,
+  rules,
   typeInput: 'select',
   options: vehiclesSource.map(item => ({ value: item.plate, label: item.plate }))
 },
