@@ -1,6 +1,6 @@
 /* eslint-disable prefer-promise-reject-errors */
 import React from 'react'
-import { Row, Col, Card, Input, Button } from 'antd'
+import { Row, Col, Card, Input, Button, Form } from 'antd'
 
 const UpdateMyPassword = ({ goToOrder, handleSubmit, loading, form }) => {
 
