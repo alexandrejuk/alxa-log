@@ -180,7 +180,7 @@ const Detail = ({
             </Col>
             <Col span={8}>
               <Text>Telefone</Text><br />
-              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[0].driver.driverPhoneMain}</strong></Text>
+              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[0].driver.phone}</strong></Text>
             </Col>
           </Row>
         </Card>
