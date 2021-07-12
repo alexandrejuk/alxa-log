@@ -31,10 +31,15 @@ const Manager = ({
   const handleClick = async () => {
     try {
       const { data } = await getByPlate({ plate: searchVehicle })
-      if (data) {
-        return history.push(`/logged/mobile-maintenance-detail/${data.id}`)
-      } else {
-        message.info('Não foi possível localizar nenhuma ordem de manutenção!')
+      if (data.length > 0 && data.length === 1) {
+        return history.push(`/logged/mobile-maintenance-detail/${datap[0].id}`)
+      } 
+      
+      if(data.length > 1) {
+        return history.push(`/logged/mobile-maintenance-list?plate=${searchVehicle}`)
+      }
+      else {
+        return message.info('Não foi possível localizar nenhuma ordem de manutenção!')
       }
     } catch (error) {
       message.error('Não foi possível localizar as manutenções!')
