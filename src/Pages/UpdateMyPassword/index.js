@@ -1,11 +1,12 @@
-import { message } from 'antd'
 import React, { useState } from 'react'
+import { message, Form } from 'antd'
 import { withRouter } from 'react-router-dom'
 import UpdateMyPasswordContainer from '../../Containers/UpdateMyPassword'
 import { updateUserPassword as updateUserPasswordService } from '../../Services/User'
 
 const UpdateMyPassword = ({ history }) => {
   const [loading, setLoading] = useState(false)
+  const [form] = Form.useForm()
 
   const handleSubmit = async (values) => {
     setLoading(true)
@@ -13,6 +14,8 @@ const UpdateMyPassword = ({ history }) => {
     try {
       await updateUserPasswordService(values)
       setLoading(false)
+      message.success('Sua senha foi alterada com sucesso!')
+      form.resetFields()
     } catch (error) {
       // isso é temporário
       message.error(
@@ -29,6 +32,7 @@ const UpdateMyPassword = ({ history }) => {
       goToOrder={goToOrder}
       handleSubmit={handleSubmit}
       loading={loading}
+      form={form}
     />
   )
 }

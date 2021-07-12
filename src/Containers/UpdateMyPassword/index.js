@@ -1,14 +1,13 @@
 /* eslint-disable prefer-promise-reject-errors */
 import React from 'react'
-import { Row, Col, Card, Input, Form, Button } from 'antd'
+import { Row, Col, Card, Input, Button } from 'antd'
 
-const UpdateMyPassword = ({ goToOrder, handleSubmit, loading }) => {
-  const [form] = Form.useForm()
+const UpdateMyPassword = ({ goToOrder, handleSubmit, loading, form }) => {
 
   const validatorPassword = (passwordPropName, shouldBeEqual = false) => ({
     getFieldValue
   }) => {
-    const validator = (rule, value) => {
+    const validator = (_, value) => {
       if (shouldBeEqual) {
         if (!value || getFieldValue(passwordPropName) === value) {
           return Promise.resolve()
