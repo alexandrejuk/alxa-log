@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { message } from 'antd'
 import { withRouter } from 'react-router-dom'
-import { getAll } from '../../../Services/MaintenanceOrders'
+import { getByPlate } from '../../../Services/MaintenanceOrders'
 import ManagerContainer from '../../../Containers/MaintenanceManagerMobile'
 
 const Manager = ({
@@ -30,9 +30,9 @@ const Manager = ({
 
   const handleClick = async () => {
     try {
-      const { data } = await getAll({ plate: searchVehicle })
+      const { data } = await getByPlate({ plate: searchVehicle.replace(/\D/g, '') })
       if (data.length > 0) {
-        return history.push(`/logged/mobile-maintenance-detail/${data[0].id}`)
+        return history.push(`/logged/mobile-maintenance-detail/${data.id}`)
       } else {
         message.info('Não foi possível localizar nenhuma ordem de manutenção!')
       }

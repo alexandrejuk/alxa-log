@@ -25,6 +25,10 @@ const getMobileQrCode = async (id) => {
   return await axios.get(`${process.env.REACT_APP_API_URL}/qrcode-detail/${id}`)
 }
 
+const getByPlate = async (params = {}) => {
+  return await axiosIntance.get('/maintenance-order-events', { params })
+}
+
 
 export { 
   getAll, 
@@ -32,5 +36,6 @@ export {
   createMaintenanceOrder, 
   updateMaintenanceOrder,
   updateEvents,
-  getMobileQrCode
+  getMobileQrCode,
+  getByPlate
 }
