@@ -6,8 +6,9 @@ import { compose } from 'ramda'
 import LoginContainer from '../../Containers/Login'
 import Auth from '../../Services/Auth'
 import { getCompanyById } from '../../Services/Company'
+import testMobile from '../../utils/isMobile'
 
-const isMobile = window.mobileCheck()
+const isMobile = window.mobileCheck() || testMobile ? true : false
 
 const Login = ({
   history,
