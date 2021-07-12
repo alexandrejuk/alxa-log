@@ -8,7 +8,16 @@ const Detail = ({
   match
 }) => {
   const [maintenanceOrder, setMaintenanceOrder] = useState({
-    company: {},
+    company: {
+      name: '',
+      document: '',
+      street: '',
+      streetNumber: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      neighborhood: '',
+    },
     companyId: null,
     costCenter: null,
     createdAt: null,
@@ -17,6 +26,19 @@ const Detail = ({
     driverPhoneSecondary: null,
     driverSecondary: null,
     id: null,
+    operation: { 
+      name: null,
+      company: {
+        name: '',
+        document: '',
+        street: '',
+        streetNumber: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        neighborhood: '',
+      }
+   },
     maintenanceDate: null,
     maintenanceOrderEvents: [],
     operationId: null,

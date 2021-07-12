@@ -5,6 +5,7 @@ import clockSVG from './clock.svg'
 import leafSVG from './leaf.svg'
 import diffTime from '../../../utils/permananceTime'
 import formattedDate from '../../../utils/parserDate'
+import { cnpj } from 'cpf-cnpj-validator'
 
 const status = {
   low: 'Baixa',
@@ -52,11 +53,14 @@ const Detail = ({
       <Col span={24}>
         <Card bordered={false}>
           <Row gutter={[8, 8]}>
-            <Col span={4}>
+            <Col span={24}>
+              <Title level={4}>Detalhes</Title>
+            </Col>
+            <Col span={6}>
               <Text>Placa cavalo</Text><br />
               <Text><strong>{maintenanceOrder.plateHorse || '-' }</strong></Text>
             </Col>
-            <Col span={4}>
+            <Col span={6}>
               <Text>Placa carreta</Text><br />
               <Text><strong>{maintenanceOrder.plateCart}</strong></Text>
             </Col>
@@ -68,13 +72,32 @@ const Detail = ({
               </Text>
             </Col>
             <Col span={4}>
+              <Text>Centro de custo </Text><br />
+              <Text><strong>{maintenanceOrder.costCenter}</strong></Text>
+            </Col>
+            <Col span={4}>
               <Text>Prioridade </Text><br />
               <Text><strong>{status[maintenanceOrder.priority]}</strong></Text>
             </Col>
+            <Col span={10}>
+              <Text>Operação </Text><br />
+              <Text>
+                <strong>
+                  {maintenanceOrder.operation.name} - {maintenanceOrder.operation.company.name} / {cnpj.format(maintenanceOrder.operation.company.document)}
+                </strong>
+              </Text>
+            </Col>
+
+            <Col span={10}>
+              <Text>Manutenção realizada por</Text><br />
+              <Text><strong>{maintenanceOrder.company.name} / {cnpj.format(maintenanceOrder.company.document)} </strong></Text>
+            </Col>
+
             <Col span={4}>
-              <Text>Tipo Serviço</Text><br />
+              <Text>Tipo de Serviço</Text><br />
               <Text><strong>{services[maintenanceOrder.service]}</strong></Text>
             </Col>
+            
             <Col span={24}>
               <Text>Descrição do serviço</Text><br />
               <Text><strong>{maintenanceOrder.serviceDescription}</strong></Text>
@@ -167,7 +190,7 @@ const Detail = ({
       <Col span={12}>
         <Card bordered={false}>
           <Row gutter={[8, 8]}>
-          <Col span={24}>
+            <Col span={24}>
               <Title level={4}>Condutor #2</Title>
             </Col>
             <Col span={8}>
