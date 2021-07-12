@@ -29,6 +29,20 @@ const Home = ({
     .filter(({ status }) => status === 'solicitation')
     .reduce((acc, prev) => acc + Number(prev.count), 0)
 
+  const parserDataOrders = orderStatus.reduce((arr, next) => {
+    const findItem = arr.find(item => item.name === next.name)
+    if(findItem) {
+      arr = arr.map(item => item.name === next.name ? {...item, [next.status]: next.count } : item)
+    }
+  
+    if(!findItem) {
+      arr = [...arr, { name: next.name, [next.status]: next.count }]
+    }
+  
+   return arr
+  }, [])
+
+
   return (
     <Row gutter={[18, 18]}>
       <Col span={24}>
@@ -69,7 +83,7 @@ const Home = ({
       <>
         <Col span={24}>
           <div className={styles.cardBarChart}>
-            <BarChart data={orderStatus} />
+            <BarChart data={parserDataOrders} />
           </div>
         </Col>
         {/* <Col span={8}>

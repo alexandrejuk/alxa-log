@@ -32,7 +32,7 @@ const Chart = ({ data }) => (
     <Col span={24}>
       <ResponsiveContainer width="100%" height={380}>
         <BarChart
-          data={data.map(({ name, count, status }) => ({ name, [status]: count }))}
+          data={data}
           height={380}
           margin={{ left: 15 }}
           maxBarSize={13}>
