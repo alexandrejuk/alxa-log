@@ -35,16 +35,18 @@ const Manager = ({
     getAllDriver()
     getAllBranch()
     getAllOperation()
-    getAllMaintenances()
+    let query = {}
 
     if(!search && localStorage.getItem('maintenanceSearch')) {
+      const searchValueLocal = localStorage.getItem('maintenanceSearch')
       history.push({
         pathname,
-        search: localStorage.getItem('maintenanceSearch')
+        search:  `?plate=${searchValueLocal}`
       })
-      const searchParams = new URLSearchParams(localStorage.getItem('maintenanceSearch'))
-      setSearchValue(searchParams.get('fleet'))
+      setSearchValue(searchValueLocal)
+      query = { plate: searchValueLocal }
     }
+    getAllMaintenances(query)
   }, [])
 
   const success = (text) => {
@@ -136,12 +138,12 @@ const Manager = ({
   }
 
   const handleFilter = () => {
-    localStorage.setItem('maintenanceSearch', `?fleet=${searchValue}&plateHorse=${searchValue}&plateCart=${searchValue}&maintenanceDate=${searchValue}`)
+    localStorage.setItem('maintenanceSearch', searchValue)
     history.push({
       pathname,
-      search: `?fleet=${searchValue}&plateHorse=${searchValue}&plateCart=${searchValue}&maintenanceDate=${searchValue}`
+      search: `?plate=${searchValue}`
     })
-    getAllMaintenances({})
+    getAllMaintenances({ plate: searchValue })
   }
 
   const handleFilterOnchange = value => {
