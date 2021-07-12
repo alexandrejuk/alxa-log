@@ -31,10 +31,10 @@ const Manager = ({
   const { search, pathname } = useLocation()
 
   useEffect(() => {
-    getVehicles()
-    getAllDriver()
-    getAllBranch()
-    getAllOperation()
+    getVehicles({ limit: 100000 })
+    getAllDriver({ limit: 100000 })
+    getAllBranch({ limit: 400 })
+    getAllOperation({ limit: 100000 })
     let query = {}
 
     if(!search && localStorage.getItem('maintenanceSearch')) {

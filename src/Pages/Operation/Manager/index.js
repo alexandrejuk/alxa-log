@@ -27,7 +27,7 @@ const Manager = ({
   useEffect(() => {
     let query = {}
     const searchLocalStorage = localStorage.getItem('operationSearch')
-    getAllBranch()
+    getAllBranch({ limit: 400 })
 
     if(!search && searchLocalStorage) {
       history.push({

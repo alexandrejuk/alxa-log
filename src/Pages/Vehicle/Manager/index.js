@@ -21,7 +21,7 @@ const Manager = ({
 
   useEffect(() => {
     let query = {}
-    getVehicleTypes()
+    getVehicleTypes({ limit: 10000 })
     const searchLocalStorage = localStorage.getItem('vehicleSearch')
     if(!search && searchLocalStorage) {
       history.push({
