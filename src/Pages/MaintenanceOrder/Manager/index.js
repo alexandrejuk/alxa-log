@@ -107,13 +107,9 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
 
-    const findDriver = driversData.rows.find(driver => driver.id === values.driverId)
     try {
       await createMaintenanceOrder({
         ...values,
-        driverMain: findDriver.name,
-        driverPhoneMain: findDriver.phone,
-        driverMainLicense: findDriver.driverLicense,
         maintenanceDate: new Date(values.maintenanceDate)
       })
       getAllMaintenances()

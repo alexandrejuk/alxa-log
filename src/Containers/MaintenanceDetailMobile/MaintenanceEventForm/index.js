@@ -5,7 +5,7 @@ import ModalMobile from '../../../Components/ModalMobile'
 import formSettingsEvent from './formSettings' 
 import { CloseOutlined } from '@ant-design/icons'
 
-const { Title, Text } = Typography
+const { Title } = Typography
 
 const formItemsComponent = {
   input: Input,
@@ -89,7 +89,7 @@ const MaintenanceEventForm = ({
       if (value[propName] === 'check-out') {
         form.setFieldsValue({
           status: value[propName],
-          driver: '',
+          driverId: '',
           supplyType: '',
           totalLiters:'',
           km: '',
@@ -105,7 +105,7 @@ const MaintenanceEventForm = ({
       if (value[propName] !== 'check-out' && value[propName] !== 'supply') {
         form.setFieldsValue({
           status: value[propName],
-          driver: '',
+          driverId: '',
           supplyType: '',
           totalLiters:'',
           km: '',

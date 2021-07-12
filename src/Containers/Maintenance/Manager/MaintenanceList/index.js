@@ -57,9 +57,11 @@ const columns = ({ handleClickEdit, handleShowVoucher, gotoDetail }) => [
   },
   {
     title: 'Motorista',
-    dataIndex: 'driverMain',
-    key: 'driverMain',
+    dataIndex: 'maintenanceOrderDrivers',
+    key: 'maintenanceOrderDrivers',
     fixed: 'left',
+    render: (_, source) => source.maintenanceOrderDrivers[0].name
+
   },
   {
     title: 'Status',

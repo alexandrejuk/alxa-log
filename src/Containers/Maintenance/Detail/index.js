@@ -172,15 +172,15 @@ const Detail = ({
             </Col>
             <Col span={8}>
               <Text>Motorista da entrada</Text><br />
-              <Text><strong>{maintenanceOrder.driverMain}</strong></Text>
+              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[0].name}</strong></Text>
             </Col>
             <Col span={8}>
               <Text>CNH</Text><br />
-              <Text><strong>{maintenanceOrder.driverMainLicense}</strong></Text>
+              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[0].driverLicense}</strong></Text>
             </Col>
             <Col span={8}>
               <Text>Telefone</Text><br />
-              <Text><strong>{maintenanceOrder.driverPhoneMain}</strong></Text>
+              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[0].driverPhoneMain}</strong></Text>
             </Col>
           </Row>
         </Card>
@@ -195,15 +195,15 @@ const Detail = ({
             </Col>
             <Col span={8}>
               <Text>Motorista da saída</Text><br />
-              <Text><strong>{maintenanceOrder.driverSecondary || '-'}</strong></Text>
+              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[1].name || '-'}</strong></Text>
             </Col>
             <Col span={8}>
               <Text>CNH</Text><br />
-              <Text><strong>{maintenanceOrder.driverSecondaryLicense || '-'}</strong></Text>
+              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[1].driverLicense || '-'}</strong></Text>
             </Col>
             <Col span={8}>
               <Text>Telefone</Text><br />
-              <Text><strong>{maintenanceOrder.driverPhoneSecondary || '-'}</strong></Text>
+              <Text><strong>{maintenanceOrder.maintenanceOrderDrivers[1].phone || '-'}</strong></Text>
             </Col>
           </Row>
         </Card>
