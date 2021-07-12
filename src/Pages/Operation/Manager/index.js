@@ -62,9 +62,9 @@ const Manager = ({
     }
   }
 
-  const getAllBranch = async () => {
+  const getAllBranch = async (params) => {
     try {
-      const { data } = await getAllBranchs()
+      const { data } = await getAllBranchs(params)
       setBranchsDataData(data)
     } catch (error) {
       console.log(error)

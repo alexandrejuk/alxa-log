@@ -57,10 +57,10 @@ const Manager = ({
     message.error(text)
   }
 
-  const getVehicles = async () => {
+  const getVehicles = async (params = {}) => {
     setLoading(true)
     try {
-      const { data } = await getAll()
+      const { data } = await getAll(params)
       setVehiclesData(data)
       setLoading(false)
     } catch (error) {
@@ -78,27 +78,27 @@ const Manager = ({
     }
   }
 
-  const getAllBranch = async () => {
+  const getAllBranch = async (params = {}) => {
     try {
-      const { data } = await getAllBranchs()
+      const { data } = await getAllBranchs(params)
       setBranchsData(data)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const getAllDriver = async () => {
+  const getAllDriver = async (params = {}) => {
     try {
-      const { data } = await getAllDrivers()
+      const { data } = await getAllDrivers(params)
       setDriversData(data)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const getAllOperation = async () => {
+  const getAllOperation = async (params = {}) => {
     try {
-      const { data } = await getAllOperations()
+      const { data } = await getAllOperations(params)
       setOperationsData(data)
     } catch (error) {
       console.log(error)

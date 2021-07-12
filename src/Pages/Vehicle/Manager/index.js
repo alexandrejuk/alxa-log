@@ -55,9 +55,9 @@ const Manager = ({
   }
 
 
-  const getVehicleTypes = async () => {
+  const getVehicleTypes = async (params = {}) => {
     try {
-      const { data } = await getAllVehicleTypes()
+      const { data } = await getAllVehicleTypes(params)
       setVehicleTypes(data)
     } catch (error) {
       console.log(error)
