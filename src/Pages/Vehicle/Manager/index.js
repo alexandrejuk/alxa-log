@@ -66,7 +66,11 @@ const Manager = ({
 
   const handleSubmit = async (values) => {
     try {
-      await createVehicle(values)
+      await createVehicle({
+        ...values, 
+        plate: values.plate.toLocaleUpperCase(),
+        fleet: fleet.plate.toLocaleUpperCase(),
+      })
       getVehicles()
       success('Cadastro de veículo realizado com sucesso!')
     } catch (error) {
