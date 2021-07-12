@@ -50,21 +50,9 @@ const columns = ({ handleClickEdit, handleShowVoucher, gotoDetail }) => [
     render: (maintenanceDate) => formattedDate(maintenanceDate, 'DD MMM YYYY')
   },
   {
-    title: 'Placa do Cavalo',
-    dataIndex: 'plateHorse',
-    key: 'plateHorse',
-    fixed: 'left',
-  },
-  {
     title: 'Placa Manutenção',
     dataIndex: 'plateCart',
     key: 'plateCart',
-    fixed: 'left',
-  },
-  {
-    title: 'Centro de custo',
-    dataIndex: 'costCenter',
-    key: 'fleet',
     fixed: 'left',
   },
   {
