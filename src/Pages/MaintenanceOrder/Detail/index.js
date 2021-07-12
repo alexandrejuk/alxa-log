@@ -37,7 +37,7 @@ const Detail = ({
    },
     maintenanceDate: null,
     maintenanceOrderEvents: [],
-    maintenanceOrderDrivers: [{ name: '', phone: '', driverLicense: ''}, { name: '', phone: '', driverLicense: ''}],
+    maintenanceOrderDrivers: [{ driver: { name: '', phone: '', driverLicense: '' }}, { driver: { name: '', phone: '', driverLicense: '' }}],
     operationId: null,
     plateCart: null,
     plateHorse: null,
