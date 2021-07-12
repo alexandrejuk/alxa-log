@@ -30,7 +30,7 @@ const Manager = ({
 
   const handleClick = async () => {
     try {
-      const { data } = await getByPlate({ plate: searchVehicle.replace(/\D/g, '') })
+      const { data } = await getByPlate({ plate: searchVehicle })
       if (data.length > 0) {
         return history.push(`/logged/mobile-maintenance-detail/${data.id}`)
       } else {
