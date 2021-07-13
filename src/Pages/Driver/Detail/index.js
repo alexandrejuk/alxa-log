@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { message } from 'antd'
 
 import DriverDetail from '../../../Containers/Driver/Detail'
-import { getById } from '../../../Services/Driver'
+import { getById, createDriverIncident, getIncidentsSummary } from '../../../Services/Driver'
 import { getAll } from '../../../Services/Vehicle'
 import { getAll as getAllOperations } from '../../../Services/Operations'
 
@@ -19,16 +19,18 @@ const Detail = ({
     phone: null,
     updatedAt: null,
     userId: null,
-    incidents: [],
+    driverIncidents: [],
   })
 
   const [vehiclesData, setVehiclesData] = useState({ rows: [] })
   const [operationsData, setOperationsData] = useState({ rows: [] })
+  const [chartData, setChartData] = useState([])
 
   useEffect(() => {
     getDriver()
     getVehicles({ limit: 100000 })
     getAllOperation({ limit: 100000 })
+    summaryChartIncidents()
   }, [])
 
   const success = (text) => {
@@ -40,7 +42,6 @@ const Detail = ({
   }
 
   const getDriver = async() => {
-    console.log('fsdfsdf')
     try {
       const { data } = await getById(match.params.id)
       setDriver(data)
@@ -69,13 +70,25 @@ const Detail = ({
 
   const handleSubmit = async (values) => {
     try {
-      console.log({
+      await createDriverIncident({
         ...values,
-        incidentDate: new Date(values.incidentDate)
+        incidentDate: new Date(values.incidentDate),
+        driverId: match.params.id,
       })
+      getDriver()
+      summaryChartIncidents()
       success('Incidente criado com sucesso!')
     } catch (error) {
       errorMessage('Não foi criar o incidente!')
+    }
+  }
+
+  const summaryChartIncidents = async () => {
+    try {
+      const { data } = await getIncidentsSummary(match.params.id)
+      setChartData(data)
+    } catch (error) {
+      console.log('não foi possivel', error)
     }
   }
 
@@ -85,6 +98,7 @@ const Detail = ({
       vehiclesSource={vehiclesData.rows}
       operationsSource={operationsData.rows}
       handleSubmit={handleSubmit}
+      chartData={chartData}
     />
   )
 }

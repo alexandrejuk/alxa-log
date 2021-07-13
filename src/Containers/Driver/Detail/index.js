@@ -1,52 +1,78 @@
 import React, { useState } from 'react'
-import { Row, Col, Card, Typography, Table, Button } from 'antd'
+import { Row, Col, Card, Typography, Table, Button, Radio, Tag } from 'antd'
 import BarChart from './BarChart'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined, BarChartOutlined, DatabaseOutlined } from '@ant-design/icons'
 import IncidentForm from './IncidentForm'
+import { cnpj } from 'cpf-cnpj-validator'
+import formattedDate from '../../../utils/parserDate'
 
-const columns = ({ handleClickSelected }) => [
+const chartSettings = { 
+  collision: 'Colisão', 
+  accident: 'Acidente', 
+  vehicle_break_down: 'Veículo quebrado'
+}
+
+const colors = {
+  collision: '#5DA0FC', 
+  accident: '#268E86', 
+  vehicle_break_down: '#2D2D2D'
+}
+
+const columns = [
   {
-    title: 'Data',
-    dataIndex: 'createdAt',
-    key: 'createdAt',
-    fixed: 'left'
-  },
-  {
-    title: 'Operação',
-    dataIndex: 'operation',
-    key: 'operation',
+    title: 'Data do incidente',
+    dataIndex: 'incidentDate',
+    key: 'incidentDate',
     fixed: 'left',
+    render: field => formattedDate(field, 'DD/MM/YYYY')
   },
   {
     title: 'Veículo',
     dataIndex: 'vehicle',
     key: 'vehicle',
     fixed: 'left',
+    render: (_, source) => source.vehicle && source.vehicle.plate
   },
   {
     title: 'Tipo de incidente',
-    dataIndex: 'vehicle',
-    key: 'vehicle',
+    dataIndex: 'incidentType',
+    key: 'incidentType',
     fixed: 'left',
+    render: (incidentType) => <Tag color={colors[incidentType]}>{chartSettings[incidentType]}</Tag>
   },
   {
-    title: ' ',
-    dataIndex: 'id',
-    render: (_, source) =>  <Button type="link" onClick={() => handleClickSelected(source)}>
-      Detalhes
-    </Button>
-  }
+    title: 'Descrição do incidente',
+    dataIndex: 'incidentDescription',
+    key: 'incidentDescription',
+    fixed: 'left',
+    render: (incidentDescription) => <small>{incidentDescription}</small>
+  },
+  {
+    title: 'Operação',
+    dataIndex: 'operation',
+    key: 'operation',
+    fixed: 'left',
+    render: (_, source) => (
+      <>
+        {source.operation && source.operation.name} <br />
+        <small>{source.operation && source.operation.company && source.operation.company.name} / {cnpj.format(source.operation && source.operation.company && source.operation.company.document)}</small>
+      </>
+    )
+  },
 ]
 
 const { Text, Title } = Typography 
 const Detail = ({
   driver,
-  handleClickSelected,
   vehiclesSource,
   operationsSource,
-  handleSubmit
+  handleSubmit,
+  chartData
 }) => {
   const [showModal, setShowModal] = useState(false)
+  const [mode, setMode] = useState('table')
+
+  const handleChange = ({ target }) => setMode(target.value)
 
   return (
     <Row gutter={[8, 8]}>
@@ -98,16 +124,26 @@ const Detail = ({
 
       <Col span={24}>
         <Card bordered={false}>
-          <BarChart data={[]} />
-        </Card>
-      </Col>
-
-      <Col span={24}>
-        <Card bordered={false}>
-          <Table 
-            columns={columns({ handleClickSelected })} 
-            dataSource={[]} 
-          />
+          <Row>
+            <Col span={24} style={{ textAlign: 'right', marginBottom: '20px' }}>
+              <Radio.Group onChange={handleChange} value={mode}>
+                <Radio.Button value="table"><DatabaseOutlined /></Radio.Button>
+                <Radio.Button value="chart"><BarChartOutlined /></Radio.Button>
+              </Radio.Group>
+            </Col>
+            <Col span={24}>
+             { mode === 'table' 
+               ? (
+                <Table 
+                  columns={columns} 
+                  dataSource={driver.driverIncidents} 
+                />
+               )
+              :(
+                <BarChart data={chartData} />
+              )}
+            </Col>
+          </Row>
         </Card>
       </Col>
 

@@ -3,12 +3,12 @@ import { cnpj } from 'cpf-cnpj-validator'
 const rules = [{ required: true, message: 'Este campo é obrigatório!' }]
 const formSettingsIncident = vehiclesSource => [{
   label: 'Placa do veículo',
-  name: 'plateId',
+  name: 'vehicleId',
   placeholder: '',
   show: true,
   rules,
   typeInput: 'select',
-  options: vehiclesSource.map(item => ({ value: item.plate, label: item.plate }))
+  options: vehiclesSource.map(item => ({ value: item.id, label: item.plate }))
 },
 {
   label: 'Operação',
@@ -63,7 +63,7 @@ const formSettingsIncidentEdit = (
 })
 
 const settingsNextStep = {
-  plateId: 'operationId',
+  vehicleId: 'operationId',
   operationId: 'incidentDate',
   incidentDate: 'incidentType',
   incidentType: 'incidentDescription',
