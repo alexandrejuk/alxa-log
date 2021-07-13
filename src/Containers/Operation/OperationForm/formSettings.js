@@ -34,7 +34,7 @@ const formSettingsBranchEdit = (
   branchsSource, 
 ) => formSettingsBranch.map(item => {
   if (item.name === 'companyId') {
-    return ({ ...item, show: true, options: branchsSource.map(parseOptionItem) })
+    return ({ ...item, show: true, options: branchsSource.rows.map(parseOptionItem) })
   }
   
   return ({...item, show: true })
