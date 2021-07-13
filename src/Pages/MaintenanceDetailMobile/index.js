@@ -27,7 +27,10 @@ const Manager = ({
     updatedAt: null,
     userId: null,
     supplies: [],
-    maintenanceOrderDrivers: [{ name: '', phone: '', driverLicense: ''}, { name: '', phone: '', driverLicense: ''}],
+    maintenanceOrderDrivers: [
+      { driver: { name: '', phone: '', driverLicense: ''}},
+      { driver: { name: '', phone: '', driverLicense: ''}}
+  ],
   })
 
   const [driversSource, setDriversSource] = useState([])
