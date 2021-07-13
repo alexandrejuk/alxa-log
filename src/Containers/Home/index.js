@@ -6,6 +6,7 @@ import {
 } from 'antd'
 // import PieChart from './PieChart'
 import BarChart from './BarChart'
+import VerticalChart from './VerticalChart'
 import OrdersSvg from './orders.svg'
 import CustomersSvg from './customers.svg'
 import EmptyStateOrderSvg from './empty-state-order.svg'
@@ -16,6 +17,7 @@ import CheckoutEmptySvg from './checkout-empty.svg'
 
 const Home = ({
   orderStatus,
+  orderOperationStatus,
 }) => {
   const vehicleTotal = orderStatus
     .filter(({ status }) => status !== 'check-out' && status !== 'solicitation' && status !== 'cancel')
@@ -80,31 +82,24 @@ const Home = ({
         </div>
       </Col>
 
-      <>
-        <Col span={24}>
-          <div className={styles.cardBarChart}>
-            <BarChart data={parserDataOrders} />
-          </div>
-        </Col>
-        {/* <Col span={8}>
-          <div className={styles.cardPieChart}>
-            <PieChart data={orderCompanyStatus} />
-          </div>
-        </Col> */}
-      </>
-      {/* <Col span={24}>
-        <div className={styles.cardEmptyState}>
-          <div className={styles.cardEmptyStateInfo}>
-            <h1 className={styles.cardEmptyStateTitle}>Não encontramos nenhuma
-              <span className={styles.cardEmptyStateTitleSpan}> manutenção</span>!
-            </h1>
-            <p className={styles.cardEmptyStateSubtitle}>Você ainda não possue nenhuma manutenção para calcularmos as suas métricas.</p>
-            <p className={styles.cardEmptyStateSubtitle}>Cadastre uma <b>manutenção</b>, e comece a utilizar o <b>alxa</b>!</p>
-          </div>
-          <Image src={EmptyStateSvg} preview={false} alt="empty state" />
+      <Col span={24}>
+        <div className={styles.cardBarChart}>
+          <BarChart data={parserDataOrders} />
         </div>
       </Col>
-    ) */}
+
+      <Col span={24}>
+        <div className={styles.cardBarChart}>
+          <VerticalChart orderOperationStatus={orderOperationStatus} />
+        </div>
+      </Col>
+      
+
+      {/* <Col span={8}>
+        <div className={styles.cardPieChart}>
+          <PieChart data={orderCompanyStatus} />
+        </div>
+      </Col> */}
     </Row>
   )
 }
