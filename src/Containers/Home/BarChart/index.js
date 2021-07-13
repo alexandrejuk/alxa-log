@@ -30,7 +30,10 @@ const chartSettings = [
 const Chart = ({ data }) => (
   <Row gutter={[0, 16]}>
     <Col span={24}>
-      <ResponsiveContainer width="100%" height={380}>
+      <Title level={5}>Total por status</Title>
+    </Col>
+    <Col span={24}>
+      <ResponsiveContainer width="100%" height={320}>
         <BarChart
           data={data}
           height={380}
@@ -79,16 +82,18 @@ const Chart = ({ data }) => (
         </BarChart>
       </ResponsiveContainer>
     </Col>
-    <Row style={{ marginTop: '20px' }} gutter={[8, 8]} wrap={true}>
-      <Col span={24}>
-        <Title level={5}>LEGENDAS</Title>
-      </Col>
-      {chartSettings.sort((a, b) => a.value - b.value).map(({ color, value, label }) => (
-        <Col key={`${color}-${value}`} xs={6} sm={6} md={6} lg={6} xl={6}>
-          <Tag color={color}>{value}</Tag>
-        </Col>
-      ))}
-    </Row>
+    <Col span={24}>
+      <Row style={{ marginTop: '20px' }} gutter={[8, 8]} wrap={true}>
+          <Col span={24}>
+            <Title level={5}>LEGENDAS</Title>
+          </Col>
+          {chartSettings.sort((a, b) => a.value - b.value).map(({ color, value, label }) => (
+            <Col key={`${color}-${value}`} xs={6} sm={6} md={4} lg={4} xl={4}>
+              <Tag color={color}>{value}</Tag>
+            </Col>
+          ))}
+      </Row>
+    </Col>
   </Row>
 )
 

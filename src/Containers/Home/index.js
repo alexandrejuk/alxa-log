@@ -44,7 +44,6 @@ const Home = ({
    return arr
   }, [])
 
-
   return (
     <Row gutter={[18, 18]}>
       <Col span={24}>
