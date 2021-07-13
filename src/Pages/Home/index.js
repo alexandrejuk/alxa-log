@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import HomeContainer from '../../Containers/Home'
 import {
   getByStatus, 
-  // getByStatusCompany,
-  // getByStatusOperation,
+  getByStatusCompany,
+  getByStatusOperation,
 } from '../../Services/Summary'
 
 const Home = () => {
@@ -14,13 +14,13 @@ const Home = () => {
     ordersToday: []
   })
   const [orderStatus, setOrderStatus] = useState([])
-  // const [orderCompanyStatus, setOrderCompanyStatus] = useState([])
-  // const [orderOperationStatus, setOrderOperationStatus] = useState([])
+  const [orderCompanyStatus, setOrderCompanyStatus] = useState([])
+  const [orderOperationStatus, setOrderOperationStatus] = useState([])
 
   useEffect(() => {
     getByStatusAll()
-    // getByCompanyAll()
-    // getByOperationAll()
+    getByCompanyAll()
+    getByOperationAll()
   }, [])
 
   const getByStatusAll = async () => {
@@ -32,29 +32,30 @@ const Home = () => {
     }
   }
 
-  // const getByCompanyAll = async () => {
-  //   try {
-  //     const { data } = await getByStatusCompany()
-  //     setOrderCompanyStatus(data)
-  //   } catch (error) {
-  //     console.log('cannot find values of dashboard!')
-  //   }
-  // }
+  const getByCompanyAll = async () => {
+    try {
+      const { data } = await getByStatusCompany()
+      setOrderCompanyStatus(data)
+    } catch (error) {
+      console.log('cannot find values of dashboard!')
+    }
+  }
 
-  // const getByOperationAll = async () => {
-  //   try {
-  //     const { data } = await getByStatusOperation()
-  //     setOrderOperationStatus(data)
-  //   } catch (error) {
-  //     console.log('cannot find values of dashboard!')
-  //   }
-  // }
+  const getByOperationAll = async () => {
+    try {
+      const { data } = await getByStatusOperation()
+      setOrderOperationStatus(data)
+      console.log(data)
+    } catch (error) {
+      console.log('cannot find values of dashboard!')
+    }
+  }
 
   return (
     <HomeContainer
       orderStatus={orderStatus}
-      // orderCompanyStatus={orderCompanyStatus}
-      // orderOperationStatus={orderOperationStatus}
+      orderCompanyStatus={orderCompanyStatus}
+      orderOperationStatus={orderOperationStatus}
     />
   )
 }
