@@ -1,3 +1,5 @@
+import { cnpj } from 'cpf-cnpj-validator'
+
 const rules = [{ required: true, message: 'Este campo é obrigatório!' }]
 const formSettingsVehicle = vehiclesSource => [{
   label: 'Placa do Cavalo',
@@ -94,6 +96,7 @@ const formSettingsVehicle = vehiclesSource => [{
 
 const parseOptionItem = ({ id, name }) => ({ value: id, label: name })
 const parseOptionItemDriver = item => ({ value: item.id, label: `${item.name} - CNH: ${item.driverLicense}` })
+const parseOptionItemOperation = item => ({ value: item.id, label: `${item.name} - Filial: ${item.company.name} / ${cnpj.format(item.company.document)}` })
 
 const formSettingsVehicleEdit = (
   branchsSource, 
@@ -102,7 +105,7 @@ const formSettingsVehicleEdit = (
   operationsSource
 ) => formSettingsVehicle(vehiclesSource).map(item => {
   if (item.name === `operationId`) {
-    return ({ ...item, show: true, options: operationsSource.map(parseOptionItem) })
+    return ({ ...item, show: true, options: operationsSource.map(parseOptionItemOperation) })
   }
 
   if (item.name === `companyId`) {

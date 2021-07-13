@@ -66,6 +66,8 @@ const MaintenanceForm = ({
   const [form] = Form.useForm()
   const parseOptionItem = item => ({ value: item.id, label: item.name })
   const parseOptionItemDriver = item => ({ value: item.id, label: `${item.name} - CNH: ${item.driverLicense}` })
+  const parseOptionItemOperation = item => ({ value: item.id, label: `${item.name} - Filial: ${item.company.name} / ${cnpj.format(item.company.document)}` })
+
   const setOpetionValue = formItem => {
     switch (formItem.name) {
       case 'companyId':
@@ -73,7 +75,7 @@ const MaintenanceForm = ({
       case 'driverId':
         return driversSource.map(parseOptionItemDriver)
       case 'operationId':
-        return operationsSource.map(parseOptionItem)
+        return operationsSource.map(parseOptionItemOperation)
       default:
         return formItem.options
     }
