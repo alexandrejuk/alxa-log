@@ -209,9 +209,13 @@ const MaintenanceDetailMobile = ({
             </Col>
           </Row>
         </Col>
-        <Col span={24} style={{ padding: "16px"}}>
-          <Button block type="primary"  size="large" onClick={() => setShowModal(true)}>Adicionar eventos</Button>
-        </Col>
+        {
+          maintenanceOrder && maintenanceOrder.status !== 'check-out' && maintenanceOrder.status !== 'cancel' && (
+            <Col span={24} style={{ padding: "16px"}}>
+              <Button block type="primary"  size="large" onClick={() => setShowModal(true)}>Adicionar eventos</Button>
+            </Col>
+          )
+        }
       </Row>
       {showModal && ( 
         <MaintenanceEventForm 
