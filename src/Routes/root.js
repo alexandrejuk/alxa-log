@@ -11,6 +11,7 @@ import OperationManager from '../Pages/Operation/Manager'
 import MaintenanceManagerMobile from '../Pages/MaintenanceManagerMobile/Manager'
 import MaintenanceDetailMobile from '../Pages/MaintenanceDetailMobile'
 import MaintenanceDetail from '../Pages/MaintenanceOrder/Detail'
+import DriverDetail from '../Pages/Driver/Detail'
 
 const RootRoutes = [
   {
@@ -100,6 +101,13 @@ const RootRoutes = [
     component: MaintenanceDetail,
     title: 'DETALHES DA MANUTENÇÃO',
     path: '/logged/maintenance-detail/:id',
+    exact: true,
+    goBack: true,
+  },
+  {
+    component: DriverDetail,
+    title: 'DETALHES DO MOTORISTA',
+    path: '/logged/driver-detail/:id',
     exact: true,
     goBack: true,
   },

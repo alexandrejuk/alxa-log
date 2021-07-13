@@ -12,8 +12,8 @@ const updateDriver = async (values) => {
   return await axiosIntance.put(`/drivers/${values.id}`, values)
 }
 
-const getById = async (values) => {
-  return await axiosIntance.get(`/drivers/${values.id}`)
+const getById = async (id) => {
+  return await axiosIntance.get(`/drivers/${id}`)
 }
 
 
