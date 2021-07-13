@@ -93,6 +93,7 @@ const formSettingsVehicle = vehiclesSource => [{
 ]
 
 const parseOptionItem = ({ id, name }) => ({ value: id, label: name })
+const parseOptionItemDriver = item => ({ value: item.id, label: `${item.name} - CNH: ${item.driverLicense}` })
 
 const formSettingsVehicleEdit = (
   branchsSource, 
@@ -109,7 +110,7 @@ const formSettingsVehicleEdit = (
   }
 
   if (item.name === `driverId`) {
-    return ({ ...item, show: true, options: driversSource.map(parseOptionItem) })
+    return ({ ...item, show: true, options: driversSource.map(parseOptionItemDriver) })
   }
   
   return ({...item, show: true })

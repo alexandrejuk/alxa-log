@@ -64,13 +64,14 @@ const MaintenanceForm = ({
 }) => {
   const [formSettings, setFormSettings] = useState(maintenanceSelected ? formSettingsVehicleEdit(branchsSource, driversSource, vehiclesSource, operationsSource) : formSettingsVehicle(vehiclesSource))
   const [form] = Form.useForm()
-  const parseOptionItem = item => ({ value: item.id, label: `${item.name} - CNH: ${item.driverLicense}` })
+  const parseOptionItem = item => ({ value: item.id, label: item.name })
+  const parseOptionItemDriver = item => ({ value: item.id, label: `${item.name} - CNH: ${item.driverLicense}` })
   const setOpetionValue = formItem => {
     switch (formItem.name) {
       case 'companyId':
         return branchsSource.map(parseOptionItem)   
       case 'driverId':
-        return driversSource.map(parseOptionItem)
+        return driversSource.map(parseOptionItemDriver)
       case 'operationId':
         return operationsSource.map(parseOptionItem)
       default:
