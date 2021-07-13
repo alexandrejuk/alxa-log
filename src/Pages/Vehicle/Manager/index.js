@@ -69,10 +69,10 @@ const Manager = ({
       await createVehicle({
         ...values, 
         plate: values.plate.toLocaleUpperCase(),
-        fleet: fleet.plate.toLocaleUpperCase(),
+        fleet: values.fleet.toLocaleUpperCase(),
       })
-      getVehicles()
       success('Cadastro de veículo realizado com sucesso!')
+      getVehicles()
     } catch (error) {
       errorMessage('Não foi realizar o cadastro do veículo!')
     }
