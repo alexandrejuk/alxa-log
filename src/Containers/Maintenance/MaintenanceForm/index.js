@@ -3,6 +3,7 @@ import { Button, Form, Input, Modal, Select, DatePicker } from 'antd'
 import { map } from 'ramda'
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import { cnpj } from 'cpf-cnpj-validator'
 
 import {
   settingsNextStep,
