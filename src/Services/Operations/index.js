@@ -16,10 +16,14 @@ const getById = async (values) => {
   return await axiosIntance.get(`/operations/${values.id}`)
 }
 
+const getSummary = async (id) => {
+  return await axiosIntance.get(`/operations-summary-orders/${id}`)
+}
 
 export { 
   getAll, 
   getById,
   createOperations, 
-  updateOperations, 
+  updateOperations,
+  getSummary,
 }

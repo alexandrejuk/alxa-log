@@ -33,6 +33,10 @@ const getMaintenanceCompanyId = async (params = {}) => {
   return await axiosIntance.get('/maintenance-orders-company', { params })
 }
 
+const getMaintenanceOperationId = async (params = {}) => {
+  return await axiosIntance.get('/maintenance-orders-operation', { params })
+}
+
 export { 
   getAll, 
   getById,
@@ -41,5 +45,6 @@ export {
   updateEvents,
   getMobileQrCode,
   getByPlate,
-  getMaintenanceCompanyId
+  getMaintenanceCompanyId,
+  getMaintenanceOperationId
 }
