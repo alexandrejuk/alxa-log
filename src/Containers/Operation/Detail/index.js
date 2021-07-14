@@ -19,6 +19,7 @@ import CheckoutSvg from './checkout.svg'
 import CheckoutEmptySvg from './checkout-empty.svg'
 import AvailableSVG from './available.svg'
 import AvailableEmptySVG from './available-empty.svg'
+import { cnpj } from 'cpf-cnpj-validator'
 
 import styles from './style.module.css'
 
@@ -120,6 +121,13 @@ const Detail = ({
               <Text>Operação</Text><br />
               <Text>
                 <strong>{operation.name || '-' }</strong> <br />
+              </Text>
+            </Col>
+            <Col span={8}>
+              <Text>Filial</Text><br />
+              <Text>
+                <strong>{operation.company && operation.company.name || '-' }</strong> <br />
+                <small>{operation.company && cnpj.format(operation.company.document)}</small>
               </Text>
             </Col>
           </Row>

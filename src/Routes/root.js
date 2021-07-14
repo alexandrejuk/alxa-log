@@ -13,6 +13,7 @@ import MaintenanceDetailMobile from '../Pages/MaintenanceDetailMobile'
 import MaintenanceDetail from '../Pages/MaintenanceOrder/Detail'
 import DriverDetail from '../Pages/Driver/Detail'
 import BranchDetail from '../Pages/Branch/Detail'
+import OperationDetail from '../Pages/Operation/Detail'
 
 const RootRoutes = [
   {
@@ -116,6 +117,13 @@ const RootRoutes = [
     component: BranchDetail,
     title: 'DETALHES DA FILIAL',
     path: '/logged/branch-detail/:id',
+    exact: true,
+    goBack: true,
+  },
+  {
+    component: OperationDetail,
+    title: 'DETALHES DA OPERAÇÃO',
+    path: '/logged/operation-detail/:id',
     exact: true,
     goBack: true,
   },

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import GAInitialize from '../../../utils/ga'
 
-import BranchDetail from '../../../Containers/Branch/Detail'
+import OperationDetail from '../../../Containers/Operation/Detail'
 import { getById, getSummary } from '../../../Services/Operations'
 import { getMaintenanceOperationId } from '../../../Services/MaintenanceOrders'
 
@@ -58,7 +58,7 @@ const Detail = ({
   }
 
   return (
-    <BranchDetail
+    <OperationDetail
       operation={operation}
       chartData={chartData}
       handleChangeTableEvent={handleChangeTableEvent}

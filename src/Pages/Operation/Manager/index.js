@@ -154,6 +154,7 @@ const Manager = ({
       clearFilter={clearFilter}
       handleChangeTableEvent={handleChangeTableEvent}
       offset={offset}
+      goToDetail={id => history.push(`/logged/operation-detail/${id}`)}
     />
   )
 }

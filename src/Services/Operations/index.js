@@ -12,8 +12,8 @@ const updateOperations = async (values) => {
   return await axiosIntance.put(`/operations/${values.id}`, values)
 }
 
-const getById = async (values) => {
-  return await axiosIntance.get(`/operations/${values.id}`)
+const getById = async (id) => {
+  return await axiosIntance.get(`/operations/${id}`)
 }
 
 const getSummary = async (id) => {
