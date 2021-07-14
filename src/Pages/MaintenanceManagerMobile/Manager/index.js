@@ -3,7 +3,7 @@ import { message } from 'antd'
 import { withRouter } from 'react-router-dom'
 import { getByPlate } from '../../../Services/MaintenanceOrders'
 import ManagerContainer from '../../../Containers/MaintenanceManagerMobile'
-import GAInitialize from '../../utils/ga'
+import GAInitialize from '../../../utils/ga'
 
 const Manager = ({
   history,
