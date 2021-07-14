@@ -19,7 +19,7 @@ const Manager = ({
 
   const [operationSelected, setOperationSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
-  const [offset, setoffset] = useState(0)
+  const [offset, setoffset] = useState(1)
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()

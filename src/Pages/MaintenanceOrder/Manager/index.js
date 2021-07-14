@@ -22,7 +22,7 @@ const Manager = ({
   const [driversData, setDriversData] = useState({ rows: [] })
   const [branchsData, setBranchsData] = useState({ rows: [] })
   const [operationsData, setOperationsData] = useState({ rows: [] })
-  const [offset, setoffset] = useState(0)
+  const [offset, setoffset] = useState(1)
 
   const [maintenanceSelected, setMaintenanceSelected] = useState(null)
   const [searchValue, setSearchValue] = useState(null)

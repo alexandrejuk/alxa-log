@@ -14,7 +14,7 @@ const Manager = ({
   const [vehicleTypes, setVehicleTypes] = useState({ rows: [] })
   const [vehicleSelected, setVehicleSelected] = useState(null)
   const [searchValue, setSearchValue] = useState('')
-  const [offset, setoffset] = useState(0)
+  const [offset, setoffset] = useState(1)
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
