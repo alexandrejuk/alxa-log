@@ -32,7 +32,7 @@ const Manager = ({
 
   const handleClick = async () => {
     try {
-      const { data } = await getByPlate({ plate: searchVehicle })
+      const { data } = await getByPlate({ plate: searchVehicle.toLocaleUpperCase() })
       if (data) {
         return history.push(`/logged/mobile-maintenance-detail/${data.id}`)
       }
