@@ -29,6 +29,9 @@ const getByPlate = async (params = {}) => {
   return await axiosIntance.get('/maintenance-order-events', { params })
 }
 
+const getMaintenanceCompanyId = async (params = {}) => {
+  return await axiosIntance.get('/maintenance-orders-company', { params })
+}
 
 export { 
   getAll, 
@@ -37,5 +40,6 @@ export {
   updateMaintenanceOrder,
   updateEvents,
   getMobileQrCode,
-  getByPlate
+  getByPlate,
+  getMaintenanceCompanyId
 }

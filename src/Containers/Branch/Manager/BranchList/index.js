@@ -1,9 +1,9 @@
 import React from 'react'
-import { Table, Button, Empty, ConfigProvider, Image } from 'antd'
+import { Table, Button, Empty, ConfigProvider, Image, Space } from 'antd'
 import NoData from '../../../../Assets/noData.svg'
 import { cnpj } from 'cpf-cnpj-validator'
 
-const columns = ({ handleClickEdit }) => [
+const columns = ({ handleClickEdit, goToDetail }) => [
   {
     title: 'Razão social',
     dataIndex: 'name',
@@ -27,13 +27,19 @@ const columns = ({ handleClickEdit }) => [
   {
     title: ' ',
     dataIndex: 'id',
-    render: (_, source) =>  <Button type="link" onClick={() => handleClickEdit(source)}>
-      Editar
-    </Button>
+    render: (_, source) =>
+    <Space>
+      <Button type="link" onClick={() => handleClickEdit(source)}>
+        Editar
+      </Button>
+      <Button type="link" onClick={() => goToDetail(source.id)}>
+        Detalhes
+      </Button>
+    </Space>
   }
 ]
 
-const BranchList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, offset }) => {
+const BranchList = ({ datasource, handleClickEdit, loading, handleChangeTableEvent, offset, goToDetail }) => {
   return (
     <ConfigProvider renderEmpty={() => <Empty 
         description="Não há dados" 
@@ -43,7 +49,7 @@ const BranchList = ({ datasource, handleClickEdit, loading, handleChangeTableEve
       <Table 
         pagination={{ pageSize: 20, total: datasource.count, current: offset }}
         onChange={handleChangeTableEvent}
-        columns={columns({ handleClickEdit })} 
+        columns={columns({ handleClickEdit, goToDetail })} 
         loading={loading}
         dataSource={datasource.rows} 
       />

@@ -12,6 +12,7 @@ import MaintenanceManagerMobile from '../Pages/MaintenanceManagerMobile/Manager'
 import MaintenanceDetailMobile from '../Pages/MaintenanceDetailMobile'
 import MaintenanceDetail from '../Pages/MaintenanceOrder/Detail'
 import DriverDetail from '../Pages/Driver/Detail'
+import BranchDetail from '../Pages/Branch/Detail'
 
 const RootRoutes = [
   {
@@ -108,6 +109,13 @@ const RootRoutes = [
     component: DriverDetail,
     title: 'DETALHES DO MOTORISTA',
     path: '/logged/driver-detail/:id',
+    exact: true,
+    goBack: true,
+  },
+  {
+    component: BranchDetail,
+    title: 'DETALHES DA FILIAL',
+    path: '/logged/branch-detail/:id',
     exact: true,
     goBack: true,
   },

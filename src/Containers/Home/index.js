@@ -14,6 +14,8 @@ import EmptyStateCustomersSvg from './empty-state-customers.svg'
 import styles from './style.module.css'
 import CheckoutSvg from './checkout.svg'
 import CheckoutEmptySvg from './checkout-empty.svg'
+import AvailableSVG from './available.svg'
+import AvailableEmptySVG from './available-empty.svg'
 
 const Home = ({
   orderStatus,
@@ -24,6 +26,10 @@ const Home = ({
     .reduce((acc, prev) => acc + Number(prev.count), 0)
 
   const vehicleTotalAvailable = orderStatus
+    .filter(({ status }) => status === 'avaiable')
+    .reduce((acc, prev) => acc + Number(prev.count), 0)
+
+  const vehicleTotalfinished = orderStatus
     .filter(({ status }) => status === 'check-out')
     .reduce((acc, prev) => acc + Number(prev.count), 0)
   
@@ -51,7 +57,7 @@ const Home = ({
         <p className={styles.welcomeSubtitle}>Ao <b>alxa dashboard</b> para suas análises</p>
       </Col>     
 
-      <Col span={8}>
+      <Col span={6}>
         <div className={styles.cardTotalValues}>
           <div>
             <h1 className={styles.cardTotalTitle}>Total de solicitações</h1>
@@ -61,23 +67,34 @@ const Home = ({
         </div>
       </Col>
 
-      <Col span={8}>
-        <div className={styles.cardTotalValues}>
-          <div>
-            <h1 className={styles.cardTotalTitle}>Total de concluídos</h1>
-            <h1 className={styles.cardTotalValue}>{vehicleTotalAvailable > 0 ? vehicleTotalAvailable :  '-' }</h1>
-          </div>
-          <Image preview={false} src={vehicleTotalAvailable > 0 ? CheckoutSvg : CheckoutEmptySvg} alt="orders" />
-        </div>
-      </Col>
 
-      <Col span={8}>
+      <Col span={6}>
         <div className={styles.cardTotalValues}>
           <div>
             <h1 className={styles.cardTotalTitle}>Total de veículos</h1>
             <h1 className={styles.cardTotalValue}>{vehicleTotal > 0 ? vehicleTotal :  '-' }</h1>
           </div>
           <Image preview={false} src={vehicleTotal > 0 ? OrdersSvg : EmptyStateOrderSvg} alt="orders" />
+        </div>
+      </Col>
+
+      <Col span={6}>
+        <div className={styles.cardTotalValues}>
+          <div>
+            <h1 className={styles.cardTotalTitle}>Total de liberado</h1>
+            <h1 className={styles.cardTotalValue}>{vehicleTotalAvailable > 0 ? vehicleTotalAvailable :  '-' }</h1>
+          </div>
+          <Image preview={false} src={vehicleTotalAvailable > 0 ? AvailableSVG : AvailableEmptySVG} alt="orders" />
+        </div>
+      </Col>
+
+      <Col span={6}>
+        <div className={styles.cardTotalValues}>
+          <div>
+            <h1 className={styles.cardTotalTitle}>Total de concluídos</h1>
+            <h1 className={styles.cardTotalValue}>{vehicleTotalfinished > 0 ? vehicleTotalfinished :  '-' }</h1>
+          </div>
+          <Image preview={false} src={vehicleTotalfinished > 0 ? CheckoutSvg : CheckoutEmptySvg} alt="orders" />
         </div>
       </Col>
 

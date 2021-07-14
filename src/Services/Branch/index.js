@@ -12,14 +12,18 @@ const updateBranch = async (values) => {
   return await axiosIntance.put(`/companies/${values.id}`, values)
 }
 
-const getById = async (values) => {
-  return await axiosIntance.get(`/companies/${values.id}`)
+const getById = async (id) => {
+  return await axiosIntance.get(`/companies/${id}`)
 }
 
+const getSummary = async (id) => {
+  return await axiosIntance.get(`/companies-summary-orders/${id}`)
+}
 
 export { 
   getAll, 
   getById,
   createBranch, 
   updateBranch, 
+  getSummary,
 }

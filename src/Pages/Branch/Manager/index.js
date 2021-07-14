@@ -149,6 +149,7 @@ const Manager = ({
       clearFilter={clearFilter}
       offset={offset}
       handleChangeTableEvent={handleChangeTableEvent}
+      goToDetail={id => history.push(`/logged/branch-detail/${id}`)}
     />
   )
 }
