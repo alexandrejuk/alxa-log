@@ -53,7 +53,7 @@ const Detail = ({
 
   const handleChangeTableEvent = ({ current }) => {
     setoffset(current)
-    const query = { offset: (current - 1), companyId: match.params.id }
+    const query = { offset: (current - 1), operationId: match.params.id }
     getAllMaintenanceOperation(query)
   }
 
