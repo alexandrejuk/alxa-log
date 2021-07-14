@@ -158,7 +158,7 @@ const Manager = ({
   }
 
   const handleChangeTableEvent = ({ current }) => {
-    setoffset(offset + 1)
+    setoffset(current)
     let query = { offset: (current - 1) }
     if (searchValue) {
       query = { ...query }
