@@ -152,6 +152,7 @@ const Manager = ({
       clearFilter={clearFilter}
       handleChangeTableEvent={handleChangeTableEvent}
       offset={offset}
+      goToDetail={id => history.push(`/logged/driver-detail/${id}`)}
     />
   )
 }
