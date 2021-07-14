@@ -10,6 +10,7 @@ import {
   updateOperations
 } from '../../../Services/Operations'
 import { isEmpty } from 'ramda'
+import GAInitialize from '../../../utils/ga'
 
 const Manager = ({
   history,
@@ -23,6 +24,7 @@ const Manager = ({
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
+  GAInitialize(`/operation`)
 
   useEffect(() => {
     let query = {}

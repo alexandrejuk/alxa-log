@@ -5,6 +5,7 @@ import {
   // getByStatusCompany,
   getByStatusOperation,
 } from '../../Services/Summary'
+import GAInitialize from '../../utils/ga'
 
 const Home = () => {
   const [homeState] = useState({
@@ -16,6 +17,7 @@ const Home = () => {
   const [orderStatus, setOrderStatus] = useState([])
   // const [orderCompanyStatus, setOrderCompanyStatus] = useState([])
   const [orderOperationStatus, setOrderOperationStatus] = useState([])
+  GAInitialize(`/home`)
 
   useEffect(() => {
     getByStatusAll()

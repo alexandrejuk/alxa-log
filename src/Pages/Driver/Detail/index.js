@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { message } from 'antd'
+import GAInitialize from '../../../utils/ga'
 
 import DriverDetail from '../../../Containers/Driver/Detail'
 import { getById, createDriverIncident, getIncidentsSummary } from '../../../Services/Driver'
@@ -25,6 +26,7 @@ const Detail = ({
   const [vehiclesData, setVehiclesData] = useState({ rows: [] })
   const [operationsData, setOperationsData] = useState({ rows: [] })
   const [chartData, setChartData] = useState([])
+  GAInitialize(`/driver/${match.params.id}`)
 
   useEffect(() => {
     getDriver()

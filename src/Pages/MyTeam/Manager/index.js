@@ -6,6 +6,7 @@ import { cpf } from 'cpf-cnpj-validator'
 import ManagerContainer from '../../../Containers/MyTeam/Manager'
 import { createUser, getAll, updateUser } from '../../../Services/User'
 import { isEmpty } from 'ramda'
+import GAInitialize from '../../../utils/ga'
 
 const Manager = ({
   history,
@@ -17,6 +18,7 @@ const Manager = ({
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
+  GAInitialize(`/my-team`)
 
   useEffect(() => {
     let query = {}

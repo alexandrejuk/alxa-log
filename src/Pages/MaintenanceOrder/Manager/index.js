@@ -13,6 +13,7 @@ import {
   getAll as getAllMaintenanceOrders, 
   updateMaintenanceOrder
 } from '../../../Services/MaintenanceOrders'
+import GAInitialize from '../../../utils/ga'
 
 const Manager = ({
   history,
@@ -29,6 +30,7 @@ const Manager = ({
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
+  GAInitialize(`/maintenance-order`)
 
   useEffect(() => {
     getVehicles({ limit: 100000 })

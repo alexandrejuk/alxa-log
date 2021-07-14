@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { getById, updateEvents } from '../../Services/MaintenanceOrders'
 import MaintenanceDetailMobile from '../../Containers/MaintenanceDetailMobile'
 import { getAll } from '../../Services/Driver'
+import GAInitialize from '../../utils/ga'
 
 const Manager = ({
   history,
@@ -35,7 +36,7 @@ const Manager = ({
 
   const [driversSource, setDriversSource] = useState([])
   const [showModal, setShowModal] = useState(false)
-
+  GAInitialize(`/maintenance-order-detail/${match.params.id}`)
   useEffect(() => {
     getOrder()
     getAllDriver()

@@ -4,6 +4,7 @@ import { compose } from 'ramda'
 
 import { updateMyInfo as updateMyInfoService } from '../../Services/User'
 import MyInfoContainer from '../../Containers/MyInfo'
+import GAInitialize from '../../utils/ga'
 
 const MyInfo = ({ user, loggedUser }) => {
   const [loading, setLoading] = useState(false)
@@ -30,6 +31,7 @@ const MyInfo = ({ user, loggedUser }) => {
     />
   )
 }
+GAInitialize(`/my-info`)
 
 const mapStateToProps = ({ user }) => ({
   user

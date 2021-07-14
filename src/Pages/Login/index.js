@@ -7,6 +7,7 @@ import LoginContainer from '../../Containers/Login'
 import Auth from '../../Services/Auth'
 import { getCompanyById } from '../../Services/Company'
 import testMobile from '../../utils/isMobile'
+import GAInitialize from '../../utils/ga'
 
 const isMobile = window.mobileCheck() || testMobile ? true : false
 
@@ -31,6 +32,8 @@ const Login = ({
         if(isMobile) {
           redirectPage = '/logged/mobile-maintenance'
         }
+
+        GAInitialize(`/login/${data.user.name}`)
 
         localStorage.setItem('token', data.token)
         localStorage.setItem('user.name', data.user.name)

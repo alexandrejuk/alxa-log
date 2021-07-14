@@ -3,6 +3,7 @@ import { getById } from '../../../Services/MaintenanceOrders'
 import { withRouter } from 'react-router-dom'
 
 import MaintenanceDetail from '../../../Containers/Maintenance/Detail'
+import GAInitialize from '../../../utils/ga'
 
 const Detail = ({
   match
@@ -51,6 +52,7 @@ const Detail = ({
     createdAt: new Date(),
     updatedAt: new Date(),
   })
+  GAInitialize(`/maintenance-order-detail/${match.params.id}`)
 
   useEffect(() => {
     getOrder()

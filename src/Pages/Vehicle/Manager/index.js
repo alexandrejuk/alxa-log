@@ -6,6 +6,7 @@ import ManagerContainer from '../../../Containers/Vehicle/Manager'
 import { createVehicle, getAll, getAllVehicleTypes, updateVehicle } from '../../../Services/Vehicle'
 import { validateBr } from 'js-brasil'
 import { isEmpty } from 'ramda'
+import GAInitialize from '../../../utils/ga'
 
 const Manager = ({
   history,
@@ -18,6 +19,7 @@ const Manager = ({
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
+  GAInitialize(`/vehicles`)
 
   useEffect(() => {
     let query = {}

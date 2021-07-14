@@ -3,6 +3,7 @@ import { message } from 'antd'
 import { useLocation, withRouter } from 'react-router-dom'
 import { cnpj } from 'cpf-cnpj-validator'
 import { validateBr } from 'js-brasil'
+import GAInitialize from '../../../utils/ga'
 
 import ManagerContainer from '../../../Containers/Branch/Manager'
 import {   
@@ -22,7 +23,7 @@ const Manager = ({
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
-
+  GAInitialize(`/branch`)
   useEffect(() => {
     let query = { }
     const searchLocaStorage = localStorage.getItem('branchSearch')

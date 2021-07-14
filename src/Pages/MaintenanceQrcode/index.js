@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { getMobileQrCode } from '../../Services/MaintenanceOrders'
 import VoucherMobile from '../../Containers/VoucherMobile'
+import GAInitialize from '../../utils/ga'
 
 const MaintenanceQrcode = ({
   match
@@ -32,6 +33,7 @@ const MaintenanceQrcode = ({
     supplies: [],
   })
 
+  GAInitialize(`/maintenance-order-qrcode-driver/${match.params.id}`)
 
   useEffect(() => {
     getOrder()

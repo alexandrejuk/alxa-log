@@ -3,6 +3,7 @@ import { message } from 'antd'
 import { withRouter } from 'react-router-dom'
 import { getByPlate } from '../../../Services/MaintenanceOrders'
 import ManagerContainer from '../../../Containers/MaintenanceManagerMobile'
+import GAInitialize from '../../utils/ga'
 
 const Manager = ({
   history,
@@ -13,6 +14,7 @@ const Manager = ({
   const [searchButton, setSearchButton] = useState(true)
   const [enableQrCode, setEnableQrCode] = useState(false)
   const [showModalMobile, setShowModalMobile] = useState(false)
+  GAInitialize(`/maintenance-order-mobile-read-qr-code`)
 
   const handleScan = data => {
     if (data) {

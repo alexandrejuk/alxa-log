@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { message } from 'antd'
 import { useLocation, withRouter } from 'react-router-dom'
 import { validateBr } from 'js-brasil'
+import GAInitialize from '../../../utils/ga'
 
 import ManagerContainer from '../../../Containers/Driver/Manager'
 import {   
@@ -21,6 +22,7 @@ const Manager = ({
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
+  GAInitialize(`/driver`)
 
   useEffect(() => {
     let query = {} 

@@ -9,6 +9,7 @@ import {
   updateVehicleType  
 } from '../../../Services/VehicleType'
 import { isEmpty } from 'ramda'
+import GAInitialize from '../../../utils/ga'
 
 const Manager = ({
   history,
@@ -20,6 +21,7 @@ const Manager = ({
 
   const [loading, setLoading] = useState(true)
   const { search, pathname } = useLocation()
+  GAInitialize(`/vehicle-types`)
 
   useEffect(() => {
     let query = {} 

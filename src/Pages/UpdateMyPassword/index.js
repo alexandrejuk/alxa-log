@@ -3,10 +3,12 @@ import { message, Form } from 'antd'
 import { withRouter } from 'react-router-dom'
 import UpdateMyPasswordContainer from '../../Containers/UpdateMyPassword'
 import { updateUserPassword as updateUserPasswordService } from '../../Services/User'
+import GAInitialize from '../../utils/ga'
 
 const UpdateMyPassword = ({ history }) => {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
+  GAInitialize(`/update-password`)
 
   const handleSubmit = async (values) => {
     setLoading(true)
