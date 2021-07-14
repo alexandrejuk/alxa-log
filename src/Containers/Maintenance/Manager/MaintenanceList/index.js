@@ -123,7 +123,7 @@ const MaintenanceList = ({ gotoDetail, datasource, handleClickEdit, loading, han
       />
     }>
       <Table 
-        pagination={{ pageSize: 20, total: datasource.count, current: (offset + 1) }}
+        pagination={{ pageSize: 20, total: datasource.count, current: offset }}
         onChange={handleChangeTableEvent}
         columns={columns({ handleClickEdit, handleShowVoucher, gotoDetail })} 
         loading={loading}

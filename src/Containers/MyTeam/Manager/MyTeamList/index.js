@@ -33,7 +33,7 @@ const MyTeamList = ({ datasource, handleClickEdit, loading, handleChangeTableEve
       />
     }>
       <Table 
-        pagination={{ pageSize: 20, total: datasource.count, current: (offset + 1) }}
+        pagination={{ pageSize: 20, total: datasource.count, current: offset }}
         onChange={handleChangeTableEvent}
         columns={columns({ handleClickEdit })} 
         loading={loading}
