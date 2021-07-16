@@ -44,7 +44,7 @@ const Manager = ({
 
   const getAllDriver = async () => {
     try {
-      const { data } = await getAll()
+      const { data } = await getAll({ limit: 100000 })
       setDriversSource(data)
     } catch (error) {
       window.onerror(`allDrivers: ${error}`, window.location.href)
