@@ -100,7 +100,7 @@ const Home = ({
 
       <Col span={24}>
         <div className={styles.cardBarChart}>
-          <BarChart data={parserDataOrders} />
+          <BarChart data={parserDataOrders.sort((a, b) => a.name - b.name)} />
         </div>
       </Col>
 

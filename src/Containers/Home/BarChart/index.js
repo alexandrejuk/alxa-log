@@ -66,7 +66,7 @@ const Chart = ({ data }) => (
           <CartesianGrid stroke="#d7d7d7" vertical={false} />
           <Tooltip
             cursor={{ fillOpacity: 0.3 }}
-            labelFormatter={(value) => formattedDate(value, 'DD/MM/YYYY')}
+            labelFormatter={(value) => formattedDate(value, 'DD/MM/YYYY', 1)}
           />
           {chartSettings.map(({ label, color, value }) => (
             <Bar
