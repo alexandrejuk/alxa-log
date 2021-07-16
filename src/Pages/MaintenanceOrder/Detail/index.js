@@ -63,7 +63,7 @@ const Detail = ({
       const { data } = await getById(match.params.id)
       setMaintenanceOrder(data)
     } catch (error) {
-      
+      window.onerror(`orderById: ${error}`, window.location.href)
     }
   }
 

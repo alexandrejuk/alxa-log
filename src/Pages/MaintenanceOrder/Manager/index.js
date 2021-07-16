@@ -67,7 +67,7 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log(error)
+      window.onerror(`allVehicles: ${error}`, window.location.href)
     }
   }
 
@@ -76,7 +76,7 @@ const Manager = ({
       const { data } = await getAllMaintenanceOrders(params)
       setMaintenanceOrdersData(data)
     } catch (error) {
-      console.log(error)
+      window.onerror(`allMaintenaceOrders: ${error}`, window.location.href)
     }
   }
 
@@ -85,7 +85,7 @@ const Manager = ({
       const { data } = await getAllBranchs(params)
       setBranchsData(data)
     } catch (error) {
-      console.log(error)
+      window.onerror(`allBranchs: ${error}`, window.location.href)
     }
   }
 
@@ -94,7 +94,7 @@ const Manager = ({
       const { data } = await getAllDrivers(params)
       setDriversData(data)
     } catch (error) {
-      console.log(error)
+      window.onerror(`allDrivers: ${error}`, window.location.href)
     }
   }
 
@@ -103,7 +103,7 @@ const Manager = ({
       const { data } = await getAllOperations(params)
       setOperationsData(data)
     } catch (error) {
-      console.log(error)
+      window.onerror(`allOperation: ${error}`, window.location.href)
     }
   }
 
@@ -117,6 +117,7 @@ const Manager = ({
       getAllMaintenances()
       success('Manutenção criada com sucesso!')
     } catch (error) {
+      window.onerror(`createMaintenanceOrder: ${error}`, window.location.href)
       errorMessage('Não foi criar a manutenção!')
     }
   }
@@ -128,6 +129,7 @@ const Manager = ({
       success('Manuntenção editada com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar a edição da manutenção!')
+      window.onerror(`updateMaintenanceOrder: ${error}`, window.location.href)
     }
   }
 

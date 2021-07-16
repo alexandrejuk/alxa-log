@@ -30,7 +30,7 @@ const Home = () => {
       const { data } = await getByStatus()
       setOrderStatus(data)
     } catch (error) {
-      console.log('cannot find values of dashboard!')
+      window.onerror(`maintenanceOrderStatusSummary: ${error}`, window.location.href)
     }
   }
 
@@ -48,7 +48,7 @@ const Home = () => {
       const { data } = await getByStatusOperation()
       setOrderOperationStatus(data)
     } catch (error) {
-      console.log('cannot find values of dashboard!')
+      window.onerror(`maintenanceOrderOperationStatusSummary: ${error}`, window.location.href)
     }
   }
 

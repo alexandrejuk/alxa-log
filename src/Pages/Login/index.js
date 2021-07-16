@@ -47,7 +47,7 @@ const Login = ({
       .catch((err) => {
         setLoading(false)
         setIsVisibleMessageError(!!err.response)
-        console.error(err)
+        window.onerror(`loggin: ${error}`, window.location.href)
       })
   }
 

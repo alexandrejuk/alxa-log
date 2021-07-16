@@ -29,7 +29,7 @@ const Detail = ({
       const { data } = await getById(match.params.id)
       setOperation(data)
     } catch (error) {
-      console.log('deu ruim', error)
+      window.onerror(`operationById: ${error}`, window.location.href)
     }
   }
 
@@ -38,7 +38,7 @@ const Detail = ({
       const { data } = await getSummary(match.params.id)
       setChartData(data)
     } catch (error) {
-      console.log('não foi possivel', error)
+      window.onerror(`summaryOperationMaintenance: ${error}`, window.location.href)
     }
   }
 
@@ -47,7 +47,7 @@ const Detail = ({
       const { data } = await getMaintenanceOperationId(query)
       setDatasource(data)
     } catch (error) {
-      console.log('não foi possivel', error)
+      window.onerror(`maintenanceOrdersOperationId: ${error}`, window.location.href)
     }
   } 
 

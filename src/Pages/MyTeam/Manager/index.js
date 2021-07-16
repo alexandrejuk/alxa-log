@@ -50,7 +50,8 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log(error)
+      window.onerror(`allUsers: ${error}`, window.location.href)
+
     }
   }
 
@@ -60,6 +61,7 @@ const Manager = ({
       getUsers()
       success('Cadastro do usuário realizado com sucesso!')
     } catch (error) {
+      window.onerror(`createUser: ${error}`, window.location.href)
       errorMessage('Não foi realizar o cadastro do usuário!')
     }
   }
@@ -70,6 +72,7 @@ const Manager = ({
       getUsers()
       success('Editado usuário com sucesso!')
     } catch (error) {
+      window.onerror(`editUser: ${error}`, window.location.href)
       errorMessage('Não foi realizar a edição do usuário!')
     }
   }

@@ -23,6 +23,7 @@ const UpdateMyPassword = ({ history }) => {
       message.error(
         'Não foi possível atualizar senha! Verifique os dados que estão sendo passados'
       )
+      window.onerror(`updatePassword: ${error}`, window.location.href)
       setLoading(false)
     }
   }

@@ -55,7 +55,8 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log(error)
+      window.onerror(`branchs: ${error}`, window.location.href)
+
     }
   }
 
@@ -66,6 +67,8 @@ const Manager = ({
       success('Cadastro da unidade realizado com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar o cadastro da unidade!')
+      window.onerror(`createBranch: ${error}`, window.location.href)
+
     }
   }
 
@@ -76,6 +79,8 @@ const Manager = ({
       success('Editado unidade com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar a edição da unidade!')
+      window.onerror(`editBranch: ${error}`, window.location.href)
+
     }
   }
 

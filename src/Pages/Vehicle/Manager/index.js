@@ -52,7 +52,8 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log(error)
+      window.onerror(`allVehicles: ${error}`, window.location.href)
+
     }
   }
 
@@ -62,7 +63,7 @@ const Manager = ({
       const { data } = await getAllVehicleTypes(params)
       setVehicleTypes(data)
     } catch (error) {
-      console.log(error)
+      window.onerror(`allVehiclesTypes: ${error}`, window.location.href)
     }
   }
 
@@ -76,6 +77,7 @@ const Manager = ({
       success('Cadastro de veículo realizado com sucesso!')
       getVehicles()
     } catch (error) {
+      window.onerror(`createVehicle: ${error}`, window.location.href)
       errorMessage('Não foi realizar o cadastro do veículo!')
     }
   }
@@ -86,6 +88,7 @@ const Manager = ({
       getVehicles()
       success('Editado veículo com sucesso!')
     } catch (error) {
+      window.onerror(`editVehicle: ${error}`, window.location.href)
       errorMessage('Não foi realizar a edição do veículo!')
     }
   }

@@ -60,7 +60,7 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      console.log(error)
+      window.onerror(`allOperations: ${error}`, window.location.href)
     }
   }
 
@@ -69,7 +69,7 @@ const Manager = ({
       const { data } = await getAllBranchs(params)
       setBranchsDataData(data)
     } catch (error) {
-      console.log(error)
+      window.onerror(`allBranchs: ${error}`, window.location.href)
     }
   }
 
@@ -80,6 +80,7 @@ const Manager = ({
       success('Operação criada com sucesso!')
     } catch (error) {
       errorMessage('Não foi criar a operação!')
+      window.onerror(`createOperation: ${error}`, window.location.href)
     }
   }
 
@@ -90,6 +91,7 @@ const Manager = ({
       success('Operação editada com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar a edição da operação!')
+      window.onerror(`updateOperation: ${error}`, window.location.href)
     }
   }
 

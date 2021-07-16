@@ -47,7 +47,7 @@ const Manager = ({
       const { data } = await getAll()
       setDriversSource(data)
     } catch (error) {
-      
+      window.onerror(`allDrivers: ${error}`, window.location.href)
     }
   }
 
@@ -62,7 +62,7 @@ const Manager = ({
       message.success('Eventos atualizado com sucesso!');
       setShowModal(false)
     } catch (error) {
-      message.error('Não foi possível adicionar esse evento!');
+      window.onerror(`createEvent: ${error}`, window.location.href)
       setShowModal(false)
     }
   }
@@ -72,7 +72,7 @@ const Manager = ({
       const { data } = await getById(match.params.id)
       setMaintenanceOrder(data)
     } catch (error) {
-      
+      window.onerror(`orderById: ${error}`, window.location.href)
     }
   }
 

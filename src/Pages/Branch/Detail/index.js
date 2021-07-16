@@ -32,7 +32,7 @@ const Detail = ({
       const { data } = await getById(match.params.id)
       setCompany(data)
     } catch (error) {
-      console.log('deu ruim', error)
+      window.onerror(`CompanyId: ${error}`, window.location.href)
     }
   }
 
@@ -41,7 +41,7 @@ const Detail = ({
       const { data } = await getSummary(match.params.id)
       setChartData(data)
     } catch (error) {
-      console.log('não foi possivel', error)
+      window.onerror(`summaryChart: ${error}`, window.location.href)
     }
   }
 
@@ -50,7 +50,7 @@ const Detail = ({
       const { data } = await getMaintenanceCompanyId(query)
       setDatasource(data)
     } catch (error) {
-      console.log('não foi possivel', error)
+      window.onerror(`MaintenanceCompany: ${error}`, window.location.href)
     }
   } 
 
