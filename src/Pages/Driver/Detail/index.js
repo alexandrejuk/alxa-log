@@ -48,7 +48,7 @@ const Detail = ({
       const { data } = await getById(match.params.id)
       setDriver(data)
     } catch (error) {
-      window.onerror(`driverId: ${error}`, window.location.href)
+      window.onerror(`driverId: ${error.error}`, window.location.href)
     }
   }
 
@@ -57,7 +57,7 @@ const Detail = ({
       const { data } = await getAllOperations(params)
       setOperationsData(data)
     } catch (error) {
-      window.onerror(`allOperation: ${error}`, window.location.href)
+      window.onerror(`allOperation: ${error.error}`, window.location.href)
     }
   }
 
@@ -66,7 +66,7 @@ const Detail = ({
       const { data } = await getAll(params)
       setVehiclesData(data)
     } catch (error) {
-      window.onerror(`allVehicleUser: ${error}`, window.location.href)
+      window.onerror(`allVehicleUser: ${error.error}`, window.location.href)
     }
   }
 
@@ -81,7 +81,7 @@ const Detail = ({
       summaryChartIncidents()
       success('Incidente criado com sucesso!')
     } catch (error) {
-      window.onerror(`createIncident: ${error}`, window.location.href)
+      window.onerror(`createIncident: ${error.error}`, window.location.href)
       errorMessage('Não foi criar o incidente!')
     }
   }
@@ -91,7 +91,7 @@ const Detail = ({
       const { data } = await getIncidentsSummary(match.params.id)
       setChartData(data)
     } catch (error) {
-      window.onerror(`summaryIncident: ${error}`, window.location.href)
+      window.onerror(`summaryIncident: ${error.error}`, window.location.href)
     }
   }
 

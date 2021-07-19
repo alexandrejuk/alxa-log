@@ -46,7 +46,7 @@ const MaintenanceQrcode = ({
         setMaintenanceOrder(data)
       }
     } catch (error) {
-      window.onerror(`driverQrcodeVoucher: ${error}`, window.location.href)
+      window.onerror(`driverQrcodeVoucher: ${error.error}`, window.location.href)
     }
   }
 

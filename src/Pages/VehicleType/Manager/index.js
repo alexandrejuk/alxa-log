@@ -54,7 +54,7 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      window.onerror(`allVehiclesTypes: ${error}`, window.location.href)
+      window.onerror(`allVehiclesTypes: ${error.error}`, window.location.href)
 
     }
   }
@@ -66,7 +66,7 @@ const Manager = ({
       success('Cadastro do tipo de veículo realizado com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar o cadastro do tipo de veículo!')
-      window.onerror(`createVehicleTypes: ${error}`, window.location.href)
+      window.onerror(`createVehicleTypes: ${error.error}`, window.location.href)
     }
   }
 
@@ -77,7 +77,7 @@ const Manager = ({
       success('Editado tipo de veículo com sucesso!')
     } catch (error) {
       errorMessage('Não foi realizar a edição do tipo de veículo!')
-      window.onerror(`editVehicleTypes: ${error}`, window.location.href)
+      window.onerror(`editVehicleTypes: ${error.error}`, window.location.href)
     }
   }
 

@@ -39,7 +39,7 @@ const Manager = ({
       
       return message.info('Não foi possível localizar nenhuma ordem de manutenção!')
     } catch (error) {
-      window.onerror(`plateById: ${error}`, window.location.href)
+      window.onerror(`plateById: ${error.error}`, window.location.href)
       message.error('Não foi possível localizar as manutenções!')
     }
   }
@@ -48,7 +48,7 @@ const Manager = ({
   const handleError = () => {
     setEnableQrCode(false)
     message.error('Não foi possível ler o qr code!')
-    window.onerror(`qrcodeRead: ${error}`, window.location.href)
+    window.onerror(`qrcodeRead: ${error.error}`, window.location.href)
   }
 
   return (

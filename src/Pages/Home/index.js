@@ -30,7 +30,7 @@ const Home = () => {
       const { data } = await getByStatus()
       setOrderStatus(data)
     } catch (error) {
-      window.onerror(`maintenanceOrderStatusSummary: ${error}`, window.location.href)
+      window.onerror(`maintenanceOrderStatusSummary: ${error.error}`, window.location.href)
     }
   }
 
@@ -48,7 +48,7 @@ const Home = () => {
       const { data } = await getByStatusOperation()
       setOrderOperationStatus(data)
     } catch (error) {
-      window.onerror(`maintenanceOrderOperationStatusSummary: ${error}`, window.location.href)
+      window.onerror(`maintenanceOrderOperationStatusSummary: ${error.error}`, window.location.href)
     }
   }
 

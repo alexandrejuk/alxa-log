@@ -54,7 +54,7 @@ const Manager = ({
       setLoading(false)
     } catch (error) {
       setLoading(false)
-      window.onerror(`allDrivers: ${error}`, window.location.href)
+      window.onerror(`allDrivers: ${error.error}`, window.location.href)
     }
   }
 
@@ -64,7 +64,7 @@ const Manager = ({
       getDrivers()
       success('Cadastro de motorista realizado com sucesso!')
     } catch (error) {
-      window.onerror(`createDriver: ${error}`, window.location.href)
+      window.onerror(`createDriver: ${error.error}`, window.location.href)
       errorMessage('Não foi realizar o cadastro do motorista!')
     }
   }
@@ -75,7 +75,7 @@ const Manager = ({
       getDrivers()
       success('Editado motorista com sucesso!')
     } catch (error) {
-      window.onerror(`updateDriver: ${error}`, window.location.href)
+      window.onerror(`updateDriver: ${error.error}`, window.location.href)
       errorMessage('Não foi realizar a edição do motorista!')
     }
   }
