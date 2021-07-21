@@ -41,7 +41,6 @@ const VerticalChart = ({ orderOperationStatus }) => {
   
    return arr
   }, [])
-
   return (
     <Row>
       <Col span={24}>
@@ -52,7 +51,7 @@ const VerticalChart = ({ orderOperationStatus }) => {
           <ComposedChart
             layout="vertical"
             height="100%"
-            data={parserDataOrders}
+            data={parserDataOrders.sort((a, b) => a.value - b.value)}
             margin={{
               top: 50,
               right: 20,
@@ -84,7 +83,7 @@ const VerticalChart = ({ orderOperationStatus }) => {
             <Col span={24}>
               <Title level={5}>LEGENDAS</Title>
             </Col>
-            {chartSettings.sort((a, b) => a.value - b.value).map(({ color, value, label }) => (
+            {chartSettings.map(({ color, value, label }) => (
               <Col key={`${color}-${value}`} xs={6} sm={6} md={4} lg={4} xl={4}>
                 <Tag color={color}>{value}</Tag>
               </Col>

@@ -49,7 +49,6 @@ const Home = ({
   
    return arr
   }, [])
-
   return (
     <Row gutter={[18, 18]}>
       <Col span={24}>
@@ -100,7 +99,7 @@ const Home = ({
 
       <Col span={24}>
         <div className={styles.cardBarChart}>
-          <BarChart data={parserDataOrders.sort((a, b) => a.name - b.name)} />
+          <BarChart data={parserDataOrders} />
         </div>
       </Col>
 
