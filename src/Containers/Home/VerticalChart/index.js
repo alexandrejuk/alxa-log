@@ -48,10 +48,10 @@ const VerticalChart = ({ orderOperationStatus }) => {
         <Title level={5}>Total por operação</Title>
       </Col>
       <Col span={24}>
-        <ResponsiveContainer width="100%" height={320}>
+        <ResponsiveContainer width="100%" height={800}>
           <ComposedChart
             layout="vertical"
-            height={320}
+            height="100%"
             data={parserDataOrders}
             margin={{
               top: 50,

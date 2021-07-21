@@ -2,9 +2,9 @@ import React from 'react'
 import {
   Row,
   Col,
-  Image
+  Image,
+  Card
 } from 'antd'
-// import PieChart from './PieChart'
 import BarChart from './BarChart'
 import VerticalChart from './VerticalChart'
 import OrdersSvg from './orders.svg'
@@ -105,17 +105,11 @@ const Home = ({
       </Col>
 
       <Col span={24}>
-        <div className={styles.cardBarChart}>
+        <Card bordered={false}>
           <VerticalChart orderOperationStatus={orderOperationStatus} />
-        </div>
+        </Card>
       </Col>
       
-
-      {/* <Col span={8}>
-        <div className={styles.cardPieChart}>
-          <PieChart data={orderCompanyStatus} />
-        </div>
-      </Col> */}
     </Row>
   )
 }
